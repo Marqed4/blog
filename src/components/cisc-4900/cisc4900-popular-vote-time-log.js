@@ -19,13 +19,61 @@ const SEMESTER_END = "2026-12-21";
 // 4. Keep newest entries at the top of the array.
 // 5. Only log days that have actually happened - don't log ahead of today.
 const entries = [
-    {
+  {
+    date: "2026-11-10",
+    duration: 0,
+    category: "Other",
+    description: "Turned in the Demonstration Video for the course. This was about 3-4 hours. Homework, not counted in hours. ",
+  },
+  {
+    date: "2026-11-07",
+    duration: 0,
+    category: "Other",
+    description: "Turned in the Peer Evaluation (Responsible Design) for the course. Homework, not counted in hours.",
+  },
+  {
+    date: "2026-11-05",
+    duration: 4,
+    category: "Coding",
+    description: "Added hashed identity rooms: a passcode-derived room key, a per-session user hash, and a key-check route so a mistyped passcode can be told apart from the real one. The sidebar history now shows a privacy tier badge (Normal, Encrypted or Hashed identity). Also reorganized the frontend components into folders, set up vitest, and added backend and frontend tests and a CHANGELOG.",
+    challenges: "The sidebar never selected the encrypted and hashed_identity columns, so every saved session showed as Normal. Fixed. Not verified: whether both columns exist on the live Supabase sessions table. The tier wording also differs between the app and the badge.",
+    reflection: "Writing tests for the badge is what exposed the missing columns.",
+  },
+  {
+    date: "2026-11-02",
+    duration: 2,
+    category: "Testing & Debugging",
+    description: "Fixed a socket crash on Flask 3.1.3, wired up the unique device count, and made the localhost API fallback dev-only so the live site never calls localhost. Updated the README and run instructions, and added the sixteenth presentation draft.",
+    challenges: "The crash only showed up after the Flask upgrade, so it took a while to trace to the socket setup.",
+    reflection: "Dev-only fallbacks are easy to forget about until they break production.",
+  },
+  {
+    date: "2026-10-31",
+    duration: 4,
+    category: "Coding",
+    description: "Deployed the app live on Render. Added unique device tracking per session (viewerCount), dark backgrounds (Studio, Obsidian, Foil), and a Bebas Neue display font with a foil-derived button and trim theme. Guarded against a missing session code and kept drafts when a submit fails.",
+    challenges: "A database layer commit overwrote routes/sessions.py, so I had to restore it. Background images were several MB each and had to be compressed.",
+    reflection: "Checking what a commit touches before pushing would have avoided the overwrite.",
+  },
+  {
     date: "2026-10-26",
     duration: 3,
     category: "Coding",
     description: "Redesigned the look of the frontend with a new font, a cooler color palette and matching dark mode across every page, and added a footer linking to the project's GitHub. Then reviewed the database layer and fixed the risky parts: re-clustering no longer deletes clusters before the new ones are saved, large rooms are no longer cut off at 1000 rows, and deletes are scoped to their session.",
     challenges: "Rules Gothic Condensed is a paid font, so the site falls back to Oswald until the font file is added. The SQL functions for atomic updates aren't run yet, and the database changes are untested against live Supabase. Upvotes can still lose a vote when two land at once. Next: replace the placeholder GitHub URL and pass session_code from the manager.",
     reflection: "Reading the schema before writing the SQL caught a wrong id type (uuid, not bigint) that would have failed on the first run.",
+  },
+  {
+    date: "2026-10-25",
+    duration: 0,
+    category: "Other",
+    description: "Turned in the Peer Evaluation (Code Review) for the course. Homework, not counted in hour.",
+  },
+  {
+    date: "2026-10-23",
+    duration: 0,
+    category: "Other",
+    description: "Turned in the Peer Evaluation (Version Control) for the course. Homework, not counted in hours.",
   },
   {
     date: "2026-10-23",

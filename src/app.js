@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import './components/pages/not-found.css';
 import NotFound from "./components/pages/not-found.jsx";
 
 import './app.css';
@@ -12,9 +13,6 @@ import './components/layout/footer.css'
 import './components/pages/home/home-body.css';
 import './components/pages/home/home-portfolio.css'
 import './components/pages/home/home-text.css';
-import './components/pages/home/media/home-edits.css';
-import './components/pages/home/media/home-shorts.css';
-import './components/pages/home/media/media-previews.css';
 
 // <---- Landing Page ---->
 import Home from "./components/pages/home/home.js";
@@ -55,10 +53,6 @@ import PopularVote from "./components/projects/popular-vote.js";
 import './components/projects/time-rabbit.css';
 import TimeRabbit from "./components/projects/time-rabbit.js";
 
-// <---- CodePath Page (url-only, no nav link) ---->
-import './components/pages/code-path.css';
-import CodePath from "./components/pages/code-path.js";
-
 // <---- PopularVote Time Log Page (url-only, no nav link) ---->
 import './components/cisc-4900/cisc4900-popular-vote-time-log.css';
 import PopularVoteTimeLog from "./components/cisc-4900/cisc4900-popular-vote-time-log.js";
@@ -72,6 +66,26 @@ import './components/cisc-4900/cisc4900-power-point.css';
 import CISC4900PowerPoint from "./components/cisc-4900/cisc4900-power-point.js";
 
 import DefaultBackground from "./resources/art/background-project/gradients/site.gif";
+
+// Why internal links use react-router's <Link> and not <a href>:
+// A plain <a href="/Projects"> makes the browser load a brand new document. That
+// re-downloads and re-parses the JS bundle, remounts <App>, and restarts the
+// background gif and the parallax springs below, so every click flashes and
+// resets the page. <Link to="/Projects"> only swaps the route on the client, so
+// <App> (and the background it draws) stays mounted the whole visit.
+// Links that leave the site (other domains, mailto:) stay as <a>, because they
+// have to leave the app.
+//
+// Side effect of client side navigation: the browser no longer jumps to the top on
+// its own, so a page opened from a scrolled position would start mid-page.
+// ScrollToTop puts that back by scrolling to the top on every route change.
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
 
 const App = () => {
   const rawX = useMotionValue(0);
@@ -96,6 +110,7 @@ const App = () => {
 
   return (
     <>
+      <ScrollToTop />
       <motion.img
         src={DefaultBackground}
         alt=""
@@ -114,7 +129,6 @@ const App = () => {
           <Route path="/PopularVote" element={<PopularVote/>} />
           <Route path="/Sudoku" element={<Sudoku/>} />
           <Route path="/DivaFFMPEG" element={<DivaFFMPEG/>} />
-          <Route path="/CodePath" element={<CodePath/>} />
           <Route path="/CISC-4900-PopularVote-TimeLog" element={<PopularVoteTimeLog/>} />
           <Route path="/CISC-4900-PopularVote-PowerPointPresentation" element={<CISC4900PowerPoint/>} />
           <Route path="/CISC-4900-PopularVote" element={<CISC4900PopularVote/>} />

@@ -1,6 +1,8 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../layout/navbar.js";
 import Footer from "../layout/footer.jsx"
+import Reveal from "../layout/reveal.js"
 import "./projects.css";
 
 import ProjectsInactive from "../../resources/art/pages/projects/projects-inactive.gif"
@@ -88,8 +90,9 @@ const Projects = () => {
         alt="Projects"
         />
         <div className="projects-grid">
-            {ProjectsArray.map((project) => (
-              <div key={project.id} className="project-wrapper">
+            {/* Reveal fades each card in as it scrolls into view (see layout/reveal.js). */}
+            {ProjectsArray.map((project, index) => (
+              <Reveal key={project.id} index={index} className="project-wrapper">
                 {/* Link to project website or standalone download page */}
                 {project.link && (
                   <a
@@ -122,9 +125,13 @@ const Projects = () => {
                   </a>
                 )}
 
-                {/* Project title, logo, and description */}
-                <a
-                  href={"/" + project.title.replace(/\s+/g, "")}
+                {/* Project title, logo, and description.
+                    This is a <Link>, not an <a href>, so opening a project does not
+                    reload the page and restart the background (see app.js).
+                    The live site and repository buttons above stay as <a> because
+                    they leave this app (other domains, opened in a new tab). */}
+                <Link
+                  to={"/" + project.title.replace(/\s+/g, "")}
                   className="project-card"
                 >
                   <img
@@ -134,9 +141,9 @@ const Projects = () => {
                   />
                   <h2 className="project-name">{project.title}</h2>
                   <p className="project-description">{project.description}</p>
-                </a>
+                </Link>
                 
-              </div>
+              </Reveal>
             ))}
         </div>
       </div>

@@ -23,4 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 **/resources/art/background-project
 **/resources/art/Don't Upload
+CONTEXT.md
 .vscode/

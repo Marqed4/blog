@@ -1,6 +1,14 @@
 import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
+// Internal links in this file are <Link>, not <a href>, so a click swaps the route
+// without reloading the page and restarting the background (see app.js). The
+// GitHub link stays <a> because it leaves the site.
+//
+// The hover sounds are started from onMouseEnter. A full page reload used to cut
+// them off for free. With <Link> the page stays alive, so the internal links call
+// stopHoverAudio on click, otherwise the sound would keep playing on the new page.
+
 import GospelAudio from "../../resources/sound/gospel.mp3";
 import SpellAudio from "../../resources/sound/spell.mp3";
 import LeniAudio from "../../resources/sound/leni.mp3";
@@ -120,9 +128,10 @@ const Navbar = () => {
   return (
     <nav>
       <div className="Navbar-links-container">
-        <a href="/" className="nav-btn"
+        <Link to="/" className="nav-btn"
           onMouseEnter={() => { setHomeHovered(true); playGospel(); }}
           onMouseLeave={() => { setHomeHovered(false); stopHoverAudio(); }}
+          onClick={stopHoverAudio}
         >
           <NavItem
             labelActive={HomeNavbarActive}
@@ -133,7 +142,7 @@ const Navbar = () => {
             iconClass="home-link-icon"
             hovered={homeHovered}
           />
-        </a>
+        </Link>
 
         <Link to="/Details" className="nav-btn"
           onMouseEnter={() => { setDetailsHovered(true); playOnlinePersona(); }}
@@ -227,7 +236,7 @@ const Navbar = () => {
 
       {menuOpen && (
         <div className="mobile-menu">
-          <a href="/" className="nav-btn" onClick={() => setMenuOpen(false)}>
+          <Link to="/" className="nav-btn" onClick={() => setMenuOpen(false)}>
             <NavItem
               labelActive={HomeNavbarActive}
               labelInactive={HomeNavbarInactive}
@@ -237,7 +246,7 @@ const Navbar = () => {
               iconClass="home-link-icon"
               hovered={homeHovered}
             />
-          </a>
+          </Link>
           <Link to="/details" className="nav-btn" onClick={() => setMenuOpen(false)}>
             <NavItem
               labelActive={DetailsNavbarActive}

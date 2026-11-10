@@ -128,20 +128,6 @@
   position: relative;
 }
 
-.media-preview-window {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 15px;
-  padding: 40px 30px;
-  text-align: center;
-  box-shadow:
-    0px 4px 10px rgba(0, 0, 0, 0.1),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(4px);
-  position: relative;
-  z-index: 1;
-}
-
 @media (max-width: 768px) {
   .home-banner-bg,
   .home-banner-mirror-top,

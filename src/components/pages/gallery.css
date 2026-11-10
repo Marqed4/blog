@@ -19,6 +19,17 @@
   justify-items: center;
 }
 
+/* Wrapper that Reveal puts around each card (see gallery.js).
+   Same centering fix as .project-wrapper in projects.css: .gallery-card is width
+   100% plus 24px padding and a 1px border per side and is not border-box, so it is
+   50px wider than this wrapper. Shift the wrapper left by half (25px). */
+.gallery-reveal {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  left: -25px;
+}
+
 .gallery-card {
   display: flex;
   flex-direction: column;

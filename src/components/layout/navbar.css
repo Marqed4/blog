@@ -27,6 +27,13 @@ nav {
   align-items: center;
   gap: 14px;
   overflow: visible;
+  /* Centering: each link's emoji icon is position: absolute, so it adds no width
+     to the layout, but it is drawn to the right of its label. The last icon (GitHub)
+     therefore hangs out past the end of the row, and the row looks about 18px right
+     of center even though its box is centered. Measured from a screenshot, so it is
+     an estimate. If the links still look right of center, raise the number. If they
+     look left of center, lower it. */
+  transform: translateX(-18px);
 }
 
 .music-toggle {

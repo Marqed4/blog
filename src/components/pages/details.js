@@ -51,6 +51,9 @@ const Details = () => {
                 <img src={ResumeDetailsInactive} className="details-resume-img" alt="Resume" />
               </h2>
               <p className="resume-body">
+                {/* Plain <a> on purpose: target="_blank" opens a new tab, which is a new
+                    document either way, so <Link> would not save a reload here. The
+                    other internal links in the site use <Link> (see app.js). */}
                 <a href="/Resume" target="_blank" rel="noopener noreferrer">
                   <u>View Resume</u>
                 </a>

@@ -9,6 +9,13 @@
   position: relative;
   width: 100%;
   max-width: 300px;
+  /* Centering: .project-card is width 100% plus 24px padding and a 1px border on
+     each side, and it is not border-box, so it is 50px wider than this wrapper
+     and sticks out to the right. Shifting the wrapper left by half of that (25px)
+     puts the card in the middle of its grid column. The buttons move with it, so
+     they keep their place on the card. If the card padding or border changes,
+     change this number to half of (2 x padding + 2 x border). */
+  left: -25px;
 }
 
 .external-link-btn,

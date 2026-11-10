@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import HomeBanner from "../../../resources/art/background-project/gradients/orange-glob-marble.gif"
 import Navbar from "../../layout/navbar.js"
 import Footer from "../../layout/footer.jsx"
-import MediaPreviews from "./media/media-previews.js"
 import { ProjectsInactive, ProjectsActive } from "../projects.js";
 import { GalleryInactive, GalleryActive } from "../gallery.js";
+
+// Internal links here are <Link>, not <a href>, so clicking them does not reload
+// the page and restart the background (full reasoning is above ScrollToTop in
+// app.js). Only links that leave the site (popularvote.marqed.it, GitHub,
+// LinkedIn, mailto:) stay as <a>.
 
 function HomeItem({ labelActive, labelInactive, iconActive, iconInactive, labelClass, iconClass, hovered }) {
   return (
@@ -66,7 +71,7 @@ const Home = () => {
             <p className="home-links">
               <a href="https://popularvote.marqed.it" target="_blank" rel="noopener noreferrer">Live site</a>
               {" · "}
-              <a href="/PopularVote">Case study</a>
+              <Link to="/PopularVote">Case study</Link>
               {" · "}
               <a href="https://github.com/Marqed4/PopularVote" target="_blank" rel="noopener noreferrer">GitHub</a>
             </p>
@@ -78,12 +83,12 @@ const Home = () => {
               {" · "}
               <a href="https://www.linkedin.com/in/zachery-francis/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
               {" · "}
-              <a href="/Resume">Resume</a>
+              <Link to="/Resume">Resume</Link>
             </p>
           </div>
           <div className="home-card portfolio-card">
             <div className="portfolio-buttons">
-              <a href="/Projects">
+              <Link to="/Projects">
                 <div className="portfolio-container-projects"
                   onMouseEnter={() => setProjectsHovered(true)}
                   onMouseLeave={() => setProjectsHovered(false)}
@@ -95,8 +100,8 @@ const Home = () => {
                   hovered={projectsHovered}
                  />
                 </div>
-              </a>
-              <a href="/Gallery">
+              </Link>
+              <Link to="/Gallery">
                 <div className="portfolio-container-gallery"
                   onMouseEnter={() => setGalleryHovered(true)}
                   onMouseLeave={() => setGalleryHovered(false)}
@@ -108,7 +113,7 @@ const Home = () => {
                     hovered={galleryHovered}
                   />
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

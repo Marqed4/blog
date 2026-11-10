@@ -1,0 +1,64 @@
+.notfound-container {
+  padding-top: 100px;
+  padding-bottom: 40px;
+  min-height: 70vh;
+  box-sizing: border-box;
+}
+
+/* Same look as the home cards: transparent, thin light border, soft blur. */
+.notfound-card {
+  width: fit-content;
+  max-width: 90%;
+  margin: 40px auto 0;
+  padding: 10px 30px 20px;
+  box-sizing: border-box;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 15px;
+  box-shadow:
+    0px 4px 10px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(4px);
+}
+
+.notfound-code {
+  margin: 0;
+  font-family: "Latin";
+  font-size: 4rem;
+  text-shadow: 0px 2px 4px rgba(200, 55, 105, 1.4);
+}
+
+.notfound-card p {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.2rem;
+  font-weight: 225;
+  -webkit-text-stroke: 1px black;
+  color: rgb(0, 0, 0);
+  margin: 6px 0;
+}
+
+/* Long or odd paths must wrap instead of stretching the card. */
+.notfound-card p.notfound-path {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  -webkit-text-stroke: 0.5px black;
+  overflow-wrap: anywhere;
+}
+
+.notfound-card p.notfound-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 22px;
+  margin-top: 16px;
+}
+
+.notfound-links a {
+  color: rgb(0, 0, 0);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.notfound-links a:hover {
+  color: #8400ff;
+}

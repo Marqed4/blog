@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Navbar from "../layout/navbar.js";
 import Footer from "../layout/footer.jsx"
+import Reveal from "../layout/reveal.js"
 import "./gallery.css";
 
 import GalleryInactive from "../../resources/art/pages/gallery/gallery-inactive.gif"
@@ -37,8 +38,10 @@ const Gallery = () => {
                 alt="Gallery"
                 />
                 <div className="gallery-grid">
-                    {PetsArray.map((media) => (
-                        <div key={media.id} className="gallery-card">
+                    {/* Reveal sits outside the card because .gallery-card has its own hover transform. */}
+                    {PetsArray.map((media, index) => (
+                        <Reveal key={media.id} index={index} className="gallery-reveal">
+                        <div className="gallery-card">
                             <div className="gallery-image-wrapper">
                                 <img
                                 src={media.image}
@@ -50,6 +53,7 @@ const Gallery = () => {
                                 </p>
                             </div>
                         </div>
+                        </Reveal>
                     ))}
                 </div>
             </div>
