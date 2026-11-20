@@ -5,12 +5,6 @@ import Footer from "../layout/footer.jsx"
 import Reveal from "../layout/reveal.js"
 import "./projects.css";
 
-import ProjectsInactive from "../../resources/art/pages/projects/projects-inactive.gif"
-import ProjectsActive from "../../resources/art/pages/projects/projects-active.gif"
-
-import ExternalLinkButton from "../../resources/art/pages/projects/external-link-button.gif"
-import ExternalRepoButton from "../../resources/art/pages/projects/external-repo-button.gif"
-
 import DivaFFMPEGLogo from "../../resources/art/projects/diva-ffmpeg/diva-icon.gif";
 import CalisighLogo from "../../resources/art/projects/calisigh/icon.png";
 import PopularVoteLogo from "../../resources/art/projects/popularvote/favicon.png"
@@ -18,10 +12,11 @@ import SudokuLogo from "../../resources/art/projects/sudoku/favicon.png"
 import TimeRabbitLogo from "../../resources/art/projects/time-rabbit/time-rabbit.png"
 
 // Currently mentioned project list. 
-const ProjectsArray = [
+export const ProjectsArray = [
   // Calisigh
   {
     id: 1,
+    featured: true,
     logo: CalisighLogo,
     title: "Calisigh",
     repository: "https://github.com/Marqed4/Calisigh",
@@ -77,74 +72,60 @@ const ProjectsArray = [
 Each project will contain it's own data. 
 Redirecting the user to a page with more about that project.
 */
+const ProjectCard = ({ project, index }) => (
+  <Reveal key={project.id} index={index} className={`project-wrapper${project.featured ? " project-wrapper--featured" : ""}`}>
+    <Link
+      to={"/" + project.title.replace(/\s+/g, "")}
+      className={`project-card${project.featured ? " project-card--featured" : ""}`}
+    >
+      <img
+        src={project.logo}
+        alt={project.title + "-logo"}
+        className="project-logo"
+      />
+      {project.featured && (
+        <span className="project-featured-badge">Featured</span>
+      )}
+      <div className="project-info">
+        <h2 className="project-name">{project.title}</h2>
+        <p className="project-description">{project.description}</p>
+      </div>
+    </Link>
+    <div className="project-actions">
+      {project.link && (
+        <a className="ae-button ae-button--small" href={project.link} target="_blank" rel="noopener noreferrer">
+          Live site <span aria-hidden="true">↗</span>
+        </a>
+      )}
+      {project.repository && (
+        <a className="ae-button ae-button--small" href={project.repository} target="_blank" rel="noopener noreferrer">
+          Source code <span aria-hidden="true">↗</span>
+        </a>
+      )}
+    </div>
+  </Reveal>
+);
+
 const Projects = () => {
   useEffect(() => {
     document.title = "Marqed's Projects";
   }, []);
+
+  const featured = ProjectsArray.find(p => p.featured);
+  const rest = ProjectsArray.filter(p => !p.featured);
+
   return (
     <>
       <Navbar />
       <div className="projects-page">
-        <img src={ProjectsInactive}
-        className="projects-header"
-        alt="Projects"
-        />
+        <h1 className="workspace-page-title projects-page-title">
+          <span className="workspace-page-title-text">Projects</span>
+        </h1>
+        {featured && <ProjectCard project={featured} index={0} />}
         <div className="projects-grid">
-            {/* Reveal fades each card in as it scrolls into view (see layout/reveal.js). */}
-            {ProjectsArray.map((project, index) => (
-              <Reveal key={project.id} index={index} className="project-wrapper">
-                {/* Link to project website or standalone download page */}
-                {project.link && (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="external-link-btn external-btn-slot-1"
-                  >
-                    <img
-                      src={ExternalLinkButton}
-                      alt={project.title + " live site"}
-                      className="external-link-btn external-btn-slot-1"
-                    />
-                  </a>
-                )}
-
-                {/* Link to project repository */}
-                {project.repository && (
-                  <a
-                    href={project.repository}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`external-repo-btn ${project.link ? "external-btn-slot-2" : "external-btn-slot-1"}`}
-                  >
-                    <img
-                      src={ExternalRepoButton}
-                      alt={project.title + " repository"}
-                      className={`external-repo-btn ${project.link ? "external-btn-slot-2" : "external-btn-slot-1"}`}
-                    />
-                  </a>
-                )}
-
-                {/* Project title, logo, and description.
-                    This is a <Link>, not an <a href>, so opening a project does not
-                    reload the page and restart the background (see app.js).
-                    The live site and repository buttons above stay as <a> because
-                    they leave this app (other domains, opened in a new tab). */}
-                <Link
-                  to={"/" + project.title.replace(/\s+/g, "")}
-                  className="project-card"
-                >
-                  <img
-                    src={project.logo}
-                    alt={project.title + "-logo"}
-                    className="project-logo"
-                  />
-                  <h2 className="project-name">{project.title}</h2>
-                  <p className="project-description">{project.description}</p>
-                </Link>
-                
-              </Reveal>
-            ))}
+          {rest.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index + 1} />
+          ))}
         </div>
       </div>
       <Footer />
@@ -153,4 +134,3 @@ const Projects = () => {
 };
 
 export default Projects;
-export { ProjectsInactive, ProjectsActive };

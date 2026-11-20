@@ -33,13 +33,6 @@
   box-sizing: border-box;
 }
 
-.details-header {
-  height: 80px;
-  width: auto;
-  display: block;
-  margin: 0 auto 20px auto;
-}
-
 .details-content {
   display: flex;
   flex-direction: row;
@@ -133,20 +126,6 @@
 .details-skills-lang-framework {
   margin-top: 0;
   padding-top: 0;
-}
-
-.contacts-header,
-.education-header,
-.editing-software-header,
-.coding-lang-framworks-header,
-.interests-header,
-.details-layout-resume .resume-header {
-  display: block;
-  margin: 0 auto 4px auto;
-}
-
-.coding-lang-framworks-header {
-  height: 125px;
 }
 
 .editing-software-body,

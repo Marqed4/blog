@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "../layout/navbar.js";
-import "./cisc4900-popular-vote-time-log.css";
-
-import PopularVoteTimeLogTitle from "../../resources/art/projects/popularvote/cisc-4900-popularvote-time-log.gif";
+import Footer from "../layout/footer.jsx";
+import "./timelog.css";
 
 // Fall 2026 semester (Brooklyn College): classes run Aug. 28 - Dec. 21, 2026.
 // Logging window starts 3 days in, on Aug. 31, 2026.
@@ -319,7 +318,6 @@ const PopularVoteTimeLog = () => {
 
       <div className="timelog-card">
         <div className="timelog-header">
-          <img src={PopularVoteTimeLogTitle} className="timelog-title-img" alt="Popular Vote: Time Log" />
           <p className="timelog-tagline">CISC 4900 Capstone · Zachery Francis</p>
           <p className="timelog-tagline">
             <a
@@ -332,9 +330,6 @@ const PopularVoteTimeLog = () => {
           </p>
           <p className="timelog-tagline">
             Fall 2026 semester: {formatDate(SEMESTER_START)} - {formatDate(SEMESTER_END)}
-          </p>
-          <p className="timelog-tagline">
-            Logging window: {formatDate(LOG_START)} onward
           </p>
         </div>
 
@@ -387,7 +382,7 @@ const PopularVoteTimeLog = () => {
               {hasMore && (
                 <button
                   type="button"
-                  className="timelog-view-more"
+                  className="ae-button timelog-view-more"
                   onClick={() => setVisibleCount((c) => c + 5)}
                 >
                   View more ({entries.length - visibleCount} left)
@@ -397,7 +392,7 @@ const PopularVoteTimeLog = () => {
               {!hasMore && entries.length > INITIAL_VISIBLE && (
                 <button
                   type="button"
-                  className="timelog-view-more"
+                  className="ae-button timelog-view-more"
                   onClick={() => setVisibleCount(INITIAL_VISIBLE)}
                 >
                   Show less
@@ -407,6 +402,7 @@ const PopularVoteTimeLog = () => {
           )}
         </section>
       </div>
+      <Footer />
     </div>
   );
 };

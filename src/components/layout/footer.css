@@ -1,12 +1,43 @@
-footer {
+footer.pv-footer {
   width: 100%;
   display: flex;
+  align-items: center;
   justify-content: center;
-  line-height: 0;
+  gap: 1.25rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid rgba(178, 176, 204, 0.2);
+  color: #b5b1c7;
+  background: rgba(28, 31, 39, 0.82);
+  font: 400 0.85rem/1.3 "Segoe UI", Arial, sans-serif;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-sizing: border-box;
 }
 
-.footer-gif {
-  width: 200px;
-  height: auto;
-  display: block;
+.pv-footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 4px 10px;
+  border-radius: 8px;
+  color: hsl(calc(250.0 + var(--a-shift)) calc(27.3% * var(--a-sat)) 95.7%);
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 150ms ease;
+}
+
+.pv-footer-link:hover {
+  background: rgba(66, 68, 82, 0.72);
+}
+
+.pv-footer-link:focus-visible {
+  outline: 2px solid hsl(calc(254.1 + var(--a-shift)) calc(100.0% * var(--a-sat)) 84.1%);
+  outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  footer.pv-footer {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }

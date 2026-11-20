@@ -1,0 +1,672 @@
+/* Page shells: width, padding, base text color */
+.ae-site .projects-page,
+.ae-site .gallery-page,
+.ae-site .details-container,
+.ae-site .resume-container,
+.ae-site .notfound-container,
+.ae-site .popular-vote-container,
+.ae-site .diva-ffmpeg-container,
+.ae-site .custom-calendar-container,
+.ae-site .timerabbit-container,
+.ae-site .solvesudoku-container,
+.ae-site .cisc4900-container,
+.ae-site .cisc4900-ppt-container,
+.ae-site .timelog-container {
+  width: min(1360px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 104px 18px 42px;
+  color: var(--ae-text);
+  font-family: "Segoe UI", Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.ae-site .projects-page,
+.ae-site .gallery-page {
+  align-items: stretch;
+}
+
+/* Page title: gradient text, hover and focus glow */
+.ae-site .workspace-page-title {
+  margin: 4px 0 16px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: clamp(2rem, 4vw, 2.8rem); /* clamp(min,4vw,max) <-fluid, no media query needed */
+  font-weight: 750;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.ae-site .workspace-page-title-text {
+  display: inline-block;
+  color: #fff;
+  /* hsl(base + --a-shift) * --a-sat ~> one knob retints every gradient/shadow site-wide */
+  /* bg[gradient]->clip:text->fill:transparent == paint gradient through glyph shapes */
+  background: linear-gradient(180deg, #fff 0%, hsl(calc(250.7 + var(--a-shift)) calc(100.0% * var(--a-sat)) 94.5%) 38%, hsl(calc(250.5 + var(--a-shift)) calc(74.1% * var(--a-sat)) 77.3%) 65%, hsl(calc(250.0 + var(--a-shift)) calc(100.0% * var(--a-sat)) 91.8%) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.22), 0 3px 0 hsl(calc(252.3 + var(--a-shift)) calc(37.3% * var(--a-sat)) 53.7% / 0.45), 0 6px 10px rgba(0, 0, 0, 0.42);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.ae-site .workspace-page-title a {
+  text-decoration: none;
+}
+
+.ae-site .workspace-page-title a:hover .workspace-page-title-text {
+  filter: brightness(1.15);
+}
+
+.ae-site .workspace-page-title a:focus-visible {
+  border-radius: 2px;
+  outline: 2px solid hsl(calc(254.1 + var(--a-shift)) calc(100.0% * var(--a-sat)) 84.1%);
+  outline-offset: 5px;
+}
+
+.ae-site .projects-page-title,
+.ae-site .gallery-page-title {
+  margin: 0 auto 28px;
+}
+
+/* Card section headings: Overview, Features, Architecture */
+.ae-site .section-heading {
+  margin: 0 0 12px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 0.88rem;
+  font-weight: 750;
+  letter-spacing: 0.045em;
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.22), 0 3px 0 hsl(calc(252.3 + var(--a-shift)) calc(37.3% * var(--a-sat)) 53.7% / 0.45), 0 6px 10px rgba(0, 0, 0, 0.42);
+  background: linear-gradient(180deg, #fff 0%, hsl(calc(250.7 + var(--a-shift)) calc(100.0% * var(--a-sat)) 94.5%) 38%, hsl(calc(250.5 + var(--a-shift)) calc(74.1% * var(--a-sat)) 77.3%) 65%, hsl(calc(250.0 + var(--a-shift)) calc(100.0% * var(--a-sat)) 91.8%) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0;
+}
+
+/* Card grid: responsive columns, wrapper sizing */
+.ae-site .projects-grid,
+.ae-site .gallery-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); /* [card][card][card]-> wraps itself, zero breakpoints */
+  gap: 16px;
+  max-width: 1180px;
+  margin: 0 auto;
+  justify-items: stretch;
+}
+
+.ae-site .project-wrapper,
+.ae-site .gallery-reveal {
+  left: auto;
+  width: 100%;
+  max-width: none;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Card shell: shared border, background, glass blur */
+.ae-site .project-card,
+.ae-site .gallery-card,
+.ae-site [class*="-layout-"], /* *=contains match -> catches every project's layout-* card w/o listing them */
+.ae-site .app-controls-section,
+.ae-site .notfound-card,
+.ae-site .timelog-card,
+.ae-site .timelog-entry,
+.ae-site .cisc4900-route-group,
+.ae-site .ae-contact-form {
+  border: 1px solid var(--ae-panel-border);
+  border-radius: 8px;
+  color: var(--ae-text);
+  background: linear-gradient(150deg, rgba(42, 44, 54, 0.9), rgba(27, 29, 36, 0.92));
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22), inset 0 1px rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px); /* blur(bg)=> frosted glass, bg image shows thru card */
+  box-sizing: border-box;
+}
+
+.ae-site .project-card,
+.ae-site .gallery-card {
+  flex: 1;
+  height: auto;
+  padding: 18px;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.ae-site .project-card:hover,
+.ae-site .gallery-card:hover {
+  transform: translateY(-3px);
+  border-color: hsl(calc(250.5 + var(--a-shift)) calc(100.0% * var(--a-sat)) 78.6% / 0.55);
+  background: linear-gradient(150deg, rgba(51, 49, 67, 0.94), rgba(29, 31, 39, 0.96));
+}
+
+/* Project card: logo and name color */
+.ae-site .project-logo {
+  max-width: 100%;
+  height: 112px;
+  object-fit: contain;
+}
+
+.ae-site .project-name,
+.ae-site .resume-name {
+  color: hsl(calc(253.3 + var(--a-shift)) calc(47.4% * var(--a-sat)) 96.3%);
+}
+
+/* Shared body text color, used across most pages */
+.ae-site .project-description,
+.ae-site [class$="-description"], /* $=ends-with -> one rule, every *-description class site-wide */
+.ae-site [class$="-body"],
+.ae-site [class$="-list"] li,
+.ae-site .resume-profile,
+.ae-site .resume-job-list li,
+.ae-site .resume-contact-row,
+.ae-site .resume-contact-row a,
+.ae-site .timelog-tagline,
+.ae-site .timelog-entry-description,
+.ae-site .timelog-entry-field,
+.ae-site .cisc4900-description,
+.ae-site .cisc4900-list li,
+.ae-site .cisc4900-route-list li,
+.ae-site .cisc4900-route-label,
+.ae-site .cisc4900-route-file,
+.ae-site .cisc4900-section-title,
+.ae-site .diva-ffmpeg-ethics {
+  color: #d3d1dc;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-weight: 400;
+  -webkit-text-stroke: 0;
+}
+
+.ae-site .project-description,
+.ae-site .gallery-description {
+  line-height: 1.55;
+  white-space: pre-line;
+}
+
+.ae-site .project-actions {
+  padding: 0 4px 4px;
+}
+
+/* Gallery-only overrides: padding, image, caption */
+.ae-site .gallery-card {
+  padding: 12px;
+}
+
+.ae-site .gallery-image-wrapper {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.ae-site .gallery-image {
+  max-width: 100%;
+  border-radius: 5px;
+  object-fit: contain;
+}
+
+.ae-site .gallery-description {
+  color: #d3d1dc;
+  font-size: 0.82rem;
+  text-align: center;
+}
+
+/* Details page title */
+.ae-site .details-container {
+  text-align: left;
+}
+
+.ae-site .details-page-title,
+.ae-site .details-content h2 {
+  margin: 0 0 12px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-weight: 750;
+  letter-spacing: 0.045em;
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.22), 0 3px 0 hsl(calc(252.3 + var(--a-shift)) calc(37.3% * var(--a-sat)) 53.7% / 0.45), 0 6px 10px rgba(0, 0, 0, 0.42);
+}
+
+.ae-site .details-page-title {
+  margin: 0 auto 24px;
+  font-size: clamp(2rem, 4vw, 2.7rem);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.ae-site .details-content h2 {
+  font-size: 0.88rem;
+  background: linear-gradient(180deg, #fff 0%, hsl(calc(250.7 + var(--a-shift)) calc(100.0% * var(--a-sat)) 94.5%) 38%, hsl(calc(250.5 + var(--a-shift)) calc(74.1% * var(--a-sat)) 77.3%) 65%, hsl(calc(250.0 + var(--a-shift)) calc(100.0% * var(--a-sat)) 91.8%) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: none;
+  -webkit-text-stroke: 0;
+}
+
+/* Details content: two-column grid layout */
+.ae-site .details-content {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.85fr) minmax(360px, 1.5fr);
+  gap: 16px;
+  max-width: 1120px;
+  padding: 0;
+}
+
+.ae-site .details-left-column {
+  display: grid;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.ae-site .education-and-skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+
+/* Details sub-cards: education, skills, contact */
+.ae-site .details-layout-edu,
+.ae-site .details-layout-int,
+.ae-site .details-layout-editing-software,
+.ae-site .details-layout-coding-lang-framework,
+.ae-site .details-layout-emails,
+.ae-site .details-layout-resume {
+  width: auto;
+  max-width: none;
+  min-width: 0;
+  padding: 18px;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.ae-site .details-layout-int {
+  grid-column: 1 / -1;
+}
+
+.ae-site .details-emails-header,
+.ae-site .details-resume-header,
+.ae-site .details-education-header,
+.ae-site .details-interests-header,
+.ae-site .details-skills-edit-software,
+.ae-site .details-skills-lang-framework {
+  margin: 0 0 12px;
+  animation: none;
+}
+
+.ae-site .details-content p {
+  margin: 0;
+  transform: none;
+  font: 400 0.83rem/1.65 "Segoe UI", Arial, sans-serif;
+  color: #d3d1dc;
+  -webkit-text-stroke: 0;
+}
+
+.ae-site .details-content .ae-button {
+  margin: 3px 0;
+}
+
+.ae-site .studying-tag {
+  color: hsl(calc(251.6 + var(--a-shift)) calc(100.0% * var(--a-sat)) 86.9%);
+  border-color: hsl(calc(251.8 + var(--a-shift)) calc(100.0% * var(--a-sat)) 79.0% / 0.42);
+  background: hsl(calc(254.7 + var(--a-shift)) calc(52.0% * var(--a-sat)) 60.0% / 0.16);
+}
+
+/* Project showcase pages: heading, hero, screenshots */
+.ae-site .popular-vote-container,
+.ae-site .diva-ffmpeg-container,
+.ae-site .custom-calendar-container,
+.ae-site .timerabbit-container,
+.ae-site .solvesudoku-container,
+.ae-site .cisc4900-container,
+.ae-site .cisc4900-ppt-container {
+  text-align: center;
+}
+
+.ae-site .popular-vote-container h1,
+.ae-site .diva-ffmpeg-container h1,
+.ae-site .custom-calendar-container h1,
+.ae-site .timerabbit-container h1,
+.ae-site .solvesudoku-container h1,
+.ae-site .cisc4900-container h1 {
+  margin: 4px 0 16px;
+  line-height: 1.2;
+}
+
+.ae-site .diva-ffmpeg-hero {
+  max-width: min(100%, 820px);
+  border: 1px solid var(--ae-panel-border);
+  border-radius: 8px;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+}
+
+.ae-site .popular-vote-description,
+.ae-site .diva-ffmpeg-description,
+.ae-site .timerabbit-description,
+.ae-site .solvesudoku-description {
+  color: #d3d1dc;
+  line-height: 1.6;
+  -webkit-text-stroke: 0;
+}
+
+/* Screenshot + docs rows, shared across project pages */
+.ae-site .popular-vote-view-section,
+.ae-site .diva-ffmpeg-view-section,
+.ae-site .timerabbit-view-section,
+.ae-site .solvesudoku-view-section,
+.ae-site .months-view-section,
+.ae-site .years-view-section,
+.ae-site .settings-view-section,
+.ae-site .chat-view-section {
+  width: min(1120px, 100%);
+  margin: 14px auto;
+  padding: 20px;
+  align-items: center;
+  gap: 22px;
+  border: 1px solid var(--ae-panel-border);
+  border-radius: 8px;
+  background: rgba(31, 33, 41, 0.84);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18), inset 0 1px rgba(255, 255, 255, 0.035);
+  box-sizing: border-box;
+}
+
+.ae-site .popular-vote-view-section--flip,
+.ae-site .diva-ffmpeg-view-section--flip,
+.ae-site .timerabbit-view-section--flip,
+.ae-site .solvesudoku-view-section--flip,
+.ae-site .months-view-section--flip {
+  flex-direction: row-reverse; /* [img|text] -> [text|img], same markup both ways */
+}
+
+.ae-site .popular-vote-screenshot,
+.ae-site .diva-ffmpeg-screenshot,
+.ae-site .timerabbit-screenshot,
+.ae-site .solvesudoku-screenshot,
+.ae-site .months-view-example,
+.ae-site .years-view-example,
+.ae-site .settings-view-example,
+.ae-site .chat-view-example,
+.ae-site .app-controls-example {
+  max-width: min(54%, 560px);
+  border-color: rgba(178, 176, 204, 0.24);
+  border-radius: 6px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+}
+
+.ae-site .popular-vote-view-docs,
+.ae-site .diva-ffmpeg-view-docs,
+.ae-site .timerabbit-view-docs,
+.ae-site .solvesudoku-view-docs,
+.ae-site .months-view-docs,
+.ae-site .years-view-docs,
+.ae-site .settings-view-docs,
+.ae-site .chat-view-docs {
+  max-width: 440px;
+}
+
+.ae-site .popular-vote-view-label,
+.ae-site .diva-ffmpeg-view-label,
+.ae-site .timerabbit-view-label,
+.ae-site .solvesudoku-view-label,
+.ae-site .months-view-docs-label,
+.ae-site .years-view-docs-label,
+.ae-site .settings-view-docs-label,
+.ae-site .chat-view-docs-label,
+.ae-site .app-controls-docs-label {
+  color: hsl(calc(253.0 + var(--a-shift)) calc(100.0% * var(--a-sat)) 82.0%);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  -webkit-text-stroke: 0;
+}
+
+/* Per-project feature grids: overview, features, architecture */
+.ae-site .popular-vote-content,
+.ae-site .diva-ffmpeg-content,
+.ae-site .timerabbit-content,
+.ae-site .solvesudoku-content,
+.ae-site .custom-calendar-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  gap: 14px;
+  width: min(1120px, 100%);
+  margin: 18px auto;
+  padding: 0;
+}
+
+.ae-site .popular-vote-layout-overview,
+.ae-site .popular-vote-layout-features,
+.ae-site .popular-vote-layout-architecture,
+.ae-site .diva-ffmpeg-layout-overview,
+.ae-site .diva-ffmpeg-layout-features,
+.ae-site .diva-ffmpeg-layout-architecture,
+.ae-site .timerabbit-layout-overview,
+.ae-site .timerabbit-layout-features,
+.ae-site .timerabbit-layout-architecture,
+.ae-site .solvesudoku-layout-overview,
+.ae-site .solvesudoku-layout-features,
+.ae-site .solvesudoku-layout-architecture,
+.ae-site .custom-calendar-layout-made,
+.ae-site .custom-calendar-layout-overview,
+.ae-site .custom-calendar-layout-features,
+.ae-site .custom-calendar-layout-architecture {
+  width: auto;
+  max-width: none;
+  padding: 20px;
+  text-align: left;
+}
+
+.ae-site .app-controls-section {
+  width: min(1120px, 100%);
+  margin: 12px auto;
+  padding: 18px 22px;
+  text-align: left;
+}
+
+/* CISC 4900 project page: links, content, routes */
+.ae-site .cisc4900-PopularVote-external-links {
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.ae-site .cisc4900-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  gap: 14px;
+  width: min(1120px, 100%);
+  margin: 18px auto;
+  padding: 0;
+}
+
+.ae-site .cisc4900-layout-overview,
+.ae-site .cisc4900-layout-features,
+.ae-site .cisc4900-layout-architecture {
+  width: auto;
+  max-width: none;
+  padding: 20px;
+  border: 1px solid var(--ae-panel-border);
+  border-radius: 8px;
+  background: rgba(31, 33, 41, 0.84);
+  text-align: left;
+}
+
+.ae-site .cisc4900-routes,
+.ae-site .cisc4900-notes {
+  max-width: 1120px;
+  padding: 0;
+}
+
+.ae-site .cisc4900-route-group {
+  border-color: var(--ae-panel-border);
+  background: rgba(31, 33, 41, 0.84);
+}
+
+/* Time log page: card, colors, entry overrides */
+.ae-site .timelog-card {
+  max-width: 900px;
+  padding: 24px;
+}
+
+.ae-site .timelog-header {
+  border-color: var(--ae-panel-border);
+}
+
+.ae-site .timelog-tagline,
+.ae-site .timelog-tagline a,
+.ae-site .timelog-summary-value,
+.ae-site .timelog-entry-date,
+.ae-site .timelog-entry-field-label {
+  color: hsl(calc(250.9 + var(--a-shift)) calc(35.5% * var(--a-sat)) 93.9%);
+}
+
+.ae-site .timelog-summary-label,
+.ae-site .timelog-entry-duration,
+.ae-site .timelog-entry-category,
+.ae-site .timelog-section-title {
+  color: hsl(calc(253.0 + var(--a-shift)) calc(100.0% * var(--a-sat)) 82.0%);
+}
+
+.ae-site .timelog-entry {
+  border-color: rgba(178, 176, 204, 0.16);
+  background: rgba(39, 41, 50, 0.82);
+  box-shadow: none;
+}
+
+/* PowerPoint page: title image and viewer frame */
+.ae-site .cisc4900-ppt-title {
+  max-width: min(100%, 480px);
+  height: auto;
+  margin-bottom: 18px;
+  transform: none;
+}
+
+.ae-site .cisc4900-ppt-viewer {
+  max-width: 100%;
+  border-color: var(--ae-panel-border);
+  border-radius: 8px;
+  background: rgba(23, 25, 31, 0.92);
+}
+
+/* Resume page: download button and PDF frame */
+.ae-site .resume-download {
+  margin: 0 auto 18px;
+}
+
+.ae-site .resume-pdf-viewer {
+  width: min(1200px, 100%);
+  height: min(130vh, 1200px);
+  min-height: 760px;
+  border: 1px solid var(--ae-panel-border);
+  border-radius: 8px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+/* 404 page: centered card and text colors */
+.ae-site .notfound-container {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding-top: 100px;
+}
+
+.ae-site .notfound-card {
+  width: min(560px, 100%);
+  padding: 28px;
+  text-align: center;
+}
+
+.ae-site .notfound-code {
+  color: hsl(calc(252.0 + var(--a-shift)) calc(100.0% * var(--a-sat)) 85.3%);
+}
+
+.ae-site .notfound-message,
+.ae-site .notfound-path {
+  color: #d3d1dc;
+}
+
+/* Tablet breakpoint: stack details and showcase rows */
+@media (max-width: 900px) {
+  .ae-site .details-content {
+    grid-template-columns: 1fr;
+  }
+
+  .ae-site .education-and-skills {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  }
+
+  .ae-site .details-layout-int {
+    grid-column: auto;
+  }
+
+  .ae-site .popular-vote-view-section,
+  .ae-site .diva-ffmpeg-view-section,
+  .ae-site .timerabbit-view-section,
+  .ae-site .solvesudoku-view-section,
+  .ae-site .months-view-section,
+  .ae-site .years-view-section,
+  .ae-site .settings-view-section,
+  .ae-site .chat-view-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ae-site .popular-vote-screenshot,
+  .ae-site .diva-ffmpeg-screenshot,
+  .ae-site .timerabbit-screenshot,
+  .ae-site .solvesudoku-screenshot,
+  .ae-site .months-view-example,
+  .ae-site .years-view-example,
+  .ae-site .settings-view-example,
+  .ae-site .chat-view-example,
+  .ae-site .app-controls-example {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* Mobile breakpoint: tighter width and padding */
+@media (max-width: 600px) {
+  .ae-site .projects-page,
+  .ae-site .gallery-page,
+  .ae-site .details-container,
+  .ae-site .resume-container,
+  .ae-site .notfound-container,
+  .ae-site .popular-vote-container,
+  .ae-site .diva-ffmpeg-container,
+  .ae-site .custom-calendar-container,
+  .ae-site .timerabbit-container,
+  .ae-site .solvesudoku-container,
+  .ae-site .cisc4900-container,
+  .ae-site .cisc4900-ppt-container,
+  .ae-site .timelog-container {
+    width: calc(100% - 16px);
+    padding: 88px 8px 28px;
+  }
+
+  .ae-site .project-card,
+  .ae-site .details-layout-edu,
+  .ae-site .details-layout-int,
+  .ae-site .details-layout-editing-software,
+  .ae-site .details-layout-coding-lang-framework,
+  .ae-site .details-layout-emails,
+  .ae-site .details-layout-resume,
+  .ae-site .timelog-card {
+    padding: 14px;
+  }
+
+  .ae-site .cisc4900-PopularVote-external-links {
+    flex-direction: column;
+  }
+}
+
+/* Respect reduced-motion: disable card hover transition */
+@media (prefers-reduced-motion: reduce) {
+  .ae-site .project-card,
+  .ae-site .gallery-card {
+    transition: none;
+  }
+}

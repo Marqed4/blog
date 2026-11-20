@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import { init } from "pptx-preview";
 import Navbar from "../layout/navbar.js";
-import "./cisc4900-power-point.css";
-import PV_PPTX from "../../resources/art/projects/popularvote/cisc-4900-popularvote-power-point.gif"
+import Footer from "../layout/footer.jsx";
+import "./slides.css";
 
 const PPTX_URL = `${process.env.PUBLIC_URL}/documents/popularvote-sixteenth-draft-dark.pptx`;
 
@@ -36,14 +36,12 @@ const CISC4900PowerPoint = () => {
   return (
     <div className="cisc4900-ppt-container">
       <Navbar />
-
-      <img src={PV_PPTX} className="cisc4900-ppt-title"/>
-
-      <a className="cisc4900-ppt-download" href={PPTX_URL} download>
+      <a className="ae-button ae-button--primary cisc4900-ppt-download" href={PPTX_URL} download>
         Download .pptx
       </a>
 
       <div className="cisc4900-ppt-viewer" ref={wrapperRef} />
+      <Footer />
     </div>
   );
 };

@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import './components/pages/not-found.css';
-import NotFound from "./components/pages/not-found.jsx";
+import './components/pages/missing.css';
+import NotFound from "./components/pages/missing.jsx";
 
 import './app.css';
 
@@ -10,9 +10,9 @@ import './app.css';
 import './components/layout/icon.css';
 import './components/layout/navbar.css';
 import './components/layout/footer.css'
-import './components/pages/home/home-body.css';
-import './components/pages/home/home-portfolio.css'
-import './components/pages/home/home-text.css';
+import './components/pages/home/body.css';
+import './components/pages/home/portfolio.css'
+import './components/pages/home/text.css';
 
 // <---- Landing Page ---->
 import Home from "./components/pages/home/home.js";
@@ -38,8 +38,8 @@ import './components/projects/diva-ffmpeg.css';
 import DivaFFMPEG from "./components/projects/diva-ffmpeg.js";
 
 // <---- Sudoku Proj Page ---->
-import './components/projects/solve-sudoku.css';
-import Sudoku from "./components/projects/solve-sudoku.js";
+import './components/projects/sudoku.css';
+import Sudoku from "./components/projects/sudoku.js";
 
 // <---- Custom Calendar Proj Page ---->
 import './components/projects/calisigh.css';
@@ -54,16 +54,18 @@ import './components/projects/time-rabbit.css';
 import TimeRabbit from "./components/projects/time-rabbit.js";
 
 // <---- PopularVote Time Log Page (url-only, no nav link) ---->
-import './components/cisc-4900/cisc4900-popular-vote-time-log.css';
-import PopularVoteTimeLog from "./components/cisc-4900/cisc4900-popular-vote-time-log.js";
+import './components/capstone/timelog.css';
+import PopularVoteTimeLog from "./components/capstone/timelog.js";
 
 // <---- CISC 4900 PopularVote Page ---->
-import './components/cisc-4900/cisc4900-popular-vote.css';
-import CISC4900PopularVote from "./components/cisc-4900/cisc4900-popular-vote.js";
+import './components/capstone/overview.css';
+import CISC4900PopularVote from "./components/capstone/overview.js";
 
 // <---- CISC 4900 PopularVote PowerPoint Page (url-only, no nav link) ---->
-import './components/cisc-4900/cisc4900-power-point.css';
-import CISC4900PowerPoint from "./components/cisc-4900/cisc4900-power-point.js";
+import './components/capstone/slides.css';
+import CISC4900PowerPoint from "./components/capstone/slides.js";
+
+import './components/layout/pages.css';
 
 import DefaultBackground from "./resources/art/background-project/gradients/site.gif";
 
@@ -90,23 +92,41 @@ const ScrollToTop = () => {
 const App = () => {
   const rawX = useMotionValue(0);
   const rawY = useMotionValue(0);
-  const springConfig = { stiffness: 40, damping: 20, mass: 0.5 };
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(() =>
+    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  );
+  const springConfig = { stiffness: prefersReducedMotion ? 18 : 40, damping: prefersReducedMotion ? 28 : 20, mass: 0.5 };
   const x = useSpring(rawX, springConfig);
   const y = useSpring(rawY, springConfig);
 
-  const bgX = useTransform(x, (v) => v * -14);
-  const bgY = useTransform(y, (v) => v * -14);
-  const contentX = useTransform(x, (v) => v * -50);
-  const contentY = useTransform(y, (v) => v * -50);
+  const bgX = useTransform(x, (v) => prefersReducedMotion ? 0 : v * -14);
+  const bgY = useTransform(y, (v) => prefersReducedMotion ? 0 : v * -14);
+  const contentX = useTransform(x, (v) => prefersReducedMotion ? 0 : v * -50);
+  const contentY = useTransform(y, (v) => prefersReducedMotion ? 0 : v * -50);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const handlePreferenceChange = () => setPrefersReducedMotion(mediaQuery.matches);
+
+    handlePreferenceChange();
+    mediaQuery.addEventListener?.('change', handlePreferenceChange);
+    return () => mediaQuery.removeEventListener?.('change', handlePreferenceChange);
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
+      if (prefersReducedMotion) {
+        rawX.set(0);
+        rawY.set(0);
+        return;
+      }
       rawX.set(e.clientX / window.innerWidth - 0.5);
       rawY.set(e.clientY / window.innerHeight - 0.5);
     };
+
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [rawX, rawY]);
+  }, [prefersReducedMotion, rawX, rawY]);
 
   return (
     <>
@@ -117,7 +137,7 @@ const App = () => {
         className="home-bg"
         style={{ x: bgX, y: bgY }}
       />
-      <motion.div style={{ x: contentX, y: contentY }}>
+      <motion.div className="ae-site" style={{ x: contentX, y: contentY }}>
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/Details" element={<Details/>} />

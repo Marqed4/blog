@@ -3,13 +3,9 @@ import Navbar from "../layout/navbar.js";
 import Footer from "../layout/footer.jsx";
 import "./diva-ffmpeg.css";
 
-import Diva from "../../resources/art/projects/diva-ffmpeg/diva-ffmpeg.gif";
 import Frontpage from "../../resources/art/projects/diva-ffmpeg/frontpage.gif";
 import VideoTools from "../../resources/art/projects/diva-ffmpeg/video-tools.gif";
 
-import Overview     from "../../resources/art/background-project/gradients/overview-inactive.gif";
-import Features     from "../../resources/art/background-project/gradients/features-inactive.gif";
-import Architecture from "../../resources/art/background-project/gradients/architecture-inactive.gif";
 
 const sections = [
   {
@@ -56,17 +52,13 @@ const DivaFFMPEG = () => {
     <div className="diva-ffmpeg-container">
       <Navbar />
 
-      <h1>
+      <h1 className="workspace-page-title">
         <a
           href="https://github.com/Marqed4/DivaFFMPEG"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img
-            src={Diva}
-            className="diva-ffmpeg-icon"
-            alt="DivaFFMPEG"
-          />
+          <span className="workspace-page-title-text">DivaFFMPEG</span>
         </a>
       </h1>
       
@@ -109,9 +101,7 @@ const DivaFFMPEG = () => {
 
       <div className="diva-ffmpeg-content">
         <div className="diva-ffmpeg-layout-overview">
-          <h2 className="diva-ffmpeg-overview-header">
-            <img src={Overview} className="overview-header" alt="Overview" />
-          </h2>
+          <h2 className="section-heading">Overview</h2>
           <p className="overview-body">
             <strong>DivaFFMPEG</strong> is a <strong>Rust</strong> terminal UI built on{" "}
             <strong>ratatui</strong> and <strong>crossterm</strong>, wrapping ffmpeg's CLI
@@ -122,9 +112,7 @@ const DivaFFMPEG = () => {
         </div>
 
         <div className="diva-ffmpeg-layout-features">
-          <h2 className="diva-ffmpeg-features-header">
-            <img src={Features} className="features-header" alt="Features" />
-          </h2>
+          <h2 className="section-heading">Features</h2>
           <p className="features-body">
             • <strong>Video conversion</strong> - swap formats without memorizing codec flags<br /><br />
             • <strong>Video compression</strong> - real compress slider with live progress bar<br /><br />
@@ -136,9 +124,7 @@ const DivaFFMPEG = () => {
         </div>
 
         <div className="diva-ffmpeg-layout-architecture">
-          <h2 className="diva-ffmpeg-architecture-header">
-            <img src={Architecture} className="architecture-header" alt="Architecture" />
-          </h2>
+          <h2 className="section-heading">Architecture</h2>
           <p className="architecture-body">
             ratatui / crossterm<br />
             (Terminal UI)<br />
