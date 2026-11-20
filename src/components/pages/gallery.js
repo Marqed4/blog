@@ -4,9 +4,6 @@ import Footer from "../layout/footer.jsx"
 import Reveal from "../layout/reveal.js"
 import "./gallery.css";
 
-import GalleryInactive from "../../resources/art/pages/gallery/gallery-inactive.gif"
-import GalleryActive from "../../resources/art/pages/gallery/gallery-active.gif"
-
 import { PetGallery }  from "../../resources/art/pages/gallery/index.js";
 
 const PetsArray = [
@@ -33,10 +30,9 @@ const Gallery = () => {
         <>
             <Navbar />
             <div className="gallery-page">
-                <img src={GalleryInactive}
-                className="gallery-header"
-                alt="Gallery"
-                />
+                <h1 className="workspace-page-title gallery-page-title">
+                    <span className="workspace-page-title-text">Gallery</span>
+                </h1>
                 <div className="gallery-grid">
                     {/* Reveal sits outside the card because .gallery-card has its own hover transform. */}
                     {PetsArray.map((media, index) => (
@@ -63,4 +59,3 @@ const Gallery = () => {
 };
 
 export default Gallery;
-export { GalleryInactive, GalleryActive };

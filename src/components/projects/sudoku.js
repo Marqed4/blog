@@ -1,14 +1,11 @@
 import { useEffect } from "react";
 import Navbar from "../layout/navbar.js";
-import "./solve-sudoku.css";
+import Footer from "../layout/footer.jsx";
+import "./sudoku.css";
 
-import Sudoku from "../../resources/art/projects/sudoku/sudoku.gif";
 import AppScreenshot from "../../resources/art/projects/sudoku/screenshot-2026-06-21-092112.png";
 import UMLDiagram    from "../../resources/art/projects/sudoku/screenshot-2026-06-21-034200.png";
 
-import Overview     from "../../resources/art/background-project/gradients/overview-inactive.gif";
-import Features     from "../../resources/art/background-project/gradients/features-inactive.gif";
-import Architecture from "../../resources/art/background-project/gradients/architecture-inactive.gif";
 
 const sections = [
   {
@@ -58,7 +55,9 @@ const SolveSudoku = () => {
     <div className="solvesudoku-container">
       <Navbar />
 
-      <img src={Sudoku} className="solvesudoku-name" alt="Sudoku" />
+      <h1 className="workspace-page-title">
+        <span className="workspace-page-title-text">Sudoku</span>
+      </h1>
 
       <p className="solvesudoku-description">Upload, generate, solve, or scan.</p>
       <p className="solvesudoku-description">
@@ -97,9 +96,7 @@ const SolveSudoku = () => {
 
       <div className="solvesudoku-content">
         <div className="solvesudoku-layout-overview">
-          <h2 className="solvesudoku-overview-header">
-            <img src={Overview} className="overview-header" alt="Overview" />
-          </h2>
+          <h2 className="section-heading">Overview</h2>
           <p className="overview-body">
             <strong>SolveSudoku</strong> is a full-stack sudoku tool built with{" "}
             <strong>React</strong> and <strong>Vite</strong> on the frontend, backed by a{" "}
@@ -112,9 +109,7 @@ const SolveSudoku = () => {
         </div>
 
         <div className="solvesudoku-layout-features">
-          <h2 className="solvesudoku-features-header">
-            <img src={Features} className="features-header" alt="Features" />
-          </h2>
+          <h2 className="section-heading">Features</h2>
           <p className="features-body">
             • <strong>Image scanner</strong>: upload or photograph any sudoku and get a playable board<br /><br />
             • <strong>Constraint solver</strong>: bitmask backtracking that solves hard puzzles in tens of milliseconds<br /><br />
@@ -126,9 +121,7 @@ const SolveSudoku = () => {
         </div>
 
         <div className="solvesudoku-layout-architecture">
-          <h2 className="solvesudoku-architecture-header">
-            <img src={Architecture} className="architecture-header" alt="Architecture" />
-          </h2>
+          <h2 className="section-heading">Architecture</h2>
           <p className="architecture-body">
             React + Vite (UI)<br />
             ↓<br /><br />
@@ -142,6 +135,7 @@ const SolveSudoku = () => {
           </p>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

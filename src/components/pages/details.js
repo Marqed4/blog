@@ -1,13 +1,6 @@
 import { useEffect } from "react";
 import Navbar from "../layout/navbar.js"
 import Footer from "../layout/footer.jsx"
-import DetailsNavbarInactive from "../../resources/art/pages/details/details-navbar-inactive.gif"
-import ContactDetailsInactive from "../../resources/art/pages/details/contacts-details-inactive.gif"
-import EducationDetailsInactive from "../../resources/art/pages/details/education-details-inactive.gif"
-import InterestsDetailsInactive from "../../resources/art/pages/details/interests-details-inactive.gif"
-import EditingSoftwareDetailsInactive from "../../resources/art/pages/details/editing-software-details-inactive.gif"
-import CodingLangFrameworkDetailsInactive from "../../resources/art/pages/details/tech-stack.gif"
-import ResumeDetailsInactive from "../../resources/art/pages/details/resume-details-inactive.gif"
 
 function copy(text) {
   navigator.clipboard.writeText(text).then(() => {
@@ -30,36 +23,34 @@ const Details = () => {
     <>
       <div className="details-container">
         <Navbar/>
-        <h1><img src={DetailsNavbarInactive} className="details-header" alt="Details" /></h1>
+        <h1 className="workspace-page-title details-page-title">
+          <span className="workspace-page-title-text">Details</span>
+        </h1>
 
         <div className="details-content">
 
           <div className="details-left-column">
             <div className="details-layout-emails">
-              <h2 className="details-emails-header">
-                <img src={ContactDetailsInactive} className="contacts-header" alt="Contacts" />
-              </h2>
+              <h2 className="details-emails-header">Contacts</h2>
               <p className="contacts-body">
-                <button onClick={() => copy(profEmail)} className="copy-button">📋 <u>Professional Email</u></button><br/>
-                <button onClick={() => copy(freelEemail)} className="copy-button">📋 <u>Freelance Email</u></button><br/>
-                <a href="https://www.linkedin.com/in/zachery-francis/">Visit Linkedin</a>
+                <button onClick={() => copy(profEmail)} className="ae-button ae-button--small">Copy professional email</button><br/>
+                <button onClick={() => copy(freelEemail)} className="ae-button ae-button--small">Copy freelance email</button><br/>
+                <a className="ae-button ae-button--small" href="https://www.linkedin.com/in/zachery-francis/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
               </p>
             </div>
 
             <div className="details-layout-resume">
-              <h2 className="details-resume-header">
-                <img src={ResumeDetailsInactive} className="details-resume-img" alt="Resume" />
-              </h2>
+              <h2 className="details-resume-header">Resume</h2>
               <p className="resume-body">
                 {/* Plain <a> on purpose: target="_blank" opens a new tab, which is a new
                     document either way, so <Link> would not save a reload here. The
                     other internal links in the site use <Link> (see app.js). */}
-                <a href="/Resume" target="_blank" rel="noopener noreferrer">
-                  <u>View Resume</u>
+                <a className="ae-button ae-button--small" href="/Resume" target="_blank" rel="noopener noreferrer">
+                  View resume
                 </a>
                 <br/>
-                <a href={`${process.env.PUBLIC_URL}/documents/zacheryfrancis-resume-10-4-2026.pdf`} download>
-                  <u>Download Resume</u>
+                <a className="ae-button ae-button--small" href={`${process.env.PUBLIC_URL}/documents/zacheryfrancis-resume-10-4-2026.pdf`} download>
+                  Download resume
                 </a>
               </p>
             </div>
@@ -67,9 +58,7 @@ const Details = () => {
 
           <div className="education-and-skills">
             <div className="details-layout-edu">
-              <h2 className="details-education-header">
-                <img src={EducationDetailsInactive} className="education-header" alt="Education" />
-              </h2>
+              <h2 className="details-education-header">Education</h2>
               <p className="education-body">
                 Brooklyn College<br/>
                 • M.S. in Computer Science, Concentration: Information Systems<br/><br/>
@@ -82,9 +71,7 @@ const Details = () => {
             </div>
 
             <div className="details-layout-coding-lang-framework">
-              <h2 className="details-skills-lang-framework">
-                <img src={CodingLangFrameworkDetailsInactive} className="coding-lang-framworks-header" alt="CodingLangFrameworks" />
-              </h2>
+              <h2 className="details-skills-lang-framework">Tech Stack</h2>
               <p className="coding-lang-framworks-body">
                 <span className="skill-line">• Java / Oracle JDK 23/25</span><br/>
                 <span className="skill-line">• Python / Python 3.13 <span className="studying-tag">Studying</span></span><br/>
@@ -95,9 +82,7 @@ const Details = () => {
             </div>
 
             <div className="details-layout-editing-software">
-              <h2 className="details-skills-edit-software">
-                <img src={EditingSoftwareDetailsInactive} className="editing-software-header" alt="EditingSoftware" />
-              </h2>
+              <h2 className="details-skills-edit-software">Editing Software</h2>
               <p className="editing-software-body">
                 • Adobe After Effects<br/>
                 • Adobe Premiere Pro<br/>
@@ -108,9 +93,7 @@ const Details = () => {
           </div>
 
           <div className="details-layout-int">
-            <h2 className="details-interests-header">
-              <img src={InterestsDetailsInactive} className="interests-header" alt="interests" />
-            </h2>
+            <h2 className="details-interests-header">Interests</h2>
             <p className="interests-body">
             To me, programming and technology serve as excellent tools through which I can express myself and be creative.<br/>
             In particular, when it comes to coding, I see it not only as a tool but also as an opportunity to resolve challenging issues and create something using my personal style in programming.<br/>

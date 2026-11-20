@@ -3,8 +3,82 @@
   src: url("./resources/fonts/southcrew-vgw2e.ttf") format("truetype");
 }
 
+:root {
+  /* Theme: hue shift and saturation scale per color group, set by theme.js.
+     a = Stroke (purple accents), b = Fill (blue/teal accents). 0 and 1 = default look. */
+  --a-shift: 0;
+  --a-sat: 1;
+  --b-shift: 0;
+  --b-sat: 1;
+  --ae-panel: rgba(28, 31, 39, 0.92);
+  --ae-panel-raised: rgba(39, 42, 52, 0.95);
+  --ae-panel-border: rgba(178, 176, 204, 0.25);
+  --ae-text: hsl(calc(250.0 + var(--a-shift)) calc(27.3% * var(--a-sat)) 95.7%);
+  --ae-muted: #b5b1c7;
+  --ae-accent: hsl(calc(248.3 + var(--a-shift)) calc(88.5% * var(--a-sat)) 72.7%);
+  --ae-accent-strong: hsl(calc(248.6 + var(--a-shift)) calc(61.6% * var(--a-sat)) 60.2%);
+  --ae-accent-border: hsl(calc(248.3 + var(--a-shift)) calc(88.5% * var(--a-sat)) 72.7% / 0.38);
+  --ae-accent-bg: hsl(calc(248.3 + var(--a-shift)) calc(88.5% * var(--a-sat)) 72.7% / 0.19);
+  --ae-accent-text: hsl(calc(254.1 + var(--a-shift)) calc(100.0% * var(--a-sat)) 84.1%);
+}
+
+.ae-site .ae-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 34px;
+  padding: 7px 11px;
+  border: 1px solid #555664;
+  border-radius: 4px;
+  color: hsl(calc(247.1 + var(--a-shift)) calc(100.0% * var(--a-sat)) 96.7%);
+  text-shadow:
+    0 0 8px rgba(255, 150, 0, 0.18),
+    0 0 16px rgba(110, 220, 0, 0.1);
+  background: linear-gradient(#3b3c47, #2d2e37);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.07), 0 1px 2px rgba(0, 0, 0, 0.25);
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 650;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color 140ms ease, background 140ms ease, color 140ms ease, text-shadow 140ms ease;
+}
+
+.ae-site .ae-button:hover {
+  border-color: var(--ae-accent);
+  color: #fff;
+  text-shadow:
+    0 0 10px rgba(255, 160, 0, 0.3),
+    0 0 20px rgba(120, 230, 0, 0.16);
+  background: linear-gradient(#484452, #34313f);
+}
+
+.ae-site .ae-button--primary {
+  border-color: hsl(calc(254.7 + var(--a-shift)) calc(100.0% * var(--a-sat)) 74.3%);
+  color: #fff;
+  background: linear-gradient(hsl(calc(255.7 + var(--a-shift)) calc(53.0% * var(--a-sat)) 57.5%), hsl(calc(256.3 + var(--a-shift)) calc(41.4% * var(--a-sat)) 43.5%));
+}
+
+.ae-site .ae-button--primary:hover {
+  background: linear-gradient(hsl(calc(255.5 + var(--a-shift)) calc(65.2% * var(--a-sat)) 65.1%), hsl(calc(256.5 + var(--a-shift)) calc(38.9% * var(--a-sat)) 49.4%));
+}
+
+.ae-site .ae-button--small {
+  min-height: 29px;
+  padding: 5px 9px;
+  font-size: 0.68rem;
+}
+
+.ae-site .ae-button:focus-visible {
+  outline: 2px solid var(--ae-accent-text);
+  outline-offset: 3px;
+}
+
 .Navbar-links-container a:hover {
-  color: #f0a500;
+  color: hsl(calc(237.6 + var(--a-shift)) calc(63.8% * var(--a-sat)) 54.5%);
 }
 
 html, body {
@@ -12,7 +86,11 @@ html, body {
   overflow-y: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  background-color: black;
+  background:
+    radial-gradient(ellipse at 18% 8%, hsl(calc(254.6 + var(--a-shift)) calc(54.8% * var(--a-sat)) 57.5% / 0.24), transparent 38%),
+    radial-gradient(ellipse at 82% 86%, hsl(calc(198.1 + var(--b-shift)) calc(54.6% * var(--b-sat)) 40.6% / 0.16), transparent 34%),
+    linear-gradient(135deg, #10131d 0%, #171a27 52%, #10151d 100%);
+  color: var(--ae-text);
 }
 
 html::-webkit-scrollbar,
@@ -21,6 +99,7 @@ body::-webkit-scrollbar {
 }
 
 body {
+  min-height: 100vh;
   background-color: transparent;
 }
 
@@ -32,21 +111,22 @@ body {
 
 .home-bg {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.15;
-  pointer-events: none;
-  z-index: -1;
-}
-
-.home-bg {
-  opacity: 1;
-  position: fixed;
   top: -3%;
   left: -3%;
   width: 106%;
   height: 106%;
+  object-fit: cover;
+  opacity: 0.14;
+  filter: saturate(0.7) contrast(1.05) blur(3px) hue-rotate(calc(var(--a-shift) * 1deg));
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-bg,
+  .ae-site {
+    transition: none !important;
+    transform: none !important;
+  }
 }

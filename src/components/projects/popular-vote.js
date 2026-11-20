@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import Navbar from "../layout/navbar.js";
+import Footer from "../layout/footer.jsx";
 import "./popular-vote.css";
 
-import PopularVoteName   from "../../resources/art/projects/popularvote/popular-vote.gif";
 import MainPagePreview   from "../../resources/art/projects/popularvote/main-page-theme-preview.gif";
 import LandingView       from "../../resources/art/projects/popularvote/landing-page.gif";
 import OpenSessionView   from "../../resources/art/projects/popularvote/open-session.gif";
@@ -11,9 +11,6 @@ import ParticipantsView  from "../../resources/art/projects/popularvote/particip
 import ParticipantScroll from "../../resources/art/projects/popularvote/participant-scroll-down.gif";
 import HostsEndSession   from "../../resources/art/projects/popularvote/hosts-end-session-and-summary-pdf-download.gif";
 
-import Overview     from "../../resources/art/background-project/gradients/overview-inactive.gif";
-import Features     from "../../resources/art/background-project/gradients/features-inactive.gif";
-import Architecture from "../../resources/art/background-project/gradients/architecture-inactive.gif";
 
 const sections = [
   {
@@ -119,17 +116,13 @@ const PopularVote = () => {
     <div className="popular-vote-container">
       <Navbar />
 
-      <h1>
+      <h1 className="workspace-page-title">
         <a
           href="https://github.com/Marqed4/PopularVote"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img
-            src={PopularVoteName}
-            className="popularvote-calendar-name"
-            alt="𝑃𝑜𝑝𝑢𝑙𝑎𝑟𝑉𝑜𝑡𝑒"
-          />
+          <span className="workspace-page-title-text">PopularVote</span>
         </a>
       </h1>
 
@@ -170,9 +163,7 @@ const PopularVote = () => {
 
       <div className="popular-vote-content">
         <div className="popular-vote-layout-overview">
-          <h2 className="popular-vote-overview-header">
-            <img src={Overview} className="overview-header" alt="Overview" />
-          </h2>
+          <h2 className="section-heading">Overview</h2>
           <p className="overview-body">
             <strong>PopularVote</strong> is a live anonymous Q&amp;A tool built with{" "}
             <strong>React</strong> and <strong>Vite</strong> on the frontend, backed by a{" "}
@@ -185,9 +176,7 @@ const PopularVote = () => {
         </div>
 
         <div className="popular-vote-layout-features">
-          <h2 className="popular-vote-features-header">
-            <img src={Features} className="features-header" alt="Features" />
-          </h2>
+          <h2 className="section-heading">Features</h2>
           <p className="features-body">
             • <strong>Anonymous submissions</strong> - participants ask freely with no names or judgment<br /><br />
             • <strong>AI-powered clustering</strong> - Gemini groups similar questions into themes automatically<br /><br />
@@ -199,9 +188,7 @@ const PopularVote = () => {
         </div>
 
         <div className="popular-vote-layout-architecture">
-          <h2 className="popular-vote-architecture-header">
-            <img src={Architecture} className="architecture-header" alt="Architecture" />
-          </h2>
+          <h2 className="section-heading">Architecture</h2>
           <p className="architecture-body">
             React + Vite (UI)<br />
             ↓<br /><br />
@@ -214,6 +201,7 @@ const PopularVote = () => {
           </p>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

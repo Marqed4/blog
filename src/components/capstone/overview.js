@@ -1,15 +1,12 @@
 import { useEffect } from "react";
 import Navbar from "../layout/navbar.js";
-import "./cisc4900-popular-vote.css";
+import Footer from "../layout/footer.jsx";
+import "./overview.css";
 
-import PopularVote     from "../../resources/art/projects/popularvote/cisc-4900-popularvote.gif";
 import MainPagePreview from "../../resources/art/projects/popularvote/main-page-theme-preview.gif";
 import OpenSessionView from "../../resources/art/projects/popularvote/open-session.gif";
 import HostsScrollDown from "../../resources/art/projects/popularvote/hosts-scroll-down.gif";
 
-import Overview     from "../../resources/art/background-project/gradients/overview-inactive.gif";
-import Features     from "../../resources/art/background-project/gradients/features-inactive.gif";
-import Architecture from "../../resources/art/background-project/gradients/architecture-inactive.gif";
 
 const deliverables = [
   { term: "Live, room-based Q&A", desc: "host opens a session and gets a 6-character room code participants join with" },
@@ -77,26 +74,22 @@ const CISC4900PopularVote = () => {
     <div className="cisc4900-container">
       <Navbar />
       <div className="cisc4900-PopularVote-external-links">
-        <a href="/CISC-4900-PopularVote-TimeLog" className="cisc4900-timelog-link">
+        <a href="/CISC-4900-PopularVote-TimeLog" className="ae-button ae-button--small cisc4900-timelog-link">
           View Time Log
         </a>
 
-        <a href="/CISC-4900-PopularVote-PowerPointPresentation" className="cisc4900-power-point">
+        <a href="/CISC-4900-PopularVote-PowerPointPresentation" className="ae-button ae-button--small cisc4900-power-point">
           Power Point
         </a>
       </div>
 
-      <h1>
+      <h1 className="workspace-page-title">
         <a
           href="https://github.com/Marqed4/CISC-4900-PopularVote"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img
-            src={PopularVote}
-            className="cisc4900-name"
-            alt="PopularVote"
-          />
+          <span className="workspace-page-title-text">CISC 4900 - PopularVote</span>
         </a>
       </h1>
 
@@ -114,9 +107,7 @@ const CISC4900PopularVote = () => {
 
       <div className="cisc4900-content">
         <div className="cisc4900-layout-overview">
-          <h2 className="cisc4900-header">
-            <img src={Overview} className="cisc4900-header-img" alt="Overview" />
-          </h2>
+          <h2 className="section-heading">Overview</h2>
           <p className="cisc4900-body">
             <strong>PopularVote</strong> is a live, room-based Q&amp;A tool for group sessions -
             classrooms, town halls, meetings. A host opens a session and gets a 6-character
@@ -132,9 +123,7 @@ const CISC4900PopularVote = () => {
         </div>
 
         <div className="cisc4900-layout-features">
-          <h2 className="cisc4900-header">
-            <img src={Features} className="cisc4900-header-img" alt="Deliverables" />
-          </h2>
+          <h2 className="section-heading">Deliverables</h2>
           <ul className="cisc4900-list">
             {deliverables.map((item, i) => (
               <li key={i}><strong>{item.term}</strong> - {item.desc}</li>
@@ -143,9 +132,7 @@ const CISC4900PopularVote = () => {
         </div>
 
         <div className="cisc4900-layout-architecture">
-          <h2 className="cisc4900-header">
-            <img src={Architecture} className="cisc4900-header-img" alt="Architecture" />
-          </h2>
+          <h2 className="section-heading">Architecture</h2>
           <p className="cisc4900-body">
             React + Vite (built frontend, served as static files)<br />
             ↓<br /><br />
@@ -187,6 +174,7 @@ const CISC4900PopularVote = () => {
           ))}
         </ul>
       </div>
+      <Footer />
     </div>
   );
 };

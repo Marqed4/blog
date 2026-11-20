@@ -8,35 +8,7 @@
 .project-wrapper {
   position: relative;
   width: 100%;
-  max-width: 300px;
-  /* Centering: .project-card is width 100% plus 24px padding and a 1px border on
-     each side, and it is not border-box, so it is 50px wider than this wrapper
-     and sticks out to the right. Shifting the wrapper left by half of that (25px)
-     puts the card in the middle of its grid column. The buttons move with it, so
-     they keep their place on the card. If the card padding or border changes,
-     change this number to half of (2 x padding + 2 x border). */
-  left: -25px;
-}
-
-.external-link-btn,
-.external-repo-btn {
-  position: absolute;
-  right: -8.5px;
-  cursor: pointer;
-  height: 35px;
-  width: auto;
-  z-index: 10;
-  pointer-events: auto;
-}
-
-/* Default Link Position */
-.external-btn-slot-1 {
-  top: 10px;
-}
-
-/* Secondary Link Position */
-.external-btn-slot-2 {
-  top: 35px;
+  max-width: 350px;
 }
 
 .projects-title {
@@ -64,11 +36,19 @@
   border: 1px solid rgba(0, 0, 0, 0.08);
   background-color: transparent;
   width: 100%;
-  max-width: 300px;
+  max-width: none;
+  box-sizing: border-box;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s, box-shadow 0.2s;
   position: relative;
   z-index: 1;
+}
+
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 9px;
 }
 
 .project-card:hover {
@@ -106,4 +86,56 @@
 
 h1 a {
   display: inline-block;
+}
+
+.project-wrapper--featured {
+  width: 100%;
+  max-width: 860px;
+  margin-bottom: 16px;
+}
+
+.project-card--featured {
+  flex-direction: row;
+  align-items: center;
+  gap: 28px;
+  padding: 28px 32px;
+}
+
+.project-card--featured .project-logo {
+  flex-shrink: 0;
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+}
+
+.project-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.project-featured-badge {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: hsl(253, 100%, 87%);
+  background: hsl(253, 40%, 30% / 0.5);
+  border: 1px solid hsl(253, 60%, 60% / 0.35);
+}
+
+@media (max-width: 540px) {
+  .project-card--featured {
+    flex-direction: column;
+    text-align: center;
+  }
+  .project-info {
+    text-align: center;
+  }
 }

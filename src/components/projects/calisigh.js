@@ -1,14 +1,10 @@
 import { useEffect } from "react";
 import Navbar from "../layout/navbar.js"
+import Footer from "../layout/footer.jsx";
 
-import CalisighName from "../../resources/art/projects/calisigh/calisigh.gif"
-import Overview from "../../resources/art/background-project/gradients/overview-inactive.gif"
-import Features from "../../resources/art/background-project/gradients/features-inactive.gif"
-import Architecture from "../../resources/art/background-project/gradients/architecture-inactive.gif"
 import MonthsView from "../../resources/art/projects/calisigh/months-view.png"
 import YearsView from "../../resources/art/projects/calisigh/years-view.png"
 import ChatView from "../../resources/art/projects/calisigh/chat-view.png"
-import SettingsView from "../../resources/art/projects/calisigh/settings-view.png"
 import AddAlarmView from "../../resources/art/projects/calisigh/add-alarm-view.png"
 import EditAlarmView from "../../resources/art/projects/calisigh/edit-alarm-view.png"
 import EditDuplicateAlarmView from "../../resources/art/projects/calisigh/duplicate-date-selection.png"
@@ -118,13 +114,13 @@ const Calisigh = () => {
     <div className="custom-calendar-container">
       <Navbar/>
 
-      <h1>
+      <h1 className="workspace-page-title">
         <a
           href="https://github.com/Marqed4/Calisigh"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img src={CalisighName} className="custom-calendar-name" alt="CalisighName" />
+          <span className="workspace-page-title-text">Calisigh</span>
         </a>
       </h1>
 
@@ -187,9 +183,7 @@ const Calisigh = () => {
       <div className="custom-calendar-content">
 
         <div className="custom-calendar-layout-overview">
-          <h2 className="custom-calendar-overview-header">
-            <img src={Overview} className="overview-header" alt="Overview" />
-          </h2>
+          <h2 className="section-heading">Overview</h2>
           <p className="overview-body">
             <strong>Calisigh</strong> is a feature-rich desktop application built with <strong>Tauri</strong>,
             combining a <strong>React</strong> frontend with a
@@ -203,9 +197,7 @@ const Calisigh = () => {
         </div>
 
         <div className="custom-calendar-layout-features">
-          <h2 className="custom-calendar-features-header">
-            <img src={Features} className="features-header" alt="Features" />
-          </h2>
+          <h2 className="section-heading">Features</h2>
           <p className="features-body">
             • Switch between <strong>Months</strong> and <strong>Years</strong> views with a single tap on the header<br/><br/>
             • Add, view, duplicate, and remove <strong>events</strong> with titles, times, and multi-event scrolling per day cell<br/><br/>
@@ -216,9 +208,7 @@ const Calisigh = () => {
         </div>
 
         <div className="custom-calendar-layout-architecture">
-          <h2 className="custom-calendar-architecture-header">
-            <img src={Architecture} className="architecture-header" alt="Architecture" />
-          </h2>
+          <h2 className="section-heading">Architecture</h2>
           <p className="architecture-body">
             React (UI)<br/>
             ↓<br/><br/>
@@ -230,6 +220,7 @@ const Calisigh = () => {
           </p>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

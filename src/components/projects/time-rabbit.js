@@ -1,13 +1,10 @@
 import { useEffect } from "react";
 import Navbar from "../layout/navbar.js"
+import Footer from "../layout/footer.jsx";
 import "./time-rabbit.css"
 
-// import TimeRabbitName from "../../resources/art/time rabbit page graphics/TimeRabbit.gif"
 import AppView from "../../resources/art/projects/time-rabbit/view-app.png"
 
-import Overview from "../../resources/art/background-project/gradients/overview-inactive.gif"
-import Features from "../../resources/art/background-project/gradients/features-inactive.gif"
-import Architecture from "../../resources/art/background-project/gradients/architecture-inactive.gif"
 
 const sections = [
   {
@@ -36,13 +33,13 @@ const TimeRabbit = () => {
     <div className="timerabbit-container">
       <Navbar />
 
-      <h1>
+      <h1 className="workspace-page-title">
         <a
           href="https://github.com/Marqed4/TimeRabbit"
           target="_blank"
           rel="noopener noreferrer"
         >
-          {/* <img src={TimeRabbitName} className="timerabbit-name" alt="TimeRabbit" /> */}
+          <span className="workspace-page-title-text">TimeRabbit</span>
         </a>
       </h1>
 
@@ -76,9 +73,7 @@ const TimeRabbit = () => {
       <div className="timerabbit-content">
 
         <div className="timerabbit-layout-overview">
-          <h2 className="timerabbit-overview-header">
-            <img src={Overview} className="overview-header" alt="Overview" />
-          </h2>
+          <h2 className="section-heading">Overview</h2>
           <p className="overview-body">
             <strong>TimeRabbit</strong> is a desktop stopwatch built entirely in <strong>Java Swing</strong>.<br /><br />
             A single <code>Stopwatch</code> class wires together the UI, a <code>javax.swing.Timer</code> firing every second,
@@ -89,9 +84,7 @@ const TimeRabbit = () => {
         </div>
 
         <div className="timerabbit-layout-features">
-          <h2 className="timerabbit-features-header">
-            <img src={Features} className="features-header" alt="Features" />
-          </h2>
+          <h2 className="section-heading">Features</h2>
           <p className="features-body">
             • <strong>HH:MM:SS display</strong>: zero-padded hours, minutes, and seconds<br /><br />
             • <strong>Start / Stop toggle</strong>: one button, two states<br /><br />
@@ -102,9 +95,7 @@ const TimeRabbit = () => {
         </div>
 
         <div className="timerabbit-layout-architecture">
-          <h2 className="timerabbit-architecture-header">
-            <img src={Architecture} className="architecture-header" alt="Architecture" />
-          </h2>
+          <h2 className="section-heading">Architecture</h2>
           <p className="architecture-body">
             Java Swing (UI)<br />
             ↓<br /><br />
@@ -120,6 +111,7 @@ const TimeRabbit = () => {
         </div>
 
       </div>
+      <Footer />
     </div>
   );
 };

@@ -25,10 +25,10 @@ const NotFound = () => {
           {/* Echo the address so a mistyped or outdated link is easy to spot. */}
           <p className="notfound-path">{pathname}</p>
           <p className="notfound-links">
-            <Link to="/">Home</Link>
-            <Link to="/Projects">Projects</Link>
-            <Link to="/Resume">Resume</Link>
-            <Link to="/Details">Details</Link>
+            <Link className="ae-button ae-button--small" to="/">Home</Link>
+            <Link className="ae-button ae-button--small" to="/Projects">Projects</Link>
+            <Link className="ae-button ae-button--small" to="/Resume">Resume</Link>
+            <Link className="ae-button ae-button--small" to="/Details">About</Link>
           </p>
         </div>
       </div>

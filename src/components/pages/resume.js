@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Icon from "../layout/icon.js";
+import Footer from "../layout/footer.jsx";
 import Navbar from "../layout/navbar.js";
 
 const RESUME_URL = `${process.env.PUBLIC_URL}/documents/zacheryfrancis-resume-10-4-2026.pdf`;
@@ -11,10 +11,9 @@ const Resume = () => {
 
   return (
     <div className="resume-container">
-      <Icon />
       <Navbar />
 
-      <a className="resume-download" href={RESUME_URL} download>
+      <a className="ae-button ae-button--primary resume-download" href={RESUME_URL} download>
         Download .pdf
       </a>
 
@@ -23,6 +22,7 @@ const Resume = () => {
         src={`${RESUME_URL}#toolbar=0&navpanes=0`}
         title="Zachery Francis Resume"
       />
+      <Footer />
     </div>
   );
 };
