@@ -21,6 +21,12 @@ const SEMESTER_END = "2026-12-21";
 // 5. Only log days that have actually happened - don't log ahead of today.
 const entries = [
   {
+    date: "2026-11-20",
+    duration: 1,
+    category: "Documentation",
+    description: "Refactoring Codebase & Re-Drafted README.md. Removed an unused import and an unused variable from the backend, wrote a debloat plan and ledger, ran the backend tests (83 passed) and the frontend tests (33 passed), and re-drafted the project README so it matches the code.",
+  },
+  {
     date: "2026-11-10",
     duration: 0,
     category: "Other",
