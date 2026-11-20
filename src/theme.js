@@ -18,8 +18,10 @@ const MAX_SAT_SCALE = 1.25;
 // Below this saturation a color is basically grey and its hue means nothing.
 const MIN_SAT_FOR_HUE = 0.05;
 
+// Checks a saved value is a real "#rrggbb" color before trusting it
 const isHex = (value) => typeof value === "string" && /^#[0-9a-fA-F]{6}$/.test(value);
 
+// Converts "#rrggbb" to [hue 0-360, saturation 0-1, lightness 0-1]
 const hexToHsl = (hex) => {
   const r = parseInt(hex.slice(1, 3), 16) / 255;
   const g = parseInt(hex.slice(3, 5), 16) / 255;
@@ -39,11 +41,13 @@ const hexToHsl = (hex) => {
   return [h, s, l];
 };
 
+// Hue/saturation of the default colors; picks are measured against these
 const BASE = {
   stroke: hexToHsl(DEFAULT_THEME.stroke),
   fill: hexToHsl(DEFAULT_THEME.fill),
 };
 
+// How far a color is from the default: hue shift in degrees (wrapped to -180..180) and a saturation ratio
 const measure = (hex, base) => {
   const [h, s] = hexToHsl(hex);
   const scale = Math.min(MAX_SAT_SCALE, s / base[1]);
@@ -54,6 +58,7 @@ const measure = (hex, base) => {
   return { shift, scale };
 };
 
+// Reads the saved colors from localStorage, falling back to the defaults
 export const loadTheme = () => {
   try {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
@@ -72,6 +77,7 @@ export const loadTheme = () => {
   return { ...DEFAULT_THEME };
 };
 
+// Remembers the chosen colors between visits
 export const saveTheme = (theme) => {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(theme));
@@ -80,6 +86,7 @@ export const saveTheme = (theme) => {
   }
 };
 
+// Writes the shifts into CSS variables on <html>; every hsl() in the CSS picks them up
 export const applyTheme = (theme) => {
   const root = document.documentElement;
   const a = measure(theme.stroke, BASE.stroke);
@@ -91,6 +98,7 @@ export const applyTheme = (theme) => {
   root.style.setProperty("--ae-accent", theme.stroke);
 };
 
+// Clears saved colors, applies the defaults, returns them
 export const resetTheme = () => {
   try {
     localStorage.removeItem(STORAGE_KEY);

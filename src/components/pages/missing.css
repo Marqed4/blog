@@ -1,3 +1,4 @@
+/* Page wrapper: top padding leaves room for the fixed navbar */
 .notfound-container {
   padding-top: 100px;
   padding-bottom: 40px;
@@ -23,12 +24,14 @@
   font-family: "Segoe UI", Arial, sans-serif;
 }
 
+/* Big "404" */
 .notfound-code {
   margin: 0;
   color: var(--ae-accent-text);
   font: 700 4rem/1.1 "Segoe UI", Arial, sans-serif;
 }
 
+/* Explanation line */
 .notfound-message {
   margin: 8px 0 0;
   color: var(--ae-text);
@@ -44,6 +47,7 @@
   overflow-wrap: anywhere;
 }
 
+/* Row of buttons back to real pages; wraps on narrow screens */
 .notfound-links {
   display: flex;
   flex-wrap: wrap;

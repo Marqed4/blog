@@ -1,3 +1,4 @@
+/* Page wrapper: top padding leaves room for the fixed navbar */
 .resume-container {
   padding-top: 80px;
   padding-bottom: 40px;
@@ -5,6 +6,7 @@
   box-sizing: border-box;
 }
 
+/* Paper-style resume card */
 .resume-card {
   max-width: 720px;
   margin: 0 auto;
@@ -15,6 +17,7 @@
   backdrop-filter: blur(5px);
 }
 
+/* Name/tagline/contact block */
 .resume-header {
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
@@ -50,6 +53,7 @@
   text-underline-offset: 2px;
 }
 
+/* Resume sections and their small uppercase titles */
 .resume-section {
   margin-top: 1.75rem;
 }
@@ -66,6 +70,7 @@
   text-align: left;
 }
 
+/* Summary paragraph */
 .resume-profile {
   font-size: 14px;
   line-height: 1.7;
@@ -75,6 +80,7 @@
   justify-content: start;
 }
 
+/* Job entries: title/date row, org, bullet list */
 .resume-job {
   margin-bottom: 1.25rem;
 }
@@ -115,6 +121,7 @@
   margin-bottom: 3px;
 }
 
+/* Education entries */
 .resume-edu-item {
   margin-bottom: 0.75rem;
 }
@@ -137,6 +144,7 @@
   margin-top: 2px;
 }
 
+/* Skill cards: as many 180px+ columns as fit */
 .resume-skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -165,6 +173,7 @@
   line-height: 1.5;
 }
 
+/* Printing: drop the top padding and card border */
 @media print {
   .resume-container {
     padding-top: 0;
@@ -175,6 +184,7 @@
   }
 }
 
+/* Phone: smaller card padding, job title and date stack */
 @media (max-width: 600px) {
   .resume-card {
     padding: 1.5rem 1.25rem;
@@ -184,6 +194,7 @@
   }
 }
 
+/* Download button above the PDF */
 .resume-download {
   display: block;
   width: fit-content;
@@ -204,6 +215,7 @@
   background: rgba(255, 255, 255, 0.16);
 }
 
+/* iframe that shows the PDF (see resume.js) */
 .resume-pdf-viewer {
   display: block;
   width: 1200px;

@@ -1,3 +1,4 @@
+// Calisigh project page: title link, app control docs, annotated screenshots, then Overview/Features/Architecture boxes.
 import { useEffect } from "react";
 import Navbar from "../layout/navbar.js"
 import Footer from "../layout/footer.jsx";
@@ -10,6 +11,7 @@ import EditAlarmView from "../../resources/art/projects/calisigh/edit-alarm-view
 import EditDuplicateAlarmView from "../../resources/art/projects/calisigh/duplicate-date-selection.png"
 import EventView from "../../resources/art/projects/calisigh/event-view.png"
 
+// One entry per screenshot block: image(s), alt text, heading, tag prefix, bullet text. flip=true puts the image on the right.
 const sections = [
   {
     img: MonthsView,
@@ -106,10 +108,12 @@ const sections = [
 
 const Calisigh = () => {
 
+  // Runs once on mount to set the browser tab title
   useEffect(() => {
     document.title = "Calisigh";
   }, []);
 
+  // Page layout, top to bottom: title, app controls, screenshot sections, then Overview/Features/Architecture boxes
   return (
     <div className="custom-calendar-container">
       <Navbar/>
@@ -157,6 +161,7 @@ const Calisigh = () => {
               <p className="months-view-docs-label">{label}</p>
               <ul className="months-view-list">
                 {items.map((item, i) => {
+                  // Items written like "mv.1.1 * text" bring their own tag, the rest get auto-numbered (tag.1, tag.2, ...)
                   const hasCustomTag = item.match(/^[a-z]+[\d.]*\s*\*/);
                   if (hasCustomTag) {
                     const [customTag, ...rest] = item.split(" * ");

@@ -1,3 +1,5 @@
+// Home page: an After Effects style workspace with tabs (Home, Render Queue, LeetCode),
+// floating project tiles, a theme color picker, and a contact form.
 import { useEffect, useRef, useState } from "react";
 import { motion, useSpring } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -9,6 +11,7 @@ import HomeBanner from "../../../resources/art/background-project/gradients/oran
 import Navbar from "../../layout/navbar.js";
 import Footer from "../../layout/footer.jsx";
 
+// Fake effect names shown in the left panel (decorative)
 const Effects = [
   "Twixtor",
   "RSMB",
@@ -21,17 +24,21 @@ const Effects = [
   "Mocha AE",
 ];
 
+// One floating tile that drifts toward/away from the mouse. Internal pages use `to` (router Link), the contact tile uses `href`.
 const FloatingRectangle = ({ className, to, href, label }) => {
   const rectangleRef = useRef(null);
+  // Springs make the tile ease to its target instead of snapping
   const springConfig = { stiffness: 150, damping: 18, mass: 0.6 };
   const x = useSpring(0, springConfig);
   const y = useSpring(0, springConfig);
   const rotateX = useSpring(0, springConfig);
   const rotateY = useSpring(0, springConfig);
   const scale = useSpring(1, springConfig);
+  // Pick the element: router Link for pages, plain <a> for the #contact anchor
   const TileLink = to ? Link : "a";
   const destination = to ? { to } : { href };
 
+  // Listens to the mouse on the whole window so the tile reacts when the cursor gets near
   useEffect(() => {
     const handleMouseMove = (event) => {
       const rectangle = rectangleRef.current;
@@ -41,8 +48,10 @@ const FloatingRectangle = ({ className, to, href, label }) => {
       const offsetX = bounds.left + bounds.width / 2 - event.clientX;
       const offsetY = bounds.top + bounds.height / 2 - event.clientY;
       const distance = Math.hypot(offsetX, offsetY);
+      // Tile only reacts within 280px of the cursor
       const range = 280;
 
+      // Too far away (or reduced motion): settle back to rest
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || distance >= range) {
         x.set(0);
         y.set(0);
@@ -52,10 +61,13 @@ const FloatingRectangle = ({ className, to, href, label }) => {
         return;
       }
 
+      // proximity: 0 at the edge of the range, 1 when the cursor is on the tile
       const proximity = 1 - distance / range;
+      // Unit direction away from the cursor (|| 1 avoids dividing by zero)
       const directionX = offsetX / (distance || 1);
       const directionY = offsetY / (distance || 1);
 
+      // Push away from the cursor, tilt in 3D and grow slightly, all scaled by how close the cursor is
       x.set(directionX * 30 * proximity);
       y.set(directionY * 30 * proximity);
       rotateX.set(-directionY * 18 * proximity);
@@ -87,9 +99,13 @@ const FloatingRectangle = ({ className, to, href, label }) => {
   );
 };
 
+// Home page component
 const Home = () => {
+  // Which tab is open: composition (Home), renderQueue or leetCode
   const [activePanel, setActivePanel] = useState("composition");
+  // True briefly after submit so the paper plane animation plays
   const [isSending, setIsSending] = useState(false);
+  // Current Stroke/Fill colors, starting from what was saved in localStorage
   const [theme, setTheme] = useState(loadTheme);
 
   // Stroke drives the purple accents, Fill drives the blue/teal accents (see theme.js).
@@ -100,26 +116,34 @@ const Home = () => {
     applyTheme(next);
   };
 
+  // Reset: resetTheme clears storage, applies defaults and returns them for state
   const handleThemeReset = () => setTheme(resetTheme());
 
+  // Set the browser tab title when the page loads
   useEffect(() => {
     document.title = "Marqed's Homepage";
   }, []);
 
+  // No backend: build a mailto: link from the form so it opens the visitor's email app
   const handleContactSubmit = (event) => {
+    // Stop the normal page-reloading form submit
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const name = formData.get("name");
     const email = formData.get("email");
     const message = formData.get("message");
+    // encodeURIComponent so spaces/newlines are safe in the URL
     const subject = encodeURIComponent(`Website message from ${name}`);
     const body = encodeURIComponent(`${message}\n\nFrom: ${name}\nEmail: ${email}`);
 
     setIsSending(true);
     window.location.href = `mailto:zacherywfrancis@gmail.com?subject=${subject}&body=${body}`;
+    // Turn the sending animation off after 1.6s
     window.setTimeout(() => setIsSending(false), 1600);
   };
 
+  // Layout: navbar, then the workspace window (titlebar, tab buttons, left panel | stage | right panel,
+  // timeline), then the contact form. The stage shows Home, LeetCode or the Render Queue depending on activePanel.
   return (
     <>
       <div className="home-container">

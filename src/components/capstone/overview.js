@@ -1,3 +1,4 @@
+// CISC 4900 capstone overview page: summary of PopularVote, deliverables, route reference and design notes.
 import { useEffect } from "react";
 import Navbar from "../layout/navbar.js";
 import Footer from "../layout/footer.jsx";
@@ -8,6 +9,7 @@ import OpenSessionView from "../../resources/art/projects/popularvote/open-sessi
 import HostsScrollDown from "../../resources/art/projects/popularvote/hosts-scroll-down.gif";
 
 
+// Deliverables list: term is bolded, desc is the explanation after the dash
 const deliverables = [
   { term: "Live, room-based Q&A", desc: "host opens a session and gets a 6-character room code participants join with" },
   { term: "Anonymous question intake", desc: "rate-limited to 10/minute per IP via Flask-Limiter" },
@@ -20,6 +22,7 @@ const deliverables = [
   { term: "Durable persistence", desc: "Postgres via Supabase as source of truth, rebuilt into an in-memory cache on boot via hydrate()" },
 ];
 
+// API routes grouped by the backend file they live in
 const routeGroups = [
   {
     file: "routes/sessions.py",
@@ -58,6 +61,7 @@ const routeGroups = [
   },
 ];
 
+// Design notes and known limitations, shown as plain bullets
 const notes = [
   "Write-through, not write-back - every mutation hits the in-memory SessionManager dict first, then Supabase, synchronously in the same call",
   "Single-process cache - self.sessions lives in one process's memory; no Redis, so it wouldn't stay consistent across multiple gunicorn workers or replicas without more work",
@@ -65,11 +69,14 @@ const notes = [
   "Migrated mid-project - backend was ported from Node/Express to Python/Flask; some camelCase keys and JS-voiced comments remain as leftovers",
 ];
 
+// Static page, so the only hook is the title effect
 const CISC4900PopularVote = () => {
+  // Sets the browser tab title once when the page loads ([] = run once)
   useEffect(() => {
     document.title = "CISC 4900 - PopularVote";
   }, []);
 
+  // Layout: links to time log / PowerPoint, title, screenshots, Overview / Deliverables / Architecture cards, route reference, design notes
   return (
     <div className="cisc4900-container">
       <Navbar />

@@ -1,3 +1,4 @@
+/* Page wrapper: centered column */
 .gallery-page {
   display: flex;
   flex-direction: column;
@@ -10,6 +11,7 @@
   font-weight: 600;
 }
 
+/* Photo grid: as many 280px+ columns as fit */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -30,6 +32,7 @@
   left: -25px;
 }
 
+/* Photo card shell */
 .gallery-card {
   display: flex;
   flex-direction: column;
@@ -46,18 +49,21 @@
   margin-top: 10px;
 }
 
+/* Lift the card on hover */
 .gallery-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     background-color: rgba(190, 255, 239, 2.5%);
 }
 
+/* Default photo size; contain keeps the whole picture visible */
 .gallery-image {
   width: auto;
   height: 145px;
   object-fit: contain;
 }
 
+/* Per-photo heights: each photo has a different shape (class comes from the id in gallery.js) */
 .img_0510.gallery-image {
   transform: translateX(15px);  
   height: 360px;
@@ -114,6 +120,7 @@
   border-radius: 8px;
 }
 
+/* Caption under each photo */
 .gallery-description {
   margin: 0;
   font-size: 0.9rem;

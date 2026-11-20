@@ -1,3 +1,4 @@
+// TimeRabbit project page: a screenshot with a numbered feature list, then Overview / Features / Architecture cards.
 import { useEffect } from "react";
 import Navbar from "../layout/navbar.js"
 import Footer from "../layout/footer.jsx";
@@ -6,6 +7,7 @@ import "./time-rabbit.css"
 import AppView from "../../resources/art/projects/time-rabbit/view-app.png"
 
 
+// Data for the screenshot rows: image, label, short tag and bullet list.|NL|// An optional flip: true would put the image on the right (none use it here).
 const sections = [
   {
     img: AppView,
@@ -23,12 +25,15 @@ const sections = [
   },
 ];
 
+// Mostly static content, so no state needed
 const TimeRabbit = () => {
 
+  // Sets the browser tab title once when the page loads ([] = run once)
   useEffect(() => {
     document.title = "TimeRabbit";
   }, []);
 
+  // Layout: navbar + title, screenshot rows (from sections), then Overview / Features / Architecture cards
   return (
     <div className="timerabbit-container">
       <Navbar />

@@ -1,9 +1,11 @@
+/* Page wrapper: space under the fixed navbar */
 .custom-calendar-container {
   padding-top: 100px;
   padding-bottom: 40px;
   text-align: center;
 }
 
+/* Logo and name images (not used by calisigh.js right now) */
 .custom-calendar-logo {
   height: 120px;
   width: auto;
@@ -20,12 +22,14 @@
   overflow: hidden;
 }
 
+/* Remove default h1 spacing inside this page */
 .custom-calendar-container h1 {
   margin: 0;
   padding: 0;
   line-height: 0;
 }
 
+/* Shared box look for the info cards: border, transparent bg, blur */
 .custom-calendar-layout-made,
 .custom-calendar-layout-overview,
 .custom-calendar-layout-features,
@@ -40,6 +44,7 @@
   backdrop-filter: blur(4px);
 }
 
+/* Max width per info card */
 .custom-calendar-layout-made {
   max-width: 240px;
 }
@@ -56,6 +61,7 @@
   max-width: 255px;
 }
 
+/* Header images and body text inside the info cards */
 .custom-calendar-intro-header-img,
 .made-with,
 .overview-header,
@@ -77,6 +83,7 @@
   transform: translate(10px, 0px);
 }
 
+/* Phone-sized: cards go full width */
 @media (max-width: 768px) {
   .custom-calendar-content {
     flex-direction: row;
@@ -92,6 +99,7 @@
   }
 }
 
+/* Screenshot row: image on one side, docs on the other */
 .months-view-section,
 .years-view-section,
 .settings-view-section,
@@ -104,10 +112,12 @@
   padding: 20px 40px 40px 40px;
 }
 
+/* Flip: image on the right */
 .months-view-section--flip {
   flex-direction: row-reverse;
 }
 
+/* App controls list block */
 .app-controls-section {
   display: flex;
   flex-direction: column;
@@ -123,6 +133,7 @@
   padding-top: 6px;
 }
 
+/* Screenshot image */
 .months-view-example,
 .years-view-example,
 .settings-view-example,
@@ -136,6 +147,7 @@
   flex-shrink: 0;
 }
 
+/* Docs column next to the screenshot */
 .months-view-docs,
 .years-view-docs,
 .settings-view-docs,
@@ -145,6 +157,7 @@
   padding-top: 6px;
 }
 
+/* Small uppercase heading above each list */
 .months-view-docs-label,
 .years-view-docs-label,
 .settings-view-docs-label,
@@ -159,6 +172,7 @@
   -webkit-text-stroke: 2px black;
 }
 
+/* First label has no top gap */
 .months-view-docs-label:first-child, 
 .years-view-docs-label:first-child,
 .settings-view-docs-label:first-child,
@@ -167,6 +181,7 @@
   margin-top: 0;
 }
 
+/* Bullet lists: no bullets, stacked with a gap */
 .months-view-list,
 .years-view-list,
 .settings-view-list,
@@ -183,6 +198,7 @@
   color: rgb(0, 0, 0);
 }
 
+/* List item text */
 .months-view-list li,
 .years-view-list li,
 .settings-view-list li,
@@ -195,6 +211,7 @@
   -webkit-text-stroke: 0.5px black;
 }
 
+/* Little pill tag in front of each item (mv.1, a.2, ...) */
 .mv-tag {
   display: inline-block;
   font-size: 0.68rem;
@@ -209,11 +226,13 @@
   vertical-align: middle;
 }
 
+/* Red X mark (no matching class in calisigh.js) */
 .mv-x {
   font-size: 0.7rem;
   color: rgba(255, 100, 100, 0.8);
 }
 
+/* Narrow screens: shrink images to full width */
 @media (max-width: 770px) {
   .months-view-section, 
   .years-view-section,
@@ -246,6 +265,7 @@
   }
 }
 
+/* Row of the three info cards, wraps onto new lines */
 .custom-calendar-content {
   display: flex;
   flex-direction: row;
@@ -256,6 +276,7 @@
   padding: 20px 40px;
 }
 
+/* Medium screens: cards get wider and centered */
 @media (max-width: 1250px) {
   .custom-calendar-content {
     flex-direction: row;
@@ -271,6 +292,7 @@
   }
 }
 
+/* Thin horizontal line */
 .divider {
   height: 1px;
   width: 100%;
@@ -278,6 +300,7 @@
   margin: 12px 0;
 }
 
+/* Stacked images (edit view has two) */
 .png-column {
   display: flex;
   flex-direction: column;
@@ -293,6 +316,7 @@
   object-fit: contain;
 }
 
+/* Make title links size like a block */
 h1 a {
   display: inline-block;
 }

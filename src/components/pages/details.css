@@ -1,14 +1,17 @@
+/* Custom "Latin" font loaded from resources/fonts */
 @font-face {
   font-family: "Latin";
   src: url("../../resources/fonts/southcrew-vgw2e.ttf") format("truetype");
 }
 
+/* Gentle up-and-down bob used on the section headings */
 @keyframes float {
   0%   { transform: translateY(0); }
   50%  { transform: translateY(-6px); }
   100% { transform: translateY(0); }
 }
 
+/* Plain text-style button (no border/background) */
 .copy-button {
   background: none;
   border: none;
@@ -24,6 +27,7 @@
   color: rgba(0, 128, 0, 0.466);
 }
 
+/* Page wrapper: top padding leaves room for the fixed navbar */
 .details-container {
   padding-top: 118px;
   padding-bottom: 40px;
@@ -33,6 +37,7 @@
   box-sizing: border-box;
 }
 
+/* Row of columns, centered */
 .details-content {
   display: flex;
   flex-direction: row;
@@ -45,6 +50,7 @@
   margin: 0 auto;
 }
 
+/* Column stacks: contacts + resume */
 .details-left-column {
   display: flex;
   flex-direction: column;
@@ -52,6 +58,7 @@
   align-items: center;
 }
 
+/* Column stacks: education, tech stack, editing software */
 .education-and-skills {
   display: flex;
   flex-direction: column;
@@ -59,6 +66,7 @@
   align-items: center;
 }
 
+/* Shared box for every details card */
 .details-layout-edu,
 .details-layout-int,
 .details-layout-editing-software,
@@ -79,6 +87,7 @@
   box-sizing: border-box;
 }
 
+/* Fixed width per card */
 .details-layout-emails { width: 300px; max-width: 300px; }
 .details-layout-resume { width: 300px; max-width: 300px; }
 .details-layout-edu    { width: 300px; max-width: 300px; }
@@ -86,6 +95,7 @@
 .details-layout-editing-software      { width: 280px; max-width: 280px; }
 .details-layout-coding-lang-framework { width: 340px; max-width: 340px; }
 
+/* Tablet/phone: stack the columns and let cards use 90% width */
 @media (max-width: 768px) {
   .details-content {
     flex-direction: column;
@@ -107,6 +117,7 @@
   }
 }
 
+/* Card headings: float animation, no top spacing */
 .details-education-header,
 .details-resume-header,
 .details-interests-header,
@@ -128,6 +139,7 @@
   padding-top: 0;
 }
 
+/* Card body text: nudged up under the heading */
 .editing-software-body,
 .coding-lang-framworks-body,
 .resume-body,
@@ -143,15 +155,16 @@
   margin-top: 0;
 }
 
+/* One tech-stack line; wraps so the Studying pill drops down instead of clipping */
 .skill-line {
   display: inline-block;
-  white-space: nowrap;
 }
 
 .coding-lang-framworks-body {
   font-size: 0.85rem;
 }
 
+/* Small pill for skills I'm still learning */
 .studying-tag {
   display: inline-block;
   white-space: nowrap;
@@ -167,6 +180,7 @@
   vertical-align: middle;
 }
 
+/* Serif text for these classes */
 .details-education,
 .details-interests,
 .details-skill {
@@ -175,6 +189,7 @@
   line-height: 1.7;
 }
 
+/* Turn the heading animation off for people who prefer less motion */
 @media (prefers-reduced-motion: reduce) {
   .details-education-header,
   .details-resume-header,

@@ -1,3 +1,4 @@
+// DivaFFMPEG project page: title link, hero gif, feature sections (video done, image/audio in progress), then info boxes.
 import { useEffect } from "react";
 import Navbar from "../layout/navbar.js";
 import Footer from "../layout/footer.jsx";
@@ -7,6 +8,7 @@ import Frontpage from "../../resources/art/projects/diva-ffmpeg/frontpage.gif";
 import VideoTools from "../../resources/art/projects/diva-ffmpeg/video-tools.gif";
 
 
+// One entry per section: gif (null = text only), heading, tag prefix, bullet text. flip puts the gif on the right, inProgress shows a badge.
 const sections = [
   {
     gif: VideoTools,
@@ -44,10 +46,12 @@ const sections = [
 ];
 
 const DivaFFMPEG = () => {
+  // Runs once on mount to set the browser tab title
   useEffect(() => {
     document.title = "DivaFFMPEG";
   }, []);
 
+  // Page layout: title, intro, hero gif, feature sections (no gif = text-only, inProgress = badge), info boxes, disclaimer
   return (
     <div className="diva-ffmpeg-container">
       <Navbar />
@@ -81,6 +85,7 @@ const DivaFFMPEG = () => {
               </p>
               <ul className="diva-ffmpeg-view-list">
                 {items.map((item, i) => {
+                  // Splits "Bold part - rest" so the part before the first " - " can be bolded; no dash = plain text
                   const [bold, ...rest] = item.split(" - ");
                   return (
                     <li key={i}>

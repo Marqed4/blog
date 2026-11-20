@@ -7,8 +7,10 @@ import Footer from "../layout/footer.jsx";
 // It keeps the navbar and footer so a visitor with a dead link is never stuck,
 // and the links below are <Link> so they do not reload the page (see app.js).
 const NotFound = () => {
+  // The URL the visitor tried to open, shown on the card below
   const { pathname } = useLocation();
 
+  // Sets the browser tab title when the page loads
   useEffect(() => {
     document.title = "Page not found";
   }, []);

@@ -1,3 +1,4 @@
+// Projects page (route /Projects): a featured card on top, then a grid of the rest. Each card links to that project's own page.
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../layout/navbar.js";
@@ -12,6 +13,7 @@ import SudokuLogo from "../../resources/art/projects/sudoku/favicon.png"
 import TimeRabbitLogo from "../../resources/art/projects/time-rabbit/time-rabbit.png"
 
 // Currently mentioned project list. 
+// Exported so the Home page can reuse the same list. `featured` gets the big card; `link` (live site) is optional.
 export const ProjectsArray = [
   // Calisigh
   {
@@ -72,9 +74,12 @@ export const ProjectsArray = [
 Each project will contain it's own data. 
 Redirecting the user to a page with more about that project.
 */
+// index only controls how late Reveal animates the card in
+// The Live site / Source buttons sit outside the Link so no link is nested inside another link.
 const ProjectCard = ({ project, index }) => (
   <Reveal key={project.id} index={index} className={`project-wrapper${project.featured ? " project-wrapper--featured" : ""}`}>
     <Link
+      // Route path is the title with spaces removed ("Diva FFMPEG" -> /DivaFFMPEG)
       to={"/" + project.title.replace(/\s+/g, "")}
       className={`project-card${project.featured ? " project-card--featured" : ""}`}
     >
@@ -107,13 +112,16 @@ const ProjectCard = ({ project, index }) => (
 );
 
 const Projects = () => {
+  // Sets the browser tab title when the page loads
   useEffect(() => {
     document.title = "Marqed's Projects";
   }, []);
 
+  // Split the list: first featured project gets its own card, everything else goes in the grid
   const featured = ProjectsArray.find(p => p.featured);
   const rest = ProjectsArray.filter(p => !p.featured);
 
+  // Featured project gets its own big card (index 0); the grid cards start at index + 1 so the stagger continues.
   return (
     <>
       <Navbar />

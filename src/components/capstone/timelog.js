@@ -1,3 +1,4 @@
+// CISC 4900 time log page: summary stats and a list of dated work entries, shown 5 at a time with View more / Show less.
 import { useEffect, useState } from "react";
 import Navbar from "../layout/navbar.js";
 import Footer from "../layout/footer.jsx";
@@ -5,6 +6,7 @@ import "./timelog.css";
 
 // Fall 2026 semester (Brooklyn College): classes run Aug. 28 - Dec. 21, 2026.
 // Logging window starts 3 days in, on Aug. 31, 2026.
+// Dates are "YYYY-MM-DD" strings. Only SEMESTER_START and SEMESTER_END are shown on the page.
 const LOG_START = "2026-08-31";
 const SEMESTER_START = "2026-08-28";
 const SEMESTER_END = "2026-12-21";
@@ -290,10 +292,13 @@ const entries = [
   },
 ];
 
+// Adds up every duration; Number(...) || 0 treats a missing or bad value as 0 hours instead of NaN
 const totalHours = entries.reduce((sum, e) => sum + (Number(e.duration) || 0), 0);
 
+// How many entries show before clicking View more
 const INITIAL_VISIBLE = 5;
 
+// "2026-11-05" -> "Thu, Nov 5, 2026". The T00:00:00 makes it local time so the day does not shift back one in US timezones.
 const formatDate = (iso) =>
   new Date(iso + "T00:00:00").toLocaleDateString(undefined, {
     weekday: "short",
@@ -303,15 +308,20 @@ const formatDate = (iso) =>
   });
 
 const PopularVoteTimeLog = () => {
+  // Keeps track of how many entries are showing right now
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
 
+  // Sets the browser tab title once when the page loads ([] = run once)
   useEffect(() => {
     document.title = "Popular Vote: Time Log";
   }, []);
 
+  // Entries are newest-first, so slicing from 0 shows the latest ones
   const visibleEntries = entries.slice(0, visibleCount);
+  // True while some entries are still hidden
   const hasMore = visibleCount < entries.length;
 
+  // Layout: header, summary stats, then the entry list; entries show 5 at a time with View more / Show less (empty message if none, challenges/reflection only if the entry has them)
   return (
     <div className="timelog-container">
       <Navbar />
