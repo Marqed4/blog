@@ -1,9 +1,11 @@
+/* Page wrapper: space under the fixed navbar */
 .diva-ffmpeg-container {
   padding-top: 100px;
   padding-bottom: 40px;
   text-align: center;
 }
 
+/* Icon and title (not used by diva-ffmpeg.js right now) */
 .diva-ffmpeg-icon {
   width: 500px;
   height: auto;
@@ -14,12 +16,14 @@
   margin-bottom: 8px;
 }
 
+/* Intro text under the title */
 .diva-ffmpeg-description {
   font-weight: 225;
   -webkit-text-stroke: 1px black;
   margin: 4px 0;
 }
 
+/* Hero gif at the top */
 .diva-ffmpeg-hero {
   width: 720px;
   max-width: 85%;
@@ -29,11 +33,13 @@
   margin: 24px 0;
 }
 
+/* Feature sections stacked vertically */
 .diva-ffmpeg-views {
   display: flex;
   flex-direction: column;
 }
 
+/* Section row: gif on one side, docs on the other */
 .diva-ffmpeg-view-section {
   display: flex;
   flex-direction: row;
@@ -48,10 +54,12 @@
   flex-direction: row-reverse;
 }
 
+/* No gif: docs centered by themselves */
 .diva-ffmpeg-view-section--textonly {
   justify-content: center;
 }
 
+/* Section gif */
 .diva-ffmpeg-screenshot {
   width: 520px;
   max-width: 55%;
@@ -62,6 +70,7 @@
   object-fit: contain;
 }
 
+/* Docs column next to the gif */
 .diva-ffmpeg-view-docs {
   text-align: left;
   max-width: 380px;
@@ -73,6 +82,7 @@
   max-width: 520px;
 }
 
+/* Small uppercase heading above each list */
 .diva-ffmpeg-view-label {
   font-size: 0.7rem;
   font-weight: 600;
@@ -87,6 +97,7 @@
   margin-top: 0;
 }
 
+/* "In Progress" badge */
 .diva-ffmpeg-progress-badge {
   display: inline-block;
   margin-left: 8px;
@@ -102,6 +113,7 @@
   -webkit-text-stroke: 0;
 }
 
+/* Bullet list: no bullets, stacked with a gap */
 .diva-ffmpeg-view-list {
   list-style: none;
   padding: 0;
@@ -120,6 +132,7 @@
   -webkit-text-stroke: 0.5px black;
 }
 
+/* Little pill tag in front of each item (vp.1, ip.1, ...) */
 .diva-ffmpeg-tag {
   display: inline-block;
   font-size: 0.68rem;
@@ -134,6 +147,7 @@
   vertical-align: middle;
 }
 
+/* Shared box look for the info cards: border, transparent bg, blur */
 .diva-ffmpeg-layout-overview,
 .diva-ffmpeg-layout-features,
 .diva-ffmpeg-layout-architecture {
@@ -147,10 +161,12 @@
   backdrop-filter: blur(4px);
 }
 
+/* Max width per info card */
 .diva-ffmpeg-layout-overview     { max-width: 300px; }
 .diva-ffmpeg-layout-features     { max-width: 220px; }
 .diva-ffmpeg-layout-architecture { max-width: 255px; }
 
+/* Header and body text inside the info cards */
 .overview-header,
 .features-header,
 .architecture-header {
@@ -168,6 +184,7 @@
   -webkit-text-stroke: 1px black;
 }
 
+/* Row of the three info cards, wraps onto new lines */
 .diva-ffmpeg-content {
   display: flex;
   flex-direction: row;
@@ -178,6 +195,7 @@
   padding: 20px 40px;
 }
 
+/* Disclaimer text at the bottom */
 .diva-ffmpeg-ethics {
   font-size: 0.75rem;
   font-weight: 225;
@@ -187,6 +205,7 @@
   max-width: 500px;
 }
 
+/* Medium screens: cards stack in a column */
 @media (max-width: 1250px) {
   .diva-ffmpeg-content {
     flex-direction: column;
@@ -201,6 +220,7 @@
   }
 }
 
+/* Phone-sized: everything stacks, images go full width */
 @media (max-width: 770px) {
   .diva-ffmpeg-view-section,
   .diva-ffmpeg-view-section--flip {

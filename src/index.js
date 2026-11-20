@@ -1,3 +1,4 @@
+// Entry point: applies the saved theme, then mounts <App> inside the router.
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './app.js';
@@ -8,6 +9,7 @@ import { applyTheme, loadTheme } from './theme.js';
 applyTheme(loadTheme());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+// StrictMode adds extra dev-time checks; BrowserRouter enables URL-based routing
 root.render(
   <React.StrictMode>
     <BrowserRouter>

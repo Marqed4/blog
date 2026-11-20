@@ -1,3 +1,4 @@
+// PopularVote project page: alternating GIF + bullet-list rows, then Overview / Features / Architecture cards.
 import { useEffect } from "react";
 import Navbar from "../layout/navbar.js";
 import Footer from "../layout/footer.jsx";
@@ -12,6 +13,7 @@ import ParticipantScroll from "../../resources/art/projects/popularvote/particip
 import HostsEndSession   from "../../resources/art/projects/popularvote/hosts-end-session-and-summary-pdf-download.gif";
 
 
+// Data for the GIF rows. flip: true swaps image and text sides so rows alternate left/right.
 const sections = [
   {
     gif: MainPagePreview,
@@ -107,11 +109,14 @@ const sections = [
   },
 ];
 
+// Mostly static content, so no state needed
 const PopularVote = () => {
+  // Sets the browser tab title once when the page loads ([] = run once)
   useEffect(() => {
     document.title = "PopularVote";
   }, []);
 
+  // Layout: navbar + title, GIF rows (from sections), then Overview / Features / Architecture cards
   return (
     <div className="popular-vote-container">
       <Navbar />
@@ -143,6 +148,7 @@ const PopularVote = () => {
               <p className="popular-vote-view-label">{label}</p>
               <ul className="popular-vote-view-list">
                 {items.map((item, i) => {
+                  // Splits "Term - explanation" so the term can be bolded; rest is rejoined in case the text has more " - " in it
                   const [bold, ...rest] = item.split(" - ");
                   return (
                     <li key={i}>

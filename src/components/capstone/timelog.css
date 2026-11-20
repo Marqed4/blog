@@ -1,3 +1,4 @@
+/* Page padding (clears the fixed navbar) */
 .timelog-container {
   padding-top: 100px;
   padding-bottom: 40px;
@@ -5,6 +6,7 @@
   box-sizing: border-box;
 }
 
+/* Main card: width cap, border, shadow, blur */
 .timelog-card {
   max-width: 760px;
   margin: 0 auto;
@@ -15,6 +17,7 @@
   backdrop-filter: blur(5px);
 }
 
+/* Header: names and dates above a divider line */
 .timelog-header {
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
@@ -40,6 +43,7 @@
   text-underline-offset: 2px;
 }
 
+/* Summary stats side by side */
 .timelog-summary {
   display: flex;
   justify-content: center;
@@ -65,6 +69,7 @@
   font-weight: 700;
 }
 
+/* Entries section and its small uppercase title */
 .timelog-section {
   margin-top: 1.75rem;
 }
@@ -88,12 +93,14 @@
   text-align: center;
 }
 
+/* Entry list: cards stacked with a gap */
 .timelog-entries {
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
+/* Single entry card */
 .timelog-entry {
   border: 1px solid #e0ddd9;
   border-radius: 4px;
@@ -102,6 +109,7 @@
   text-align: left;
 }
 
+/* Entry header: date, hours, category on one line, wraps if needed */
 .timelog-entry-header {
   display: flex;
   flex-wrap: wrap;
@@ -131,6 +139,7 @@
   padding: 1px 6px;
 }
 
+/* Entry body text and the optional challenges / reflection lines */
 .timelog-entry-description {
   font-size: 13px;
   line-height: 1.6;
@@ -150,6 +159,7 @@
   color: #333;
 }
 
+/* View more / Show less button */
 .timelog-view-more {
   display: block;
   margin: 16px auto 0 auto;
@@ -169,6 +179,7 @@
   background: rgba(0, 0, 0, 0.1);
 }
 
+/* Phone: tighter card padding, entry header stacks */
 @media (max-width: 600px) {
   .timelog-card {
     padding: 1.5rem 1.25rem;

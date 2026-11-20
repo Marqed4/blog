@@ -1,3 +1,4 @@
+// Root of the site: draws the parallax background and maps each URL to its page component.
 import { useEffect, useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
@@ -81,6 +82,7 @@ import DefaultBackground from "./resources/art/background-project/gradients/site
 // Side effect of client side navigation: the browser no longer jumps to the top on
 // its own, so a page opened from a scrolled position would start mid-page.
 // ScrollToTop puts that back by scrolling to the top on every route change.
+// Scrolls to the top whenever the route changes (see note above)
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -89,21 +91,27 @@ const ScrollToTop = () => {
   return null;
 };
 
+// App: parallax background + route table
 const App = () => {
+  // Mouse position as -0.5..0.5 from the screen center (updated in the mousemove effect)
   const rawX = useMotionValue(0);
   const rawY = useMotionValue(0);
+  // Whether the user asked their OS for less motion; read once on first render
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(() =>
     typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
   );
+  // Springs smooth the raw mouse values; reduced motion uses softer settings
   const springConfig = { stiffness: prefersReducedMotion ? 18 : 40, damping: prefersReducedMotion ? 28 : 20, mass: 0.5 };
   const x = useSpring(rawX, springConfig);
   const y = useSpring(rawY, springConfig);
 
+  // Parallax: background moves 14px opposite the mouse, content 50px; both stay still for reduced motion
   const bgX = useTransform(x, (v) => prefersReducedMotion ? 0 : v * -14);
   const bgY = useTransform(y, (v) => prefersReducedMotion ? 0 : v * -14);
   const contentX = useTransform(x, (v) => prefersReducedMotion ? 0 : v * -50);
   const contentY = useTransform(y, (v) => prefersReducedMotion ? 0 : v * -50);
 
+  // Keeps prefersReducedMotion in sync if the user changes the OS setting while the site is open
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     const handlePreferenceChange = () => setPrefersReducedMotion(mediaQuery.matches);
@@ -113,6 +121,7 @@ const App = () => {
     return () => mediaQuery.removeEventListener?.('change', handlePreferenceChange);
   }, []);
 
+  // Tracks the mouse across the whole window and feeds it to the springs
   useEffect(() => {
     const handleMouseMove = (e) => {
       if (prefersReducedMotion) {
@@ -128,6 +137,7 @@ const App = () => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [prefersReducedMotion, rawX, rawY]);
 
+  // Parallax background image + the content wrapper that holds the route table (path -> page, "*" = 404).
   return (
     <>
       <ScrollToTop />

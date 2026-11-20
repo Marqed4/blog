@@ -1,3 +1,4 @@
+/* Page padding (clears the fixed navbar) */
 .cisc4900-ppt-container {
   padding-top: 100px;
   padding-bottom: 40px;
@@ -8,6 +9,7 @@
   transform: scaleX(-30px);
 }
 
+/* Download button, centered with auto side margins */
 .cisc4900-ppt-download {
   display: block;
   width: fit-content;
@@ -30,6 +32,7 @@
   background: rgba(255, 255, 255, 0.16);
 }
 
+/* Slide viewer frame: 960px wide like the previewer, shrinks on small screens */
 .cisc4900-ppt-viewer {
   width: 960px;
   max-width: 95%;

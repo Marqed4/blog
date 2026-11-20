@@ -1,3 +1,4 @@
+/* Custom font loaded from resources/fonts */
 @font-face {
   font-family: "Latin";
   src: url("./resources/fonts/southcrew-vgw2e.ttf") format("truetype");
@@ -22,6 +23,7 @@
   --ae-accent-text: hsl(calc(254.1 + var(--a-shift)) calc(100.0% * var(--a-sat)) 84.1%);
 }
 
+/* Shared site button: dark gradient, subtle glow text */
 .ae-site .ae-button {
   display: inline-flex;
   align-items: center;
@@ -56,6 +58,7 @@
   background: linear-gradient(#484452, #34313f);
 }
 
+/* Button variants: primary (purple), small */
 .ae-site .ae-button--primary {
   border-color: hsl(calc(254.7 + var(--a-shift)) calc(100.0% * var(--a-sat)) 74.3%);
   color: #fff;
@@ -77,10 +80,12 @@
   outline-offset: 3px;
 }
 
+/* Navbar link hover color */
 .Navbar-links-container a:hover {
   color: hsl(calc(237.6 + var(--a-shift)) calc(63.8% * var(--a-sat)) 54.5%);
 }
 
+/* Page background: two soft glows over a dark gradient; scrollbar hidden but page still scrolls */
 html, body {
   overflow-x: hidden;
   overflow-y: auto;
@@ -109,6 +114,7 @@ body {
   background-attachment: fixed;
 }
 
+/* Fixed full-screen background gif, slightly oversized (106%) so parallax movement never shows edges */
 .home-bg {
   position: fixed;
   top: -3%;
@@ -123,6 +129,7 @@ body {
   z-index: -1;
 }
 
+/* Reduced motion: no transitions or transforms on the background/content */
 @media (prefers-reduced-motion: reduce) {
   .home-bg,
   .ae-site {

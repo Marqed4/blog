@@ -1,3 +1,4 @@
+// Gallery page (route /Gallery): a grid of pet photos, each with a caption.
 import { useEffect } from "react";
 import Navbar from "../layout/navbar.js";
 import Footer from "../layout/footer.jsx"
@@ -6,6 +7,7 @@ import "./gallery.css";
 
 import { PetGallery }  from "../../resources/art/pages/gallery/index.js";
 
+// One entry per photo: id (also used as a CSS class for sizing), image, and caption
 const PetsArray = [
     { id: "IMG_0510", image: PetGallery.IMG_0510, description: "Why is Maggie such a sassy gal!?"}, 
     { id: "IMG_0528", image: PetGallery.IMG_0528, description: "Like... two peas in a pod.\nMaggie & Lisa!"},
@@ -23,6 +25,7 @@ const PetsArray = [
 
 // Each photo will contain it's own data (picture and description).
 const Gallery = () => {
+      // Sets the browser tab title when the page loads
       useEffect(() => {
         document.title = "Marqed's Gallery";
       }, []);

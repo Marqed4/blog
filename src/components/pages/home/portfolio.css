@@ -1,9 +1,11 @@
+/* Button row: wraps onto new lines, 9px gap */
 .portfolio-buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 9px;
 }
 
+/* Small number next to a button label */
 .ae-button-index {
   margin-left: 5px;
   color: hsl(calc(252.8 + var(--a-shift)) calc(100.0% * var(--a-sat)) 85.3%);

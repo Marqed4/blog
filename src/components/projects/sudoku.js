@@ -1,3 +1,4 @@
+// Sudoku project page: title, intro, two annotated screenshot sections (UI and architecture), then info boxes.
 import { useEffect } from "react";
 import Navbar from "../layout/navbar.js";
 import Footer from "../layout/footer.jsx";
@@ -7,6 +8,7 @@ import AppScreenshot from "../../resources/art/projects/sudoku/screenshot-2026-0
 import UMLDiagram    from "../../resources/art/projects/sudoku/screenshot-2026-06-21-034200.png";
 
 
+// One entry per screenshot block: image, alt text, heading, tag prefix, bullet text. flip puts the image on the right.
 const sections = [
   {
     img: AppScreenshot,
@@ -47,10 +49,12 @@ const sections = [
 ];
 
 const SolveSudoku = () => {
+  // Runs once on mount to set the browser tab title
   useEffect(() => {
     document.title = "Sudoku";
   }, []);
 
+  // Page layout: title, intro, screenshot sections, then Overview/Features/Architecture boxes
   return (
     <div className="solvesudoku-container">
       <Navbar />
@@ -76,6 +80,7 @@ const SolveSudoku = () => {
               <p className="solvesudoku-view-label">{label}</p>
               <ul className="solvesudoku-view-list">
                 {items.map((item, i) => {
+                  // Splits "Label * description" so the label can be bolded and joined with ": "; no " * " = plain text
                   const [bold, ...rest] = item.split(" * ");
                   return (
                     <li key={i}>

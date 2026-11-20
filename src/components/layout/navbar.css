@@ -1,14 +1,17 @@
+/* Custom "Latin" font loaded from resources/fonts */
 @font-face {
   font-family: "Latin";
   src: url("../../resources/fonts/southcrew-vgw2e.ttf") format("truetype");
 }
 
+/* Remove the browser's default page margin */
 html,
 body {
   margin: 0;
   padding: 0;
 }
 
+/* Nav wrapper: pinned to the top of the viewport, full width */
 .ae-top-nav {
   position: fixed;
   top: 16px;
@@ -19,6 +22,7 @@ body {
   box-sizing: border-box;
 }
 
+/* The bar itself: centered glass panel holding the links and buttons */
 .ae-nav-window {
   display: flex;
   align-items: center;
@@ -37,6 +41,7 @@ body {
   box-sizing: border-box;
 }
 
+/* Desktop link row */
 .ae-nav-toolbar {
   display: flex;
   align-items: center;
@@ -45,6 +50,7 @@ body {
   flex: 0 0 auto;
 }
 
+/* Nav links: flat by default, filled when hovered or on the current page */
 .ae-site .ae-button.ae-nav-link {
   min-height: 31px;
   padding: 5px 8px;
@@ -62,6 +68,7 @@ body {
   color: hsl(calc(256.7 + var(--a-shift)) calc(100.0% * var(--a-sat)) 96.5%);
 }
 
+/* Right-hand buttons: sound toggle + hamburger */
 .ae-nav-actions {
   display: flex;
   align-items: center;
@@ -69,6 +76,7 @@ body {
   flex: 0 0 auto;
 }
 
+/* Sound button (disabled for now, sounds are not built yet) */
 .ae-site .ae-button.ae-music-toggle {
   min-width: 82px;
   padding: 5px 8px;
@@ -83,6 +91,7 @@ body {
   text-shadow: none;
 }
 
+/* Little status dot inside the sound button; .is-on turns it green */
 .ae-sound-indicator {
   width: 7px;
   height: 7px;
@@ -98,6 +107,7 @@ body {
   box-shadow: 0 0 7px rgba(103, 180, 119, 0.55);
 }
 
+/* Hamburger button: hidden on desktop, shown in the phone breakpoint below */
 .ae-site .ae-button.ae-menu-toggle {
   display: none;
   min-width: 34px;
@@ -105,10 +115,12 @@ body {
   font-size: 1rem;
 }
 
+/* Mobile dropdown: hidden until the phone breakpoint */
 .ae-mobile-menu {
   display: none;
 }
 
+/* Small laptop/tablet: squeeze the links so they still fit */
 @media (max-width: 850px) {
   .ae-nav-window {
     gap: 8px;
@@ -125,6 +137,7 @@ body {
   }
 }
 
+/* Phone: hide the link row, show the hamburger and its dropdown */
 @media (max-width: 700px) {
   .ae-top-nav {
     top: 10px;

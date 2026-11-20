@@ -1,24 +1,30 @@
+// About/Details page (route /Details): contact buttons, resume links, education, tech stack, editing software and interests.
 import { useEffect } from "react";
 import Navbar from "../layout/navbar.js"
 import Footer from "../layout/footer.jsx"
 
+// Copies text to the clipboard, then tells the user with an alert
 function copy(text) {
   navigator.clipboard.writeText(text).then(() => {
   alert("Copied: " + text);
   });
 }
 
+// The two emails the copy buttons use
 let profEmail   = "zacherywfrancis@gmail.com"
 let freelEemail = "marqers7@gmail.com";
 
 const Details = () => {
 
+  // Sets the browser tab title when the page loads ([] = run once)
   useEffect(() => {
     document.title = "Marqed's Details";
   }, []);
 
   // Hyperlink the email/mailto:
 
+  // Layout: left column (contacts, resume), middle column (education, tech stack, editing software),
+  // then interests.
   return (
     <>
       <div className="details-container">

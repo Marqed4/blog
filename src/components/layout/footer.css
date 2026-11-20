@@ -1,3 +1,4 @@
+/* Footer bar: centered row with a frosted-glass background */
 footer.pv-footer {
   width: 100%;
   display: flex;
@@ -14,6 +15,7 @@ footer.pv-footer {
   box-sizing: border-box;
 }
 
+/* GitHub link: icon + text, subtle hover and keyboard focus states */
 .pv-footer-link {
   display: inline-flex;
   align-items: center;
@@ -36,6 +38,7 @@ footer.pv-footer {
 }
 
 @media (max-width: 480px) {
+  /* Phone: stack the name and link vertically */
   footer.pv-footer {
     flex-direction: column;
     gap: 0.5rem;

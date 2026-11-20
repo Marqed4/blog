@@ -1,3 +1,4 @@
+// Footer shown at the bottom of every page: my name and a link to my GitHub.
 import { FaGithub } from "react-icons/fa";
 
 export default function Footer() {
