@@ -5,23 +5,6 @@
   text-align: center;
 }
 
-/* Logo and name images (not used by calisigh.js right now) */
-.custom-calendar-logo {
-  height: 120px;
-  width: auto;
-  display: block;
-  margin: 0 auto -15px auto;
-}
-
-.custom-calendar-name {
-  height: 150px;
-  width: auto;
-  display: block;
-  margin: 0 auto 0px auto;
-  z-index: -1;
-  overflow: hidden;
-}
-
 /* Remove default h1 spacing inside this page */
 .custom-calendar-container h1 {
   margin: 0;
@@ -224,12 +207,6 @@
   margin-right: 6px;
   letter-spacing: 0.04em;
   vertical-align: middle;
-}
-
-/* Red X mark (no matching class in calisigh.js) */
-.mv-x {
-  font-size: 0.7rem;
-  color: rgba(255, 100, 100, 0.8);
 }
 
 /* Narrow screens: shrink images to full width */

@@ -11,21 +11,6 @@ body {
   z-index: 1;
 }
 
-/* Header image sizing (no component uses these classes right now) */
-.my-name-header {
-  height: 90px;
-  width: auto;
-  display: block;
-  margin: 0 0 12px 0;
-}
-
-.start-header {
-  height: 90px;
-  width: auto;
-  display: block;
-  margin: 0 0 12px 0;
-}
-
 /* Button row (a second .portfolio-buttons rule is in portfolio.css) */
 .portfolio-buttons {
   display: flex;

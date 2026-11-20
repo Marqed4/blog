@@ -5,17 +5,6 @@
   text-align: center;
 }
 
-/* Icon and title (not used by diva-ffmpeg.js right now) */
-.diva-ffmpeg-icon {
-  width: 500px;
-  height: auto;
-}
-
-.diva-ffmpeg-title {
-  font-size: 2rem;
-  margin-bottom: 8px;
-}
-
 /* Intro text under the title */
 .diva-ffmpeg-description {
   font-weight: 225;

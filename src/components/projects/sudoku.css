@@ -6,16 +6,6 @@
 }
 
 
-/* Name image (not used by sudoku.js right now) */
-.solvesudoku-name {
-  height: auto;
-  max-width: 480px;
-  width: 80%;
-  display: block;
-  margin: 0 auto;
-}
-
-
 /* Intro text under the title */
 .solvesudoku-description {
   font-weight: 225;
