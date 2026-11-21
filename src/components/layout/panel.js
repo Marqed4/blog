@@ -10,7 +10,7 @@ const Panel = ({ list, index, info, backdrop, listOpen, error, on }) => {
         <button type="button" className="ae-button ae-button--small" aria-label="Previous track" onClick={on.prev}>Prev</button>
         <button type="button" className="ae-button ae-button--small" aria-label="Next track" onClick={on.next}>Next</button>
         <button type="button" className="ae-button ae-button--small" aria-expanded={listOpen} onClick={on.list}>List</button>
-        <button type="button" className="ae-button ae-button--small" aria-pressed={backdrop === "image"} onClick={on.backdrop}>
+        <button type="button" className="ae-button ae-button--small" onClick={on.backdrop}>
           Art {backdrop === "image" ? "on" : "off"}
         </button>
         {error && <button type="button" className="ae-button ae-button--small" onClick={on.next}>Skip</button>}
@@ -18,8 +18,8 @@ const Panel = ({ list, index, info, backdrop, listOpen, error, on }) => {
       {listOpen && (
         <ol className="ae-tape-list">
           {list.map((t, i) => (
-            <li key={t.url}>
-              <button type="button" className={i === index ? "is-current" : ""} onClick={() => on.pick(i)}>
+            <li key={`${t.url}-${i}`}>
+              <button type="button" className={i === index ? "is-current" : ""} aria-current={i === index ? "true" : undefined} onClick={() => on.pick(i)}>
                 {t.title || `Track ${i + 1}`}
               </button>
             </li>
