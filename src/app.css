@@ -41,6 +41,13 @@
 :root {
   --code-font: "Iosevka", "Consolas", "Fira Mono", monospace;
   --site-font: "Iosevka Etoile", Georgia, serif;
+  /* Fruit gradient for hovered buttons: orange, pink, lime. Hues follow --a-shift.
+     Dark text on top keeps at least 5:1 contrast on every stop at every hue shift. */
+  --fruit: linear-gradient(110deg,
+    hsl(calc(28 + var(--a-shift)) calc(95% * var(--a-sat)) 72%),
+    hsl(calc(330 + var(--a-shift)) calc(85% * var(--a-sat)) 72%),
+    hsl(calc(85 + var(--a-shift)) calc(70% * var(--a-sat)) 72%));
+  --on-fruit: #120e1a;
   /* Code colors: hues follow --a-shift, all at least 5:1 against the code background */
   --tok-kw: hsl(calc(285 + var(--a-shift)) calc(80% * var(--a-sat)) 76%);
   --tok-type: hsl(calc(190 + var(--a-shift)) calc(65% * var(--a-sat)) 72%);
@@ -89,27 +96,38 @@
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
-  transition: border-color 140ms ease, background 140ms ease, color 140ms ease, text-shadow 140ms ease;
+  transition: border-color 140ms ease, color 140ms ease, text-shadow 140ms ease, transform 120ms ease, box-shadow 120ms ease;
 }
 
-.ae-site .ae-button:hover {
-  border-color: var(--ae-accent);
-  color: #fff;
-  text-shadow:
-    0 0 10px rgba(255, 160, 0, 0.3),
-    0 0 20px rgba(120, 230, 0, 0.16);
-  background: linear-gradient(#484452, #34313f);
+/* Hover and keyboard focus: fruit gradient with dark text, lifts 1px */
+.ae-site .ae-button:hover:not(:disabled),
+.ae-site .ae-button:focus-visible:not(:disabled) {
+  border-color: transparent;
+  color: var(--on-fruit);
+  text-shadow: none;
+  background: var(--fruit);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.35), 0 3px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px);
 }
 
-/* Button variants: primary (purple), small */
+/* Pressed: pushes down and the shadow shrinks */
+.ae-site .ae-button:active:not(:disabled) {
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+  transform: translateY(1px) scale(0.98);
+  transition-duration: 80ms;
+}
+
+/* Disabled buttons stay flat: no gradient, no press */
+.ae-site .ae-button:disabled {
+  cursor: default;
+  transform: none;
+}
+
+/* Button variants: primary (purple at rest), small */
 .ae-site .ae-button--primary {
   border-color: hsl(calc(254.7 + var(--a-shift)) calc(100.0% * var(--a-sat)) 74.3%);
   color: #fff;
   background: linear-gradient(hsl(calc(255.7 + var(--a-shift)) calc(53.0% * var(--a-sat)) 57.5%), hsl(calc(256.3 + var(--a-shift)) calc(41.4% * var(--a-sat)) 43.5%));
-}
-
-.ae-site .ae-button--primary:hover {
-  background: linear-gradient(hsl(calc(255.5 + var(--a-shift)) calc(65.2% * var(--a-sat)) 65.1%), hsl(calc(256.5 + var(--a-shift)) calc(38.9% * var(--a-sat)) 49.4%));
 }
 
 .ae-site .ae-button--small {
@@ -175,7 +193,8 @@ body {
 /* Reduced motion: no transitions or transforms on the background/content */
 @media (prefers-reduced-motion: reduce) {
   .home-bg,
-  .ae-site {
+  .ae-site,
+  .ae-site .ae-button {
     transition: none !important;
     transform: none !important;
   }
