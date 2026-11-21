@@ -691,12 +691,6 @@ public static int[] rewrite(int[] nums, int[] temp) {
     difficulty: "Medium",
     topics: ["String"],
     language: "Java",
-    solution: `//    public String countAndSay(int n) {
-//        if (n == 0) return "0";
-//        if (n == 1) return "1";
-//
-//
-//    }`,
   },
   {
     number: 39,
@@ -2109,18 +2103,6 @@ public static boolean isMirror(TreeNode a, TreeNode b) {
     difficulty: "Easy",
     topics: ["Array", "Dynamic Programming"],
     language: "Java",
-    solution: `//    public static List<List<Integer>> generate(int numRows) {
-//
-//        if (numRows == 0) {return new ArrayList<>(new ArrayList<>());}
-//        if (numRows == 1) {return new ArrayList<>(new ArrayList<>(1));}
-//
-//        List<List<Integer>> x = new ArrayList<>(new ArrayList<>(1));
-//        x.add(new ArrayList<>(List.of(1)));
-//        x.add(new ArrayList<>(List.of(1, 1)));
-//
-//        for (int i = 1; i < numRows; i++) {
-//        List<Integer> row = new ArrayList<>(x.get(i - 1));}
-//    }`,
   },
   {
     number: 125,
