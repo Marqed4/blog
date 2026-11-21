@@ -1444,6 +1444,14 @@
   overflow: visible;
 }
 
+/* Code colors: one class per kind of token, colors come from app.css */
+.tok-kw { color: var(--tok-kw); }
+.tok-type { color: var(--tok-type); }
+.tok-str { color: var(--tok-str); }
+.tok-com { color: var(--tok-com); }
+.tok-num { color: var(--tok-num); }
+.tok-ann { color: var(--tok-ann); }
+
 .ae-book-turn {
   display: flex;
   align-items: center;
