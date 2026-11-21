@@ -39,7 +39,7 @@
 .ae-site .workspace-page-title-text {
   display: inline-block;
   color: #fff;
-  /* hsl(base + --a-shift) * --a-sat ~> one knob retints every gradient/shadow site-wide */
+  /* --a-shift moves hue. --a-sat scales saturation. One knob retints the site. */
   /* bg[gradient]->clip:text->fill:transparent == paint gradient through glyph shapes */
   background: linear-gradient(180deg, #fff 0%, hsl(calc(250.7 + var(--a-shift)) calc(100.0% * var(--a-sat)) 94.5%) 38%, hsl(calc(250.5 + var(--a-shift)) calc(74.1% * var(--a-sat)) 77.3%) 65%, hsl(calc(250.0 + var(--a-shift)) calc(100.0% * var(--a-sat)) 91.8%) 100%);
   background-clip: text;
