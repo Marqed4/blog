@@ -95,13 +95,13 @@
 }
 
 .ae-floating-rectangle-face strong {
-  font: 650 0.68rem/1.2 "Segoe UI", Arial, sans-serif;
+  font: 650 0.68rem/1.2 var(--site-font);
   text-align: center;
 }
 
 .ae-floating-rectangle-face small {
   color: hsl(calc(252.0 + var(--a-shift)) calc(100.0% * var(--a-sat)) 89.2%);
-  font: 600 0.48rem/1 "Segoe UI", Arial, sans-serif;
+  font: 600 0.48rem/1 var(--site-font);
   letter-spacing: 0.08em;
 }
 
@@ -174,7 +174,7 @@
   padding: 0 0 0 12px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   background: linear-gradient(#32353d, #252830);
-  font: 600 0.66rem/1 "Segoe UI", Arial, sans-serif;
+  font: 600 0.66rem/1 var(--site-font);
 }
 
 .ae-window-controls {
@@ -189,7 +189,7 @@
   width: 42px;
   place-items: center;
   color: #e6e5ec;
-  font: 0.75rem/1 "Segoe UI", Arial, sans-serif;
+  font: 0.75rem/1 var(--site-font);
 }
 
 /* Minimize / maximize icons drawn with CSS only (a line, a box) */
@@ -233,7 +233,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   color: #d7d4e0;
   background: rgba(29, 32, 38, 0.82);
-  font: 0.67rem/1.3 "Segoe UI", Arial, sans-serif;
+  font: 0.67rem/1.3 var(--site-font);
 }
 
 .ae-workspace-tools {
@@ -245,7 +245,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   color: #d5d3df;
   background: rgba(42, 45, 52, 0.9);
-  font: 0.78rem/1 "Segoe UI", Arial, sans-serif;
+  font: 0.78rem/1 var(--site-font);
 }
 
 .ae-workspace-tools > span:not(.ae-tool-separator, .ae-tool-spacer) {
@@ -286,7 +286,7 @@
   padding: 0 10px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(31, 34, 40, 0.96);
-  font: 600 0.61rem/1 "Segoe UI", Arial, sans-serif;
+  font: 600 0.61rem/1 var(--site-font);
   letter-spacing: 0.06em;
 }
 
@@ -354,7 +354,7 @@
   min-height: 34px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   background: #22242b;
-  font: 600 0.58rem/1 "Segoe UI", Arial, sans-serif;
+  font: 600 0.58rem/1 var(--site-font);
   letter-spacing: 0.025em;
 }
 
@@ -377,7 +377,7 @@
 .ae-inspector-header {
   padding: 12px 14px 10px;
   color: #d9d7e7;
-  font: 600 0.62rem/1.2 "Segoe UI", Arial, sans-serif;
+  font: 600 0.62rem/1.2 var(--site-font);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -391,7 +391,7 @@
 .ae-project-list li {
   padding: 7px 12px 7px 18px;
   color: #c7c7d5;
-  font: 0.7rem/1.2 "Segoe UI", Arial, sans-serif;
+  font: 0.7rem/1.2 var(--site-font);
   border-left: 2px solid transparent;
   opacity: 0.8;
 }
@@ -415,7 +415,7 @@
   padding: 8px 9px 8px 22px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.055);
   color: #c6c4ce;
-  font: 600 0.61rem/1.1 "Segoe UI", Arial, sans-serif;
+  font: 600 0.61rem/1.1 var(--site-font);
 }
 
 .ae-dock-stack > div::before {
@@ -431,7 +431,7 @@
   gap: 7px;
   padding: 0 9px;
   color: #d3d0e0;
-  font: 0.56rem/1.2 "Segoe UI", Arial, sans-serif;
+  font: 0.56rem/1.2 var(--site-font);
 }
 
 .ae-character-font,
@@ -581,7 +581,7 @@
 .home-card p {
   margin: 0;
   color: hsl(calc(249.2 + var(--a-shift)) calc(44.8% * var(--a-sat)) 94.3%);
-  font: 400 0.93rem/1.6 "Segoe UI", Arial, sans-serif;
+  font: 400 0.93rem/1.6 var(--site-font);
 }
 
 .home-card p + p {
@@ -591,7 +591,7 @@
 .home-card p.home-card-label {
   margin: 0 0 10px;
   color: hsl(calc(253.0 + var(--a-shift)) calc(100.0% * var(--a-sat)) 82.0%);
-  font: 700 0.64rem/1.4 "Segoe UI", Arial, sans-serif;
+  font: 700 0.64rem/1.4 var(--site-font);
   letter-spacing: 0.11em;
   text-transform: uppercase;
 }
@@ -636,7 +636,7 @@
 .ae-render-queue-heading .home-card-label {
   margin: 0 0 5px;
   color: hsl(calc(253.0 + var(--a-shift)) calc(100.0% * var(--a-sat)) 82.0%);
-  font: 700 0.64rem/1.4 "Segoe UI", Arial, sans-serif;
+  font: 700 0.64rem/1.4 var(--site-font);
   letter-spacing: 0.11em;
   text-transform: uppercase;
 }
@@ -644,12 +644,12 @@
 .ae-render-queue-heading h1 {
   margin: 0;
   color: hsl(calc(250.0 + var(--a-shift)) calc(27.3% * var(--a-sat)) 95.7%);
-  font: 600 1.15rem/1.3 "Segoe UI", Arial, sans-serif;
+  font: 600 1.15rem/1.3 var(--site-font);
 }
 
 .ae-render-queue-heading > span {
   color: var(--ae-muted);
-  font: 0.67rem/1.3 "Segoe UI", Arial, sans-serif;
+  font: 0.67rem/1.3 var(--site-font);
 }
 
 .ae-render-queue-list {
@@ -694,13 +694,13 @@
 
 .ae-render-queue-copy strong {
   color: hsl(calc(250.0 + var(--a-shift)) calc(100.0% * var(--a-sat)) 97.6%);
-  font: 600 0.77rem/1.3 "Segoe UI", Arial, sans-serif;
+  font: 600 0.77rem/1.3 var(--site-font);
 }
 
 .ae-render-queue-copy > span {
   overflow: hidden;
   color: #bcb9c9;
-  font: 0.67rem/1.4 "Segoe UI", Arial, sans-serif;
+  font: 0.67rem/1.4 var(--site-font);
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -709,7 +709,7 @@
   flex: 0 0 auto;
   margin-left: auto;
   color: hsl(calc(252.2 + var(--a-shift)) calc(100.0% * var(--a-sat)) 86.5%);
-  font: 600 0.64rem/1.3 "Segoe UI", Arial, sans-serif;
+  font: 600 0.64rem/1.3 var(--site-font);
 }
 
 /* Effects list in the left panel */
@@ -733,7 +733,7 @@
   border-radius: 3px;
   color: #d3d0e0;
   background: rgba(27, 30, 37, 0.68);
-  font: 0.62rem/1.2 "Segoe UI", Arial, sans-serif;
+  font: 0.62rem/1.2 var(--site-font);
   box-sizing: border-box;
 }
 
@@ -774,7 +774,7 @@
 .ae-contact-copy .home-card-label {
   margin: 0 0 10px;
   color: hsl(calc(253.0 + var(--a-shift)) calc(100.0% * var(--a-sat)) 82.0%);
-  font: 700 0.64rem/1.4 "Segoe UI", Arial, sans-serif;
+  font: 700 0.64rem/1.4 var(--site-font);
   letter-spacing: 0.11em;
   text-transform: uppercase;
 }
@@ -782,19 +782,19 @@
 .ae-contact-copy h2 {
   margin: 0 0 10px;
   color: hsl(calc(253.8 + var(--a-shift)) calc(100.0% * var(--a-sat)) 97.5%);
-  font: 600 clamp(1.4rem, 3vw, 2rem)/1.2 "Segoe UI", Arial, sans-serif;
+  font: 600 clamp(1.4rem, 3vw, 2rem)/1.2 var(--site-font);
 }
 
 .ae-contact-copy p:not(.home-card-label) {
   max-width: 380px;
   margin: 0 0 14px;
   color: #c3c0cf;
-  font: 0.82rem/1.6 "Segoe UI", Arial, sans-serif;
+  font: 0.82rem/1.6 var(--site-font);
 }
 
 .ae-contact-copy a {
   color: hsl(calc(252.0 + var(--a-shift)) calc(100.0% * var(--a-sat)) 89.2%);
-  font: 600 0.78rem/1.4 "Segoe UI", Arial, sans-serif;
+  font: 600 0.78rem/1.4 var(--site-font);
   text-decoration-color: hsl(calc(252.0 + var(--a-shift)) calc(100.0% * var(--a-sat)) 89.2% / 0.5);
   text-underline-offset: 3px;
 }
@@ -815,7 +815,7 @@
   display: grid;
   gap: 6px;
   color: #d4d0e0;
-  font: 600 0.66rem/1.3 "Segoe UI", Arial, sans-serif;
+  font: 600 0.66rem/1.3 var(--site-font);
 }
 
 .ae-contact-form input,
@@ -826,7 +826,7 @@
   border-radius: 4px;
   color: hsl(calc(252.9 + var(--a-shift)) calc(100.0% * var(--a-sat)) 97.3%);
   background: rgba(15, 16, 22, 0.7);
-  font: 400 0.76rem/1.4 "Segoe UI", Arial, sans-serif;
+  font: 400 0.76rem/1.4 var(--site-font);
   box-sizing: border-box;
 }
 
@@ -857,7 +857,7 @@
   color: #fff;
   background: linear-gradient(135deg, hsl(calc(253.7 + var(--a-shift)) calc(47.1% * var(--a-sat)) 56.3%), hsl(calc(250.4 + var(--a-shift)) calc(35.8% * var(--a-sat)) 37.8%));
   box-shadow: 0 6px 18px hsl(calc(254.3 + var(--a-shift)) calc(40.4% * var(--a-sat)) 44.7% / 0.25), inset 0 1px rgba(255, 255, 255, 0.16);
-  font: 650 0.72rem/1.2 "Segoe UI", Arial, sans-serif;
+  font: 650 0.72rem/1.2 var(--site-font);
   cursor: pointer;
 }
 
@@ -889,7 +889,7 @@
   align-self: center;
   margin: 0;
   color: #aaa6bb;
-  font: 0.61rem/1.4 "Segoe UI", Arial, sans-serif;
+  font: 0.61rem/1.4 var(--site-font);
 }
 
 /* Blurry drifting glow behind the contact section, brighter while sending */
@@ -963,7 +963,7 @@
   padding: 12px 16px 15px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(26, 28, 33, 1);
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family: var(--site-font);
 }
 
 .ae-timeline-heading {
@@ -1211,7 +1211,7 @@
 .ae-leetcode-description {
   margin: 0 0 14px;
   color: #bcb9c9;
-  font: 0.75rem/1.6 "Segoe UI", Arial, sans-serif;
+  font: 0.75rem/1.6 var(--site-font);
 }
 
 .ae-book-stage {
@@ -1238,7 +1238,7 @@
     linear-gradient(90deg, rgba(0, 0, 0, 0.35), transparent 14%),
     linear-gradient(160deg, hsl(calc(255.7 + var(--a-shift)) calc(53.0% * var(--a-sat)) 36%), hsl(calc(256.3 + var(--a-shift)) calc(41.4% * var(--a-sat)) 18%));
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4), inset 0 1px rgba(255, 255, 255, 0.07);
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family: var(--site-font);
   text-align: left;
   cursor: pointer;
 }
@@ -1309,7 +1309,7 @@
 .ae-book-page-label {
   margin: 0 0 8px;
   color: hsl(calc(253.0 + var(--a-shift)) calc(100.0% * var(--a-sat)) 82.0%);
-  font: 700 0.62rem/1.4 "Segoe UI", Arial, sans-serif;
+  font: 700 0.62rem/1.4 var(--site-font);
   letter-spacing: 0.11em;
   text-transform: uppercase;
 }
@@ -1335,7 +1335,7 @@
   border-radius: 4px;
   color: #d3d1dc;
   background: transparent;
-  font: 0.72rem/1.3 "Segoe UI", Arial, sans-serif;
+  font: 0.72rem/1.3 var(--site-font);
   text-align: left;
   cursor: pointer;
 }
@@ -1363,7 +1363,7 @@
   border: 0;
   color: var(--ae-accent-text);
   background: none;
-  font: 600 0.66rem/1.3 "Segoe UI", Arial, sans-serif;
+  font: 600 0.66rem/1.3 var(--site-font);
   cursor: pointer;
 }
 
@@ -1379,7 +1379,7 @@
 .ae-book-chapter-title {
   margin: 0 0 12px;
   color: hsl(calc(250.0 + var(--a-shift)) calc(27.3% * var(--a-sat)) 95.7%);
-  font: 600 1.1rem/1.3 "Segoe UI", Arial, sans-serif;
+  font: 600 1.1rem/1.3 var(--site-font);
 }
 
 .ae-book-entries {
@@ -1416,7 +1416,7 @@
 
 .ae-book-entry-title strong {
   color: hsl(calc(250.0 + var(--a-shift)) calc(100.0% * var(--a-sat)) 97.6%);
-  font: 600 0.77rem/1.3 "Segoe UI", Arial, sans-serif;
+  font: 600 0.77rem/1.3 var(--site-font);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1425,7 +1425,7 @@
 .ae-leetcode-lang {
   flex-shrink: 0;
   color: #bcb9c9;
-  font: 0.67rem/1.4 "Segoe UI", Arial, sans-serif;
+  font: 0.67rem/1.4 var(--site-font);
 }
 
 /* Code block: shows the whole solution, long lines wrap (no scrolling) */
@@ -1451,7 +1451,7 @@
   gap: 8px;
   margin-top: 14px;
   color: var(--ae-muted);
-  font: 0.66rem/1.3 "Segoe UI", Arial, sans-serif;
+  font: 0.66rem/1.3 var(--site-font);
 }
 
 .ae-book-turn .ae-button:disabled {
@@ -1462,7 +1462,7 @@
 .ae-leetcode-number {
   min-width: 42px;
   color: var(--ae-accent-text);
-  font: 700 0.72rem/1.3 "Segoe UI", Arial, sans-serif;
+  font: 700 0.72rem/1.3 var(--site-font);
 }
 
 /* Difficulty pill; color comes from the --easy/--medium/--hard modifiers */
@@ -1471,7 +1471,7 @@
   padding: 2px 8px;
   border: 1px solid currentColor;
   border-radius: 20px;
-  font: 700 0.6rem/1.5 "Segoe UI", Arial, sans-serif;
+  font: 700 0.6rem/1.5 var(--site-font);
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -1489,7 +1489,7 @@
 .ae-leetcode-empty {
   margin: 10px 0;
   color: var(--ae-muted);
-  font: 0.72rem/1.6 "Segoe UI", Arial, sans-serif;
+  font: 0.72rem/1.6 var(--site-font);
 }
 
 /* Phones: the two pages stack, contents on top. */
