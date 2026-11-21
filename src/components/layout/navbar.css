@@ -61,7 +61,6 @@ body {
   text-shadow: none;
 }
 
-.ae-site .ae-button.ae-nav-link:hover,
 .ae-site .ae-button.ae-nav-link.is-active {
   border-color: var(--ae-accent-border);
   background: var(--ae-accent-bg);
