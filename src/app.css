@@ -49,12 +49,11 @@
     hsl(calc(85 + var(--a-shift)) calc(70% * var(--a-sat)) 72%));
   --on-fruit: #120e1a;
   /* Code colors: hues follow --a-shift, at least 4.5:1 against the code background with normal theme settings */
-  --tok-kw: hsl(calc(285 + var(--a-shift)) calc(80% * var(--a-sat)) 76%);
+  --tok-kw: hsl(calc(52 + var(--a-shift)) calc(50% * var(--a-sat)) 70%);
   --tok-type: hsl(calc(190 + var(--a-shift)) calc(65% * var(--a-sat)) 72%);
   --tok-str: hsl(calc(95 + var(--a-shift)) calc(45% * var(--a-sat)) 68%);
   --tok-com: hsl(calc(250 + var(--a-shift)) calc(12% * var(--a-sat)) 64%);
   --tok-num: hsl(calc(30 + var(--a-shift)) calc(85% * var(--a-sat)) 74%);
-  --tok-ann: hsl(calc(50 + var(--a-shift)) calc(70% * var(--a-sat)) 72%);
   /* Theme: hue shift and saturation scale per color group, set by theme.js.
      a = Stroke (purple accents), b = Fill (blue/teal accents). 0 and 1 = default look. */
   --a-shift: 0;
