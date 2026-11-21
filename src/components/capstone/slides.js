@@ -17,7 +17,7 @@ const CISC4900PowerPoint = () => {
     document.title = "CISC 4900 - PopularVote PowerPoint";
 
     const node = wrapperRef.current;
-    // Flag so a fetch that finishes after leaving the page does not draw into a removed node
+    // Set to true when leaving the page. A late fetch then draws nothing.
     let cancelled = false;
 
     const previewer = init(node, {
@@ -33,7 +33,7 @@ const CISC4900PowerPoint = () => {
         if (!cancelled) previewer.preview(buffer);
       });
 
-    // Cleanup on leave: stop the pending render and empty the div so slides do not get duplicated on re-visit
+    // Cleanup when leaving the page. Stop any pending render. Empty the div to avoid duplicate slides.
     return () => {
       cancelled = true;
       if (node) node.innerHTML = "";
