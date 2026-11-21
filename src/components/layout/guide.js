@@ -14,7 +14,8 @@ const LINES = [
 const Guide = () => {
   const [open, setOpen] = useState(false);
   const box = useRef(null);
-  // Remembers if the last touch of the pill was a mouse, so a click does not undo the hover
+  // Remembers if the last touch of the pill was a mouse, so a click does not undo the hover.
+  // Any key press clears it, so Enter on the pill works again for keyboard users.
   const lastPointer = useRef("");
 
   // While open: Escape closes it, and so does a tap anywhere outside (phones have no hover)
@@ -59,7 +60,7 @@ const Guide = () => {
   // The panel only renders while open. aria-describedby points the pill at it for screen readers.
   // The wrapper also has ae-site because the shared button styles only apply inside it.
   return (
-    <div className="ae-site ae-guide" ref={box} onPointerEnter={hover(true)} onPointerLeave={hover(false)} onBlur={blur}>
+    <div className="ae-site ae-guide" ref={box} onPointerEnter={hover(true)} onPointerLeave={hover(false)} onBlur={blur} onKeyDown={() => { lastPointer.current = ""; }}>
       <button
         type="button"
         className="ae-button ae-button--small ae-guide-pill"
