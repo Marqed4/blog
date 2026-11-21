@@ -13,7 +13,7 @@ const SEMESTER_END = "2026-12-21";
 
 // How to add a new entry:
 // 1. Copy one of the objects below.
-// 2. date is "YYYY-MM-DD". duration is hours as a number (supports .5 time/decimal arithmetic)
+// 2. Write date as "YYYY-MM-DD". Duration is hours, like 1.5.
 // 3. category should match one of: "Supervisor discussion", "Team discussion",
 //    "Design", "Coding", "Documentation", "Testing & Debugging",
 //    "Research, Training, Learning", "Other"
@@ -298,13 +298,13 @@ const entries = [
   },
 ];
 
-// Adds up every duration; Number(...) || 0 treats a missing or bad value as 0 hours instead of NaN
+// Adds up all hours. Bad or missing values count as 0. That avoids NaN totals.
 const totalHours = entries.reduce((sum, e) => sum + (Number(e.duration) || 0), 0);
 
 // How many entries show before clicking View more
 const INITIAL_VISIBLE = 5;
 
-// "2026-11-05" -> "Thu, Nov 5, 2026". The T00:00:00 makes it local time so the day does not shift back one in US timezones.
+// Turns "2026-11-05" into "Thu, Nov 5, 2026". T00:00:00 keeps the local day. Otherwise US dates show a day early.
 const formatDate = (iso) =>
   new Date(iso + "T00:00:00").toLocaleDateString(undefined, {
     weekday: "short",
@@ -327,7 +327,11 @@ const PopularVoteTimeLog = () => {
   // True while some entries are still hidden
   const hasMore = visibleCount < entries.length;
 
-  // Layout: header, summary stats, then the entry list; entries show 5 at a time with View more / Show less (empty message if none, challenges/reflection only if the entry has them)
+  // Layout: header, summary stats, then entries.
+  // Entries show 5 at a time.
+  // View more and Show less adjust it.
+  // Empty list shows a short message.
+  // Challenges and reflection show only if present.
   return (
     <div className="timelog-container">
       <Navbar />
