@@ -4,7 +4,25 @@
   src: url("./resources/fonts/southcrew-vgw2e.ttf") format("truetype");
 }
 
+/* Iosevka for code. Its ligatures come from the font's calt feature, enabled explicitly below. */
+@font-face {
+  font-family: "Iosevka";
+  src: url("./resources/fonts/iosevka-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Iosevka";
+  src: url("./resources/fonts/iosevka-latin-700-normal.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
+  --code-font: "Iosevka", "Consolas", "Fira Mono", monospace;
   /* Theme: hue shift and saturation scale per color group, set by theme.js.
      a = Stroke (purple accents), b = Fill (blue/teal accents). 0 and 1 = default look. */
   --a-shift: 0;
@@ -136,4 +154,11 @@ body {
     transition: none !important;
     transform: none !important;
   }
+}
+
+code,
+pre {
+  font-family: var(--code-font);
+  font-variant-ligatures: contextual;
+  font-feature-settings: "calt" 1;
 }
