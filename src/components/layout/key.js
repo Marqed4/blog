@@ -3,6 +3,12 @@
 const Key = ({ down }) => (
   <>
     <defs>
+      <linearGradient id="ae-g-bevel-key" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stopColor="#fff" stopOpacity=".35" />
+        <stop offset=".12" stopColor="#fff" stopOpacity="0" />
+        <stop offset=".85" stopColor="#000" stopOpacity="0" />
+        <stop offset="1" stopColor="#000" stopOpacity=".55" />
+      </linearGradient>
       <linearGradient id="ae-g-key" x1="0" y1="0" x2="0" y2="1">
         <stop className="ae-tape-stop-a" offset="0" />
         <stop className="ae-tape-stop-b" offset=".5" />
@@ -13,7 +19,7 @@ const Key = ({ down }) => (
     <g className={down ? "ae-tape-key is-down" : "ae-tape-key"}>
       <rect x="176" y="142" width="64" height="28" rx="6" fill="#0a0a0d" />
       <rect x="177" y="141" width="62" height="26" rx="5" fill="url(#ae-g-key)" />
-      <rect x="177" y="141" width="62" height="26" rx="5" fill="url(#ae-g-bevel)" />
+      <rect x="177" y="141" width="62" height="26" rx="5" fill="url(#ae-g-bevel-key)" />
       <path d="M200 147 L200 161 L214 154 Z" fill="#fff" fillOpacity=".92" />
     </g>
   </>
