@@ -68,6 +68,14 @@ import CISC4900PowerPoint from "./components/capstone/slides.js";
 
 import './components/layout/pages.css';
 
+// <---- Guide ---->
+import './components/layout/guide.css';
+import Guide from "./components/layout/guide.js";
+
+// <---- Music Tape ---->
+import './components/layout/tape.css';
+import Tape from "./components/layout/tape.js";
+
 import DefaultBackground from "./resources/art/background-project/gradients/site.gif";
 
 // Why internal links use react-router's <Link> and not <a href>:
@@ -165,6 +173,8 @@ const App = () => {
           <Route path="*" element={<NotFound/>} />
         </Routes>
       </motion.div>
+      <Guide />
+      <Tape />
     </>
   );
 };
