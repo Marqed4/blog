@@ -34,25 +34,15 @@ const Navbar = () => {
     );
   };
 
-  // Layout: desktop link row + right-side buttons (disabled sound toggle, hamburger) in one bar;
-  // the mobile dropdown only renders while menuOpen is true. "end" on the Home link keeps it from
-  // counting as active on every page.
+  // Layout: link row, then the hamburger button.
+  // The mobile menu shows only while menuOpen.
+  // "end" keeps Home from always matching.
   return (
     <nav className="ae-top-nav" aria-label="Main navigation">
       <div className="ae-nav-window">
         <div className="ae-nav-toolbar">{renderLinks()}</div>
 
         <div className="ae-nav-actions">
-          <button
-            type="button"
-            className="ae-button ae-button--small ae-music-toggle"
-            disabled
-            aria-label="Sound effects coming soon"
-            title="Sound effects coming soon"
-          >
-            <span className="ae-sound-indicator" aria-hidden="true" />
-            <span>Sounds off</span>
-          </button>
           <button
             type="button"
             className="ae-button ae-button--small ae-menu-toggle"
