@@ -1,0 +1,208 @@
+/* Tape colors: orange and pink accents that follow the theme knob */
+.ae-tape {
+  --tape-a: hsl(calc(28 + var(--a-shift)) calc(95% * var(--a-sat)) 64%);
+  --tape-b: hsl(calc(330 + var(--a-shift)) calc(85% * var(--a-sat)) 66%);
+  --tape-c: hsl(calc(330 + var(--a-shift)) calc(55% * var(--a-sat)) 48%);
+}
+
+/* Tape wrapper: bottom right, under the navbar layer, stacks video card, controls, cassette */
+.ae-tape {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 9000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+/* Page clearance: the tape reports its height so the last line and footer links stay visible */
+body { padding-bottom: var(--tape-clear, 0); }
+
+/* YouTube card: at least 200px tall, never faded, nothing drawn on top of it */
+.ae-tape-video {
+  display: none;
+  width: min(356px, calc(100vw - 32px));
+  height: 200px;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #000;
+}
+
+.ae-tape.is-video .ae-tape-video { display: block; }
+
+.ae-tape-video iframe { display: block; width: 100%; height: 100%; }
+
+/* SoundCloud player and screen reader line: kept out of sight, not removed */
+.ae-tape-sc,
+.ae-tape-live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  border: 0;
+}
+
+/* Cassette frame: solid at once, fades only when idle (after 1.5s), size and hit area never change */
+.ae-tape-frame { position: relative; width: 264px; max-width: calc(100vw - 32px); transition: opacity 100ms ease; }
+
+.ae-tape.is-idle .ae-tape-frame {
+  opacity: 0.5;
+  transition: opacity 250ms ease 1500ms;
+}
+
+.ae-tape-frame svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* Track art behind the cassette, dimmed, fades with the frame */
+.ae-tape-art {
+  position: absolute;
+  inset: -8px;
+  width: calc(100% + 16px);
+  height: calc(100% + 16px);
+  object-fit: cover;
+  border-radius: 18px;
+  opacity: 0.45;
+  z-index: -1;
+}
+
+/* Drawing parts: colors from the tape tokens above */
+.ae-tape-rim { stroke: #0a0a0d; stroke-width: 1.5; }
+.ae-tape.is-error .ae-tape-rim { stroke: #eb6f6f; stroke-width: 2.5; }
+.ae-tape-ring { stroke: var(--tape-a); }
+.ae-tape-line { stroke: var(--tape-b); stroke-opacity: 0.7; }
+.ae-tape-notch { fill: var(--tape-a); }
+.ae-tape-light { fill: var(--tape-b); opacity: 0.85; }
+.ae-tape-stop-a { stop-color: var(--tape-a); }
+.ae-tape-stop-b { stop-color: var(--tape-b); }
+.ae-tape-stop-c { stop-color: var(--tape-c); }
+.ae-tape-deco { pointer-events: none; }
+
+/* Reels spin while playing (transform only), and stop when the tab is hidden */
+.ae-tape-reel { transform-box: fill-box; transform-origin: center; }
+
+.ae-tape.is-playing:not(.is-away) .ae-tape-reel {
+  animation: ae-tape-spin 1.6s linear infinite;
+}
+
+@keyframes ae-tape-spin { to { transform: rotate(360deg); } }
+
+/* Play key: drops 2.5px when pressed (transform only) */
+.ae-tape-key { transition: transform 80ms ease; }
+
+.ae-tape-key.is-down { transform: translateY(2.5px); }
+
+/* Real controls laid over the drawing. Positions are the drawing's coordinates as percents. */
+.ae-tape-toggle,
+.ae-tape-play,
+.ae-tape-knob {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.ae-tape-toggle { left: 17.4%; top: 27.6%; width: 65.2%; height: 23.5%; border-radius: 8px; }
+.ae-tape-play { left: 66.7%; top: 71.9%; width: 24.2%; height: 14.3%; border-radius: 6px; }
+
+.ae-tape-toggle:focus-visible,
+.ae-tape-play:focus-visible,
+.ae-tape-knob:focus-visible {
+  outline: 2px solid var(--ae-accent-text);
+  outline-offset: 2px;
+}
+
+/* Volume knob: a range input with a see-through track, slide across the knob to turn it */
+.ae-tape-knob {
+  left: 8%;
+  top: 70.9%;
+  width: 15.9%;
+  height: 21.4%;
+  appearance: none;
+  border-radius: 50%;
+  cursor: grab;
+}
+
+.ae-tape-knob::-webkit-slider-runnable-track { background: transparent; }
+.ae-tape-knob::-moz-range-track { background: transparent; }
+.ae-tape-knob::-webkit-slider-thumb { appearance: none; width: 10px; height: 40px; background: transparent; }
+.ae-tape-knob::-moz-range-thumb { width: 10px; height: 40px; border: 0; background: transparent; }
+
+/* Title on the paper label: only drawn while the tape is solid */
+.ae-tape-title {
+  position: absolute;
+  left: 11.4%;
+  top: 8.2%;
+  width: 77.3%;
+  height: 15.3%;
+  display: grid;
+  place-items: center;
+  color: #3a2f1a;
+  font: 700 0.6rem/1 var(--site-font);
+  pointer-events: none;
+}
+
+.ae-tape-title span {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Expanded controls panel */
+.ae-tape-panel {
+  box-sizing: border-box;
+  width: 264px;
+  max-width: calc(100vw - 32px);
+  padding: 8px;
+  border: 1px solid var(--ae-panel-border);
+  border-radius: 6px;
+  background: var(--ae-panel);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.ae-tape-row { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.ae-tape-list {
+  max-height: 140px;
+  margin: 8px 0 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.ae-tape-list button {
+  width: 100%;
+  padding: 5px 6px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--ae-text);
+  font: 400 0.68rem/1.3 var(--site-font);
+  text-align: left;
+  cursor: pointer;
+}
+
+.ae-tape-list button:hover,
+.ae-tape-list button.is-current {
+  background: var(--ae-accent-bg);
+}
+
+.ae-tape-credit { display: block; margin-top: 8px; color: var(--ae-muted); font: 0.62rem/1.3 var(--site-font); overflow-wrap: anywhere; }
+
+/* Reduced motion or transparency: no spin, no press animation, no fade, always solid */
+@media (prefers-reduced-motion: reduce), (prefers-reduced-transparency: reduce) {
+  .ae-tape.is-idle .ae-tape-frame { opacity: 1; }
+  .ae-tape-frame, .ae-tape-key { transition: none; }
+  .ae-tape.is-playing .ae-tape-reel { animation: none; }
+}
