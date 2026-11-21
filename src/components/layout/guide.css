@@ -1,0 +1,41 @@
+/* Guide pill: fixed top left, under the navbar layer */
+.ae-guide {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 9000;
+}
+
+/* Directions panel: opens below the pill, never wider than the screen */
+.ae-guide-panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 280px;
+  max-width: calc(100vw - 32px);
+  margin: 0;
+  padding: 10px 12px 10px 26px;
+  border: 1px solid var(--ae-panel-border);
+  border-radius: 6px;
+  background: var(--ae-panel);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  color: var(--ae-text);
+  font: 400 0.72rem/1.5 var(--site-font);
+  animation: ae-guide-in 120ms ease-out;
+}
+
+.ae-guide-panel li + li {
+  margin-top: 5px;
+}
+
+/* Fade in: opacity only, so nothing around it moves */
+@keyframes ae-guide-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ae-guide-panel {
+    animation: none;
+  }
+}
