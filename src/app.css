@@ -42,13 +42,13 @@
   --code-font: "Iosevka", "Consolas", "Fira Mono", monospace;
   --site-font: "Iosevka Etoile", Georgia, serif;
   /* Fruit gradient for hovered buttons: orange, pink, lime. Hues follow --a-shift.
-     Dark text on top keeps at least 5:1 contrast on every stop at every hue shift. */
+     Dark text on top is at least 4.5:1 on every stop with the default look and normal theme settings. */
   --fruit: linear-gradient(110deg,
     hsl(calc(28 + var(--a-shift)) calc(95% * var(--a-sat)) 72%),
     hsl(calc(330 + var(--a-shift)) calc(85% * var(--a-sat)) 72%),
     hsl(calc(85 + var(--a-shift)) calc(70% * var(--a-sat)) 72%));
   --on-fruit: #120e1a;
-  /* Code colors: hues follow --a-shift, all at least 5:1 against the code background */
+  /* Code colors: hues follow --a-shift, at least 4.5:1 against the code background with normal theme settings */
   --tok-kw: hsl(calc(285 + var(--a-shift)) calc(80% * var(--a-sat)) 76%);
   --tok-type: hsl(calc(190 + var(--a-shift)) calc(65% * var(--a-sat)) 72%);
   --tok-str: hsl(calc(95 + var(--a-shift)) calc(45% * var(--a-sat)) 68%);
