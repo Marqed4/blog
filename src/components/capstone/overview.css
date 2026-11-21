@@ -122,7 +122,8 @@
 }
 
 .cisc4900-body code {
-  font-family: 'Courier New', monospace;
+  font-family: var(--code-font);
+  font-variant-ligatures: contextual;
   -webkit-text-stroke: 0;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 3px;
@@ -186,7 +187,8 @@
 }
 
 .cisc4900-route-file {
-  font-family: 'Courier New', monospace;
+  font-family: var(--code-font);
+  font-variant-ligatures: contextual;
   font-size: 0.78rem;
   color: rgba(0, 0, 0, 0.55);
   margin: 0 0 2px 0;
@@ -210,7 +212,8 @@
 }
 
 .cisc4900-route-list li {
-  font-family: 'Courier New', monospace;
+  font-family: var(--code-font);
+  font-variant-ligatures: contextual;
   font-size: 0.75rem;
   color: rgba(0, 0, 0, 0.75);
   line-height: 1.5;
