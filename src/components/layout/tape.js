@@ -39,6 +39,9 @@ const Tape = () => {
   const run = useRef(0);
   const errors = useRef(0);
   const lastType = useRef("mouse");
+  // Always holds the newest volume. A track that ends calls an old start(), so it reads this, not its own copy.
+  const volumeNow = useRef(volume);
+  volumeNow.current = volume;
 
   // Starts track i: removes the old player, builds the new one, and ignores late callbacks
   // from a track we already left (that is what the run number is for).
@@ -63,7 +66,7 @@ const Tape = () => {
       const p = await createPlayer(url, providerOf(url) === "youtube" ? video.current : sound.current, on);
       if (mine !== run.current) return p.destroy();
       player.current = p;
-      p.setVolume(volume);
+      p.setVolume(volumeNow.current);
     } catch (e) {
       if (mine === run.current) setStatus("error");
     }
