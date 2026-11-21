@@ -24,10 +24,10 @@ const loadYouTube = () => new Promise((resolve, reject) => {
   return loadScript("https://www.youtube.com/iframe_api").catch(reject);
 });
 
-// "youtube" or "soundcloud", guessed from the link. Anything else is null.
+// "youtube" or "soundcloud", guessed from the link host. Anything else is null.
 export const providerOf = (url) => {
-  if (/(youtube\.com|youtu\.be)\//.test(url)) return "youtube";
-  return /soundcloud\.com\//.test(url) ? "soundcloud" : null;
+  if (/^https?:\/\/([\w-]+\.)?(youtube\.com|youtu\.be)\//.test(url)) return "youtube";
+  return /^https?:\/\/([\w-]+\.)?soundcloud\.com\//.test(url) ? "soundcloud" : null;
 };
 
 export const youtubeId = (url) => (url.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/) || [])[1];
