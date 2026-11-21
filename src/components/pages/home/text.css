@@ -859,10 +859,23 @@
   box-shadow: 0 6px 18px hsl(calc(254.3 + var(--a-shift)) calc(40.4% * var(--a-sat)) 44.7% / 0.25), inset 0 1px rgba(255, 255, 255, 0.16);
   font: 650 0.72rem/1.2 var(--site-font);
   cursor: pointer;
+  transition: transform 120ms ease;
 }
 
-.ae-send-button:hover {
-  background: linear-gradient(135deg, hsl(calc(253.4 + var(--a-shift)) calc(65.2% * var(--a-sat)) 65.1%), hsl(calc(251.6 + var(--a-shift)) calc(35.9% * var(--a-sat)) 45.3%));
+.ae-send-button:hover:not(:disabled) {
+  border-color: transparent;
+  color: var(--on-fruit);
+  background: var(--fruit);
+  transform: translateY(-1px);
+}
+
+.ae-send-button:active:not(:disabled) {
+  transform: translateY(1px) scale(0.98);
+}
+
+.ae-send-button:hover:not(:disabled) .ae-paper-plane {
+  fill: rgba(18, 14, 26, 0.18);
+  stroke: var(--on-fruit);
 }
 
 .ae-send-button:focus-visible {
