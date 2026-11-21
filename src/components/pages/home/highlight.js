@@ -1,5 +1,5 @@
 // Colors Java code for the LeetCode solution panel. Splits the text into keywords, types,
-// strings, comments and numbers, and wraps each kind in a span the CSS can color.
+// strings, comments, numbers and macros, and wraps each kind in a span the CSS can color.
 
 // Words that count as Java keywords. Everything else that starts with a capital is a type.
 const KEYWORDS = new Set((
@@ -14,12 +14,12 @@ const KEYWORDS = new Set((
 const PIECES = new RegExp([
   "(\\/\\/[^\\n]*|\\/\\*[\\s\\S]*?\\*\\/)",              // 1: comment
   "(\"\"\"[\\s\\S]*?\"\"\"|\"(?:\\\\.|[^\"\\\\\\n])*\"|'(?:\\\\.|[^'\\\\\\n])*')", // 2: string
-  "(@[A-Za-z_]\\w*)",                                  // 3: annotation
+  "(@[A-Za-z_]\\w*|[A-Za-z_]\\w*!(?=[(\\[{])|^[ \\t]*#[ \\t]*[a-z]+)", // 3: macro: @Annotation, name!(...) or #include
   "(\\b(?:0[xX][0-9a-fA-F]+|\\d[\\d_]*(?:\\.\\d+)?)[LlFfDd]?\\b)", // 4: number
   "([A-Za-z_$][\\w$]*)",                               // 5: word
-].join("|"), "g");
+].join("|"), "gm");
 
-const KINDS = [null, "tok-com", "tok-str", "tok-ann", "tok-num"];
+const KINDS = [null, "tok-com", "tok-str", "tok-mac", "tok-num"];
 
 // Returns React children. Text between matches stays plain, so the text on screen
 // is always exactly the source text, only the colors change.
