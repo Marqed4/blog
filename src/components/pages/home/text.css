@@ -1428,18 +1428,20 @@
   font: 0.67rem/1.4 "Segoe UI", Arial, sans-serif;
 }
 
-/* Code block: scrolls instead of wrapping */
+/* Code block: shows the whole solution, long lines wrap (no scrolling) */
 .ae-leetcode-code {
   margin: 8px 0 0;
   padding: 10px 12px;
   border-radius: 4px;
   background: rgba(0, 0, 0, 0.35);
-  font: 0.68rem/1.6 "Consolas", "Fira Mono", monospace;
+  font: 0.72rem/1.6 var(--code-font);
+  font-variant-ligatures: contextual;
+  font-feature-settings: "calt" 1;
+  tab-size: 4;
   color: #d4d0e8;
-  white-space: pre;
-  overflow-x: auto;
-  max-height: 320px;
-  overflow-y: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  overflow: visible;
 }
 
 .ae-book-turn {
