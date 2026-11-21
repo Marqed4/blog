@@ -1,5 +1,6 @@
 ﻿import { useMemo, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import Highlight from "./highlight.js";
 
 // The dex: one entry per LeetCode problem I have worked on. Hand edited.
 // Shape of one entry:
@@ -4249,7 +4250,7 @@ const LeetCodeDex = () => {
                                 </span>
                               </div>
                               {showCode === problem.number && problem.solution && (
-                                <pre className="ae-leetcode-code"><code>{problem.solution}</code></pre>
+                                <pre className="ae-leetcode-code"><code><Highlight code={problem.solution} /></code></pre>
                               )}
                             </div>
                           ))}
