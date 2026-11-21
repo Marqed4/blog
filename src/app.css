@@ -21,8 +21,26 @@
   font-display: swap;
 }
 
+/* Iosevka Etoile for body text (latin subset, regular and bold) */
+@font-face {
+  font-family: "Iosevka Etoile";
+  src: url("./resources/fonts/iosevka-etoile-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Iosevka Etoile";
+  src: url("./resources/fonts/iosevka-etoile-latin-700-normal.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --code-font: "Iosevka", "Consolas", "Fira Mono", monospace;
+  --site-font: "Iosevka Etoile", Georgia, serif;
   /* Theme: hue shift and saturation scale per color group, set by theme.js.
      a = Stroke (purple accents), b = Fill (blue/teal accents). 0 and 1 = default look. */
   --a-shift: 0;
@@ -57,7 +75,7 @@
     0 0 16px rgba(110, 220, 0, 0.1);
   background: linear-gradient(#3b3c47, #2d2e37);
   box-shadow: inset 0 1px rgba(255, 255, 255, 0.07), 0 1px 2px rgba(0, 0, 0, 0.25);
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family: var(--site-font);
   font-size: 0.75rem;
   font-weight: 650;
   line-height: 1.2;
@@ -161,4 +179,14 @@ pre {
   font-family: var(--code-font);
   font-variant-ligatures: contextual;
   font-feature-settings: "calt" 1;
+}
+
+/* Ligatures: common ones on for site text, off where exact characters matter */
+.ae-site {
+  font-variant-ligatures: common-ligatures;
+}
+
+input,
+textarea {
+  font-variant-ligatures: none;
 }
