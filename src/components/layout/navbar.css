@@ -67,43 +67,12 @@ body {
   color: hsl(calc(256.7 + var(--a-shift)) calc(100.0% * var(--a-sat)) 96.5%);
 }
 
-/* Right-hand buttons: sound toggle + hamburger */
+/* Right-hand button: the hamburger */
 .ae-nav-actions {
   display: flex;
   align-items: center;
   gap: 6px;
   flex: 0 0 auto;
-}
-
-/* Sound button (disabled for now, sounds are not built yet) */
-.ae-site .ae-button.ae-music-toggle {
-  min-width: 82px;
-  padding: 5px 8px;
-  gap: 6px;
-  font-size: 0.63rem;
-}
-
-.ae-site .ae-button.ae-music-toggle:disabled {
-  color: #b5b1c7;
-  cursor: default;
-  opacity: 1;
-  text-shadow: none;
-}
-
-/* Little status dot inside the sound button; .is-on turns it green */
-.ae-sound-indicator {
-  width: 7px;
-  height: 7px;
-  flex: 0 0 auto;
-  border: 1px solid #9a98a6;
-  border-radius: 50%;
-  background: #666471;
-}
-
-.ae-sound-indicator.is-on {
-  border-color: #9de0ac;
-  background: #67b477;
-  box-shadow: 0 0 7px rgba(103, 180, 119, 0.55);
 }
 
 /* Hamburger button: hidden on desktop, shown in the phone breakpoint below */
