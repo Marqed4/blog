@@ -76,7 +76,10 @@ const CISC4900PopularVote = () => {
     document.title = "CISC 4900 - PopularVote";
   }, []);
 
-  // Layout: links to time log / PowerPoint, title, screenshots, Overview / Deliverables / Architecture cards, route reference, design notes
+  // Layout: links to time log and slides.
+  // Then title and screenshots.
+  // Then Overview, Deliverables, Architecture cards.
+  // Last come route reference and design notes.
   return (
     <div className="cisc4900-container">
       <Navbar />
