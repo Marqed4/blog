@@ -5,9 +5,7 @@ import Footer from "../layout/footer.jsx";
 import "./timelog.css";
 
 // Fall 2026 semester (Brooklyn College): classes run Aug. 28 - Dec. 21, 2026.
-// Logging window starts 3 days in, on Aug. 31, 2026.
 // Dates are "YYYY-MM-DD" strings. Only SEMESTER_START and SEMESTER_END are shown on the page.
-const LOG_START = "2026-08-31";
 const SEMESTER_START = "2026-08-28";
 const SEMESTER_END = "2026-12-21";
 
