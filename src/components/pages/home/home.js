@@ -2,7 +2,8 @@
 // floating project tiles, a theme color picker, and a contact form.
 import { useEffect, useRef, useState } from "react";
 import { motion, useSpring } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { subscribeNow } from "../../layout/nowplaying.js";
 import { ProjectsArray } from "../projects.js";
 import LeetCodeDex from "./leetcode.js";
 import { applyTheme, loadTheme, resetTheme, saveTheme } from "../../../theme.js";
@@ -22,6 +23,7 @@ const Effects = [
   "Transform",
   "S_ClampChroma",
   "Mocha AE",
+  "Add Grain",
 ];
 
 // One floating tile that drifts toward/away from the mouse. Internal pages use `to` (router Link), the contact tile uses `href`.
@@ -103,6 +105,17 @@ const FloatingRectangle = ({ className, to, href, label }) => {
 const Home = () => {
   // Which tab is open: composition (Home), renderQueue or leetCode
   const [activePanel, setActivePanel] = useState("composition");
+  // The tape's "View in editor" button sends the visitor here with the tab to open
+  const route = useLocation();
+  // The song the tape is playing, shown as an audio clip in the timeline
+  const [song, setSong] = useState({ title: "", playing: false });
+  useEffect(() => subscribeNow(setSong), []);
+  useEffect(() => {
+    if (route.state && route.state.tab) {
+      setActivePanel(route.state.tab);
+      window.scrollTo({ top: 0 });
+    }
+  }, [route.state]);
   // True briefly after submit so the paper plane animation plays
   const [isSending, setIsSending] = useState(false);
   // Current Stroke/Fill colors, starting from what was saved in localStorage
@@ -225,7 +238,7 @@ const Home = () => {
                 <span className="is-active">Effect Controls</span>
                 <span>Project</span>
               </div>
-              <div className="ae-inspector-header">Portfolio Layer</div>
+              <div className="ae-inspector-header">Blog Composition</div>
               <ul className="ae-effect-list" aria-label="Effects">
                 {Effects.map((effect) => (
                   <li key={effect}>
@@ -401,6 +414,10 @@ const Home = () => {
             <div className="ae-timeline-track" aria-hidden="true">
               <span className="ae-track-name">CONTACT</span>
               <span className="ae-track-clip ae-track-clip-contact" />
+            </div>
+            <div className="ae-timeline-track">
+              <span className="ae-track-name">AUDIO</span>
+              <span className={`ae-track-clip ae-track-clip-audio${song.title ? " has-song" : ""}${song.playing ? " is-playing" : ""}`}>{song.title}</span>
             </div>
           </section>
         </main>
