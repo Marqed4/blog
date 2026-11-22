@@ -13,12 +13,6 @@
   max-width: 350px;
 }
 
-.projects-title {
-  margin-bottom: 48px;
-  font-size: 2rem;
-  font-weight: 600;
-}
-
 /* Grid for the non-featured cards: as many 280px+ columns as fit */
 .projects-grid {
   display: grid;
@@ -67,19 +61,6 @@
   width: auto;
   height: 145px;
   object-fit: contain;
-}
-
-.project-gif {
-  width: auto;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.project-title {
-  margin: 0;
-  font-size: 1.2rem;
-  font-weight: 600;
 }
 
 /* Short blurb under the name */

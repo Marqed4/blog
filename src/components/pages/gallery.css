@@ -6,11 +6,6 @@
   padding: 60px 20px;
 }
 
-.gallery-title {
-  margin-bottom: 48px;
-  font-weight: 600;
-}
-
 /* Photo grid: as many 280px+ columns as fit */
 .gallery-grid {
   display: grid;
@@ -61,13 +56,6 @@
   display: block;
   width: 100%;
   aspect-ratio: 4 / 5;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.gallery-gif {
-  width: auto;
-  height: 160px;
   object-fit: cover;
   border-radius: 8px;
 }

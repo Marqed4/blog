@@ -11,10 +11,3 @@ body {
   z-index: 1;
 }
 
-/* Button row (a second .portfolio-buttons rule is in portfolio.css) */
-.portfolio-buttons {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: fit-content;
-}
