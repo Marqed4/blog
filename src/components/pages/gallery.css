@@ -56,32 +56,13 @@
     background-color: rgba(190, 255, 239, 2.5%);
 }
 
-/* Default photo size; contain keeps the whole picture visible */
+/* Every photo gets the same 4:5 frame; cover crops to fill it so all cards look alike */
 .gallery-image {
-  width: auto;
-  height: 145px;
-  object-fit: contain;
-}
-
-/* Per-photo heights: each photo has a different shape (class comes from the id in gallery.js) */
-.img_0001.gallery-image {
-  height: 360px;
-}
-
-.img_1213.gallery-image {
-  height: 350px;
-}
-
-.img_1222.gallery-image {
-  height: 235px;
-}
-
-.img_0002.gallery-image {
-  height: 365px;
-}
-
-.img_1882.gallery-image {
-  height: 235px;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 .gallery-gif {
@@ -105,6 +86,8 @@
   margin-top: 0;
   /* Apparently this renders new lines... */
   white-space: pre-line;
+  /* Room for two lines so captions of different length do not change the card height */
+  min-height: 3.4em;
 }
 
 h1 a {
