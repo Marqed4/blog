@@ -199,10 +199,12 @@
   width: 100%;
 }
 
+/* Same 4:5 frame for every photo, cropped to fill (matches gallery.css) */
 .ae-site .gallery-image {
-  max-width: 100%;
+  width: 100%;
+  aspect-ratio: 4 / 5;
   border-radius: 5px;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .ae-site .gallery-description {
