@@ -12,7 +12,7 @@
 const STORAGE_KEY = "ae-theme";
 const LEGACY_STROKE_KEY = "ae-stroke-color";
 
-export const DEFAULT_THEME = { stroke: "#8d7cf7", fill: "#3f8fb5" };
+const DEFAULT_THEME = { stroke: "#8d7cf7", fill: "#3f8fb5" };
 
 const MAX_SAT_SCALE = 1.25;
 // Below this saturation a color is basically grey and its hue means nothing.
