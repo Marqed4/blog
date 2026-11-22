@@ -140,11 +140,6 @@
   outline-offset: 3px;
 }
 
-/* Navbar link hover color */
-.Navbar-links-container a:hover {
-  color: hsl(calc(237.6 + var(--a-shift)) calc(63.8% * var(--a-sat)) 54.5%);
-}
-
 /* Page background: two soft glows over a dark gradient; scrollbar hidden but page still scrolls */
 html, body {
   overflow-x: hidden;
@@ -166,12 +161,6 @@ body::-webkit-scrollbar {
 body {
   min-height: 100vh;
   background-color: transparent;
-}
-
-.home-banner-container {
-  background-repeat: no-repeat;
-  background-position: top right;
-  background-attachment: fixed;
 }
 
 /* Fixed full-screen background gif, slightly oversized (106%) so parallax movement never shows edges */
