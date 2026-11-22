@@ -147,20 +147,17 @@
   object-fit: contain;
 }
 
-.ae-site .project-name,
-.ae-site .resume-name {
+.ae-site .project-name {
   color: hsl(calc(253.3 + var(--a-shift)) calc(47.4% * var(--a-sat)) 96.3%);
 }
 
 /* Shared body text color, used across most pages */
 .ae-site .project-description,
-.ae-site [class$="-description"], /* $=ends-with -> one rule, every *-description class site-wide */
+.ae-site [class$="-description"],
+/* $=ends-with -> one rule,
+every *-description class site-wide */
 .ae-site [class$="-body"],
 .ae-site [class$="-list"] li,
-.ae-site .resume-profile,
-.ae-site .resume-job-list li,
-.ae-site .resume-contact-row,
-.ae-site .resume-contact-row a,
 .ae-site .timelog-tagline,
 .ae-site .timelog-entry-description,
 .ae-site .timelog-entry-field,
@@ -358,10 +355,7 @@
 .ae-site .diva-ffmpeg-view-section,
 .ae-site .timerabbit-view-section,
 .ae-site .solvesudoku-view-section,
-.ae-site .months-view-section,
-.ae-site .years-view-section,
-.ae-site .settings-view-section,
-.ae-site .chat-view-section {
+.ae-site .months-view-section {
   width: min(1120px, 100%);
   margin: 14px auto;
   padding: 20px;
@@ -386,11 +380,7 @@
 .ae-site .diva-ffmpeg-screenshot,
 .ae-site .timerabbit-screenshot,
 .ae-site .solvesudoku-screenshot,
-.ae-site .months-view-example,
-.ae-site .years-view-example,
-.ae-site .settings-view-example,
-.ae-site .chat-view-example,
-.ae-site .app-controls-example {
+.ae-site .months-view-example {
   max-width: min(54%, 560px);
   border-color: rgba(178, 176, 204, 0.24);
   border-radius: 6px;
@@ -401,10 +391,7 @@
 .ae-site .diva-ffmpeg-view-docs,
 .ae-site .timerabbit-view-docs,
 .ae-site .solvesudoku-view-docs,
-.ae-site .months-view-docs,
-.ae-site .years-view-docs,
-.ae-site .settings-view-docs,
-.ae-site .chat-view-docs {
+.ae-site .months-view-docs {
   max-width: 440px;
 }
 
@@ -413,9 +400,6 @@
 .ae-site .timerabbit-view-label,
 .ae-site .solvesudoku-view-label,
 .ae-site .months-view-docs-label,
-.ae-site .years-view-docs-label,
-.ae-site .settings-view-docs-label,
-.ae-site .chat-view-docs-label,
 .ae-site .app-controls-docs-label {
   color: hsl(calc(253.0 + var(--a-shift)) calc(100.0% * var(--a-sat)) 82.0%);
   font-family: var(--site-font);
@@ -451,7 +435,6 @@
 .ae-site .solvesudoku-layout-overview,
 .ae-site .solvesudoku-layout-features,
 .ae-site .solvesudoku-layout-architecture,
-.ae-site .custom-calendar-layout-made,
 .ae-site .custom-calendar-layout-overview,
 .ae-site .custom-calendar-layout-features,
 .ae-site .custom-calendar-layout-architecture {
@@ -538,14 +521,6 @@
   box-shadow: none;
 }
 
-/* PowerPoint page: title image and viewer frame */
-.ae-site .cisc4900-ppt-title {
-  max-width: min(100%, 480px);
-  height: auto;
-  margin-bottom: 18px;
-  transform: none;
-}
-
 .ae-site .cisc4900-ppt-viewer {
   max-width: 100%;
   border-color: var(--ae-panel-border);
@@ -605,26 +580,19 @@
   }
 
   .ae-site .popular-vote-view-section,
-  .ae-site .diva-ffmpeg-view-section,
-  .ae-site .timerabbit-view-section,
-  .ae-site .solvesudoku-view-section,
-  .ae-site .months-view-section,
-  .ae-site .years-view-section,
-  .ae-site .settings-view-section,
-  .ae-site .chat-view-section {
+.ae-site .diva-ffmpeg-view-section,
+.ae-site .timerabbit-view-section,
+.ae-site .solvesudoku-view-section,
+.ae-site .months-view-section {
     flex-direction: column;
     align-items: stretch;
   }
 
   .ae-site .popular-vote-screenshot,
-  .ae-site .diva-ffmpeg-screenshot,
-  .ae-site .timerabbit-screenshot,
-  .ae-site .solvesudoku-screenshot,
-  .ae-site .months-view-example,
-  .ae-site .years-view-example,
-  .ae-site .settings-view-example,
-  .ae-site .chat-view-example,
-  .ae-site .app-controls-example {
+.ae-site .diva-ffmpeg-screenshot,
+.ae-site .timerabbit-screenshot,
+.ae-site .solvesudoku-screenshot,
+.ae-site .months-view-example {
     width: 100%;
     max-width: 100%;
   }

@@ -138,7 +138,6 @@ body {
     backdrop-filter: blur(14px);
   }
 
-  .ae-site .ae-button.ae-mobile-menu-link,
   .ae-mobile-menu .ae-button {
     justify-content: flex-start;
     width: 100%;
