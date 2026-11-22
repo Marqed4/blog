@@ -8,7 +8,6 @@ import NotFound from "./components/pages/missing.jsx";
 import './app.css';
 
 // <---- Landing Page ---->
-import './components/layout/icon.css';
 import './components/layout/navbar.css';
 import './components/layout/footer.css'
 import './components/pages/home/body.css';
