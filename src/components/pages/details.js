@@ -59,7 +59,7 @@ const Details = () => {
                   View resume
                 </a>
                 <br/>
-                <a className="ae-button ae-button--small" href={`${process.env.PUBLIC_URL}/documents/zacheryfrancis-resume-10-4-2026.pdf`} download>
+                <a className="ae-button ae-button--small" href={`${process.env.PUBLIC_URL}/documents/zacheryfrancis-resume-11-20-2026.pdf`} download>
                   Download resume
                 </a>
               </p>
@@ -71,10 +71,10 @@ const Details = () => {
               <h2 className="details-education-header">Education</h2>
               <p className="education-body">
                 Brooklyn College<br/>
-                • M.S. in Computer Science, Concentration: Information Systems<br/><br/>
+                • B.S. in Information Systems, Minor: Computer Science (Expected Dec 2026)<br/>
+                • B.S. in Business Management (Expected Dec 2026)<br/><br/>
                 Brooklyn College<br/>
-                • B.S. in Information Systems, Minor: Computer Science<br/>
-                • B.S. in Business Management<br/><br/>
+                • M.S. in Computer Science, Concentration: Information Systems (Expected Dec 2028)<br/><br/>
                 Kingsborough Community College<br/>
                 • A.A. in Liberal Arts
               </p>

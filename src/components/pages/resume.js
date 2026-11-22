@@ -4,7 +4,7 @@ import Footer from "../layout/footer.jsx";
 import Navbar from "../layout/navbar.js";
 
 // PUBLIC_URL keeps the path right if the site is hosted in a subfolder
-const RESUME_URL = `${process.env.PUBLIC_URL}/documents/zacheryfrancis-resume-10-4-2026.pdf`;
+const RESUME_URL = `${process.env.PUBLIC_URL}/documents/zacheryfrancis-resume-11-20-2026.pdf`;
 
 const Resume = () => {
   // Sets the browser tab title when the page loads
