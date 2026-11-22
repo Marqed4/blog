@@ -5,11 +5,6 @@
   text-align: center;
 }
 
-.popular-vote-title {
-  font-size: 2rem;
-  margin-bottom: 8px;
-}
-
 .popular-vote-description {
   font-weight: 225;
   -webkit-text-stroke: 1px black;
@@ -101,33 +96,6 @@
   vertical-align: middle;
 }
 
-.popular-vote-x {
-  font-size: 0.7rem;
-  color: rgba(100, 255, 100, 0.8);
-}
-
-.popular-vote-divider {
-  height: 1px;
-  width: 100%;
-  background: black;
-  margin: 12px 0;
-}
-
-.popular-vote-png-column {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  flex-shrink: 0;
-  width: 520px;
-}
-
-.popular-vote-png-column .popular-vote-screenshot {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
 /* Card shell: border, translucent bg, blur */
 .popular-vote-layout-overview,
 .popular-vote-layout-features,
@@ -147,17 +115,6 @@
 .popular-vote-layout-features    { max-width: 220px; }
 .popular-vote-layout-architecture{ max-width: 255px; }
 
-/* Card header images and shared body text */
-.overview-header,
-.features-header,
-.architecture-header {
-  height: 60px;
-  width: auto;
-  display: block;
-  margin: 0 auto 10px auto;
-  transform: none;
-}
-
 .overview-body,
 .features-body,
 .architecture-body {
@@ -166,7 +123,6 @@
 }
 
 /* Card row: wraps onto new lines when it runs out of space */
-.popular-vote-intro-cards,
 .popular-vote-content {
   display: flex;
   flex-direction: row;
@@ -179,7 +135,6 @@
 
 /* Tablet: stack the cards in a column */
 @media (max-width: 1250px) {
-  .popular-vote-intro-cards,
   .popular-vote-content {
     flex-direction: column;
     align-items: center;
@@ -211,7 +166,6 @@
     max-width: 100%;
   }
 
-  .popular-vote-intro-cards,
   .popular-vote-content {
     flex-direction: column;
     align-items: center;
@@ -225,9 +179,3 @@
   }
 }
 
-.popularvote-calendar-name {
-  display: block;
-  margin: 0 auto;
-  height: auto;
-  max-width: min(480px, 80%);
-}

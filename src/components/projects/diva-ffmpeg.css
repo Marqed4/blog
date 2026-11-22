@@ -155,17 +155,6 @@
 .diva-ffmpeg-layout-features     { max-width: 220px; }
 .diva-ffmpeg-layout-architecture { max-width: 255px; }
 
-/* Header and body text inside the info cards */
-.overview-header,
-.features-header,
-.architecture-header {
-  height: 60px;
-  width: auto;
-  display: block;
-  margin: 0 auto 10px auto;
-  transform: none;
-}
-
 .overview-body,
 .features-body,
 .architecture-body {

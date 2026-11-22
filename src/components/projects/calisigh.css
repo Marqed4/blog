@@ -13,10 +13,7 @@
 }
 
 /* Shared box look for the info cards: border, transparent bg, blur */
-.custom-calendar-layout-made,
-.custom-calendar-layout-overview,
-.custom-calendar-layout-features,
-.custom-calendar-layout-architecture {
+.custom-calendar-layout-overview, .custom-calendar-layout-features, .custom-calendar-layout-architecture {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 15px;
@@ -25,11 +22,6 @@
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1),
   inset 0 0 0 1px rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(4px);
-}
-
-/* Max width per info card */
-.custom-calendar-layout-made {
-  max-width: 240px;
 }
 
 .custom-calendar-layout-overview {
@@ -44,23 +36,7 @@
   max-width: 255px;
 }
 
-/* Header images and body text inside the info cards */
-.custom-calendar-intro-header-img,
-.made-with,
-.overview-header,
-.features-header,
-.architecture-header {
-  height: 60px;
-  width: auto;
-  display: block;
-  margin: 0 auto 10px auto;
-  transform: none;
-}
-
-.introduction-body,
-.overview-body,
-.features-body,
-.architecture-body {
+.overview-body, .features-body, .architecture-body {
   font-weight: 225;
   -webkit-text-stroke: 1px black;
   transform: translate(10px, 0px);
@@ -73,20 +49,14 @@
     align-items: center;
   }
 
-  .custom-calendar-layout-made,
-  .custom-calendar-layout-overview,
-  .custom-calendar-layout-features,
-  .custom-calendar-layout-architecture {
+  .custom-calendar-layout-overview, .custom-calendar-layout-features, .custom-calendar-layout-architecture {
     width: 90%;
     max-width: 100%;
   }
 }
 
 /* Screenshot row: image on one side, docs on the other */
-.months-view-section,
-.years-view-section,
-.settings-view-section,
-.chat-view-section {
+.months-view-section {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -109,19 +79,8 @@
   padding: 20px 40px 40px 40px;
 }
 
-.app-controls-docs {
-  text-align: right;
-  max-width: 520px;
-  width: 100%;
-  padding-top: 6px;
-}
-
 /* Screenshot image */
-.months-view-example,
-.years-view-example,
-.settings-view-example,
-.chat-view-example,
-.app-controls-example {
+.months-view-example {
   width: 520px;
   max-width: 55%;
   height: auto;
@@ -131,21 +90,14 @@
 }
 
 /* Docs column next to the screenshot */
-.months-view-docs,
-.years-view-docs,
-.settings-view-docs,
-.chat-view-docs {
+.months-view-docs {
   text-align: left;
   max-width: 380px;
   padding-top: 6px;
 }
 
 /* Small uppercase heading above each list */
-.months-view-docs-label,
-.years-view-docs-label,
-.settings-view-docs-label,
-.chat-view-docs-label,
-.app-controls-docs-label {
+.months-view-docs-label, .app-controls-docs-label {
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -156,20 +108,12 @@
 }
 
 /* First label has no top gap */
-.months-view-docs-label:first-child, 
-.years-view-docs-label:first-child,
-.settings-view-docs-label:first-child,
-.chat-view-docs-label:first-child,
-.app-controls-docs-label:first-child {
+.months-view-docs-label:first-child, .app-controls-docs-label:first-child {
   margin-top: 0;
 }
 
 /* Bullet lists: no bullets, stacked with a gap */
-.months-view-list,
-.years-view-list,
-.settings-view-list,
-.chat-view-list,
-.app-controls-list {
+.months-view-list, .app-controls-list {
   list-style: none;
   padding: 0;
   margin: 0 0 8px 0;
@@ -182,11 +126,7 @@
 }
 
 /* List item text */
-.months-view-list li,
-.years-view-list li,
-.settings-view-list li,
-.chat-view-list li,
-.app-controls-list li {
+.months-view-list li, .app-controls-list li {
   font-size: 0.82rem;
   font-weight: 225;
   color: rgba(255, 255, 255, 0.75);
@@ -211,11 +151,7 @@
 
 /* Narrow screens: shrink images to full width */
 @media (max-width: 770px) {
-  .months-view-section, 
-  .years-view-section,
-  .settings-view-section,
-  .chat-view-section,
-  .months-view-section--flip {
+  .months-view-section, .months-view-section--flip {
   flex-direction: row-reverse;
 }
 
@@ -225,19 +161,12 @@
     padding: 20px;
   }
 
-  .months-view-example,
-  .years-view-example,
-  .settings-view-example,
-  .chat-view-example,
-  .app-controls-example {
+  .months-view-example {
     width: 100%;
     max-width: 100%;
   }
 
-  .months-view-docs,
-  .years-view-docs,
-  .settings-view-docs,
-  .chat-view-docs {
+  .months-view-docs {
     max-width: 100%;
   }
 }
@@ -260,21 +189,10 @@
     align-items: center;
   }
 
-  .custom-calendar-layout-made,
-  .custom-calendar-layout-overview,
-  .custom-calendar-layout-features,
-  .custom-calendar-layout-architecture {
+  .custom-calendar-layout-overview, .custom-calendar-layout-features, .custom-calendar-layout-architecture {
     width: 90%;
     max-width: 600px;
   }
-}
-
-/* Thin horizontal line */
-.divider {
-  height: 1px;
-  width: 100%;
-  background: black;
-  margin: 12px 0;
 }
 
 /* Stacked images (edit view has two) */

@@ -5,14 +5,6 @@
   text-align: center;
 }
 
-.timerabbit-name {
-  height: auto;
-  max-width: 480px;
-  width: 80%;
-  display: block;
-  margin: 0 auto;
-}
-
 .timerabbit-description {
   font-weight: 225;
   -webkit-text-stroke: 1px black;
@@ -134,19 +126,6 @@
 .timerabbit-layout-overview     { max-width: 300px; }
 .timerabbit-layout-features     { max-width: 220px; }
 .timerabbit-layout-architecture { max-width: 255px; }
-
-/* Card header images and shared body text */
-.timerabbit-overview-header img,
-.timerabbit-features-header img,
-.timerabbit-architecture-header img,
-.overview-header,
-.features-header,
-.architecture-header {
-  height: 60px;
-  width: auto;
-  display: block;
-  margin: 0 auto 10px auto;
-}
 
 .overview-body,
 .features-body,

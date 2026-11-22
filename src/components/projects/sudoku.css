@@ -137,19 +137,6 @@
 .solvesudoku-layout-architecture { max-width: 255px; }
 
 
-/* Header and body text inside the info cards */
-.solvesudoku-overview-header img,
-.solvesudoku-features-header img,
-.solvesudoku-architecture-header img,
-.overview-header,
-.features-header,
-.architecture-header {
-  height: 60px;
-  width: auto;
-  display: block;
-  margin: 0 auto 10px auto;
-}
-
 
 .overview-body,
 .features-body,
