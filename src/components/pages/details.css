@@ -1,9 +1,3 @@
-/* Custom "Latin" font loaded from resources/fonts */
-@font-face {
-  font-family: "Latin";
-  src: url("../../resources/fonts/southcrew-vgw2e.ttf") format("truetype");
-}
-
 /* Gentle up-and-down bob used on the section headings */
 @keyframes float {
   0%   { transform: translateY(0); }
