@@ -5,10 +5,6 @@
   text-align: center;
 }
 
-.cisc4900-ppt-title {
-  transform: scaleX(-30px);
-}
-
 /* Download button, centered with auto side margins */
 .cisc4900-ppt-download {
   display: block;
