@@ -270,7 +270,7 @@ const Home = () => {
                       <p className="home-card-label">Composition / Introduction</p>
                       <p>
                         Hi, I’m Zach; online, I go by Marqed.<br /><br />
-                        I’m an M.S. Computer Science student at Brooklyn College, building full-stack apps and desktop tools. I’m interested in software and IT internships and share my technical and creative work here.
+                        I’m a Brooklyn College senior finishing a B.S. in Information Systems (Dec 2026), with an M.S. in Computer Science to follow. I build full-stack apps and desktop tools. I’m interested in software and IT opportunities, and I share my technical and creative work here.
                       </p>
                     </section>
 
