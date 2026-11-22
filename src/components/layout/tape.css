@@ -1,3 +1,12 @@
+/* Label font: Pacifico (OFL), basic Latin only so the file stays small */
+@font-face {
+  font-family: "Pacifico";
+  src: url("../../resources/fonts/pacifico-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Tape colors: orange and pink accents that follow the theme knob */
 .ae-tape {
   --tape-a: hsl(calc(28 + var(--a-shift)) calc(95% * var(--a-sat)) 64%);
@@ -32,7 +41,59 @@ body { padding-bottom: var(--tape-clear, 0); }
 
 .ae-tape.is-video .ae-tape-video { display: block; }
 
-.ae-tape-video iframe { display: block; width: 100%; height: 100%; }
+/* Home: the card sits over the intro in the stage. The tiles slide below it, so nothing is drawn on top. */
+.ae-tape.is-home-slot { z-index: 0; }
+
+.ae-tape.is-home-slot .ae-tape-video {
+  position: fixed;
+  z-index: 1;
+  border-radius: 6px;
+  pointer-events: none;
+  animation: ae-video-in 450ms ease both;
+}
+
+@keyframes ae-video-in {
+  from { opacity: 0; transform: scale(0.97); }
+}
+
+/* Off Home the card sits over the cassette. It never ignores the 200px minimum, and clicks pass through to the cassette. */
+.ae-tape.is-over .ae-tape-video {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  width: min(264px, calc(100vw - 32px));
+  height: 200px;
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+/* "move your mouse": beside the card, never on top of it (YouTube forbids anything over the player) */
+.ae-tape-hint {
+  position: absolute;
+  right: calc(100% + 10px);
+  bottom: 84px;
+  padding: 5px 12px;
+  border: 1px solid var(--ae-panel-border);
+  border-radius: 14px;
+  background: var(--ae-panel);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.ae-tape-hint span {
+  background: var(--fruit);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font: 700 0.72rem/1.3 var(--site-font);
+}
+
+/* Volume slider in the controls panel */
+.ae-tape-vol { display: block; width: 100%; margin: 8px 0 0; accent-color: var(--tape-b); }
+
+/* Clicks pass through the card, so the video links are not reachable. Nothing is drawn on top. */
+.ae-tape-video iframe { display: block; width: 100%; height: 100%; pointer-events: none; }
 
 /* SoundCloud player and screen reader line: kept out of sight, not removed */
 .ae-tape-sc,
@@ -54,23 +115,42 @@ body { padding-bottom: var(--tape-clear, 0); }
   transition: opacity 250ms ease 1500ms;
 }
 
+/* Click badge: a fruit-gradient pill that pops and fades. Two bars = paused, one triangle = playing. */
+.ae-tape-flash {
+  position: absolute;
+  left: 50%;
+  top: 38%;
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  margin: -27px 0 0 -27px;
+  border: 1px solid var(--ae-panel-border);
+  border-radius: 14px;
+  background: var(--ae-panel);
+  box-shadow: 0 4px 14px rgb(0 0 0 / 0.45);
+  pointer-events: none;
+  animation: ae-flash 650ms ease-out both;
+}
+
+.ae-tape-flash i { display: block; background: var(--fruit); }
+.ae-tape-flash.is-pause i { width: 9px; height: 26px; border-radius: 3px; }
+.ae-tape-flash:not(.is-pause) i:first-child { width: 24px; height: 28px; clip-path: polygon(0 0, 100% 50%, 0 100%); margin-left: 4px; }
+.ae-tape-flash:not(.is-pause) i:last-child { display: none; }
+
+@keyframes ae-flash {
+  0% { opacity: 0; transform: scale(0.8); }
+  20% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.12); }
+}
+
 .ae-tape-frame svg {
   display: block;
   width: 100%;
   height: auto;
   overflow: visible;
-}
-
-/* Track art behind the cassette, dimmed, fades with the frame */
-.ae-tape-art {
-  position: absolute;
-  inset: -8px;
-  width: calc(100% + 16px);
-  height: calc(100% + 16px);
-  object-fit: cover;
-  border-radius: 18px;
-  opacity: 0.45;
-  z-index: -1;
 }
 
 /* Drawing parts: colors from the tape tokens above */
@@ -151,6 +231,19 @@ body { padding-bottom: var(--tape-clear, 0); }
   pointer-events: none;
 }
 
+/* Idle label: loose script font, shown until the first track plays */
+.ae-tape-vibes { font: 400 0.82rem/1.1 "Pacifico", cursive; }
+
+/* Shuffle: the label flickers through titles in the fruit colors */
+.ae-tape-spin {
+  color: #6a2f58;
+  animation: ae-spin-blink 120ms steps(2) infinite;
+}
+
+@keyframes ae-spin-blink {
+  50% { opacity: 0.55; }
+}
+
 .ae-tape-title span {
   display: block;
   max-width: 100%;
@@ -198,11 +291,29 @@ body { padding-bottom: var(--tape-clear, 0); }
   background: var(--ae-accent-bg);
 }
 
+@media (max-width: 640px) {
+  .ae-tape-hint { display: none; }
+}
+
+/* Genre tag: small outlined pill next to a track name */
+.ae-tape-tag {
+  margin-left: 6px;
+  padding: 1px 6px;
+  border: 1px solid var(--ae-panel-border);
+  border-radius: 8px;
+  color: var(--ae-muted);
+  font: 700 0.56rem/1.4 var(--site-font);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .ae-tape-credit { display: block; margin-top: 8px; color: var(--ae-muted); font: 0.62rem/1.3 var(--site-font); overflow-wrap: anywhere; }
 
 /* Reduced motion or transparency: no spin, no press animation, no fade, always solid */
 @media (prefers-reduced-motion: reduce), (prefers-reduced-transparency: reduce) {
   .ae-tape.is-idle .ae-tape-frame { opacity: 1; }
   .ae-tape-frame, .ae-tape-key { transition: none; }
+  .ae-tape-flash { animation-duration: 1ms; }
+  .ae-tape-spin { animation: none; }
   .ae-tape.is-playing .ae-tape-reel { animation: none; }
 }

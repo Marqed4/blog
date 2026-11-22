@@ -30,7 +30,7 @@ export const providerOf = (url) => {
   return /^https?:\/\/([\w-]+\.)?soundcloud\.com\//.test(url) ? "soundcloud" : null;
 };
 
-export const youtubeId = (url) => (url.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/) || [])[1];
+const youtubeId = (url) => (url.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/) || [])[1];
 
 // YouTube: its player has to stay visible, at least 200px tall, with nothing on top (their rules)
 const youtube = async (url, host, on) => {
@@ -41,7 +41,8 @@ const youtube = async (url, host, on) => {
   const whenReady = new Promise((resolve) => { ready = resolve; });
   const player = new YT.Player(mount, {
     width: "100%", height: "100%", videoId: id,
-    playerVars: { autoplay: on.auto ? 1 : 0, playsinline: 1, rel: 0 },
+    // No control bar, keyboard keys or fullscreen button inside the card. The tape's own keys do it.
+    playerVars: { autoplay: on.auto ? 1 : 0, playsinline: 1, rel: 0, controls: 0, disablekb: 1, fs: 0, iv_load_policy: 3 },
     events: {
       onReady: ready,
       onAutoplayBlocked: () => on.pause(),

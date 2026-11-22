@@ -1,5 +1,6 @@
-// The music list for the tape. Paste one link per line, YouTube or SoundCloud. Title is optional.
-// Single YouTube videos only, not playlists. The tape stays hidden until this list has at least one link. Example:
-//   { url: "https://www.youtube.com/watch?v=VIDEO_ID", title: "Song name" },
-//   { url: "https://soundcloud.com/artist/track" },
-export const tracks = [];
+// The music list for the tape lives in tracks.json. Add one { "url": ..., "title": ... } per song.
+// url is a YouTube or SoundCloud link, title and tag (like "indie") are optional.
+// Single YouTube videos only, not playlists. JSON has no comments, so the notes are here.
+import list from "./tracks.json";
+
+export const tracks = list;
