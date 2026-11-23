@@ -1,6 +1,6 @@
 // The tape's expanded controls: previous, next and shuffle, the track list, a Skip
 // button for errors, and the credit link back to the song's own page (the services ask for it).
-const Panel = ({ list, index, info, listOpen, error, playing, volume, on }) => {
+const Panel = ({ list, index, info, fx, listOpen, error, playing, volume, on }) => {
   const url = list[index].url;
   const service = /soundcloud/.test(url) ? "SoundCloud" : "YouTube";
 
@@ -10,6 +10,7 @@ const Panel = ({ list, index, info, listOpen, error, playing, volume, on }) => {
         <button type="button" className="ae-button ae-button--small" onClick={on.play}>{playing ? "Pause" : "Play"}</button>
         <button type="button" className="ae-button ae-button--small" aria-label="Previous track" onClick={on.prev}>Prev</button>
         <button type="button" className="ae-button ae-button--small" aria-label="Shuffle, play a random track" onClick={on.shuffle}>Shuffle</button>
+        <button type="button" className="ae-button ae-button--small" aria-pressed={fx} onClick={on.fx}>Scroll sound {fx ? "on" : "off"}</button>
         <button type="button" className="ae-button ae-button--small" aria-label="Next track" onClick={on.next}>Next</button>
         <button type="button" className="ae-button ae-button--small" aria-expanded={listOpen} onClick={on.list}>List</button>
         {on.editor && <button type="button" className="ae-button ae-button--small" onClick={on.editor}>View in editor</button>}

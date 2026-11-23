@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { tracks } from "./tracks.js";
 import { setNow } from "./nowplaying.js";
+import { startScrollSounds, sfxOn, setSfx } from "./sounds.js";
 import { createPlayer, providerOf } from "./players.js";
 import Shell from "./shell.js";
 import Reel from "./reel.js";
@@ -251,6 +252,10 @@ const Tape = () => {
     return () => document.removeEventListener("keydown", onKey);
   }, []);
 
+  // Scroll sounds, with a switch in the controls panel
+  const [fx, setFx] = useState(sfxOn());
+  useEffect(() => startScrollSounds(), []);
+
   // Tell the Home timeline which song is on, and clear it when the tape goes away
   useEffect(() => { setNow({ title: info.title || "", playing: status === "playing" }); }, [info.title, status]);
   useEffect(() => () => setNow({ title: "", playing: false }), []);
@@ -285,9 +290,9 @@ const Tape = () => {
       <p className="ae-tape-live" role="status" aria-live="polite">{info.title ? `Now playing: ${info.title}` : ""}</p>
       {over && playing && hover && <span className="ae-tape-hint"><span>move your mouse</span></span>}
       {shown && (
-        <Panel list={list} index={index} info={info} listOpen={listOpen} error={status === "error"} playing={playing} volume={volume}
+        <Panel list={list} index={index} info={info} fx={fx} listOpen={listOpen} error={status === "error"} playing={playing} volume={volume}
           on={{ prev: () => go(-1), next: () => go(1), pick: (i) => { start(i); setListOpen(false); },
-            list: () => setListOpen(!listOpen), shuffle,
+            list: () => setListOpen(!listOpen), shuffle, fx: () => { setSfx(!fx); setFx(!fx); },
             editor: isVideo && !slot ? () => navigate("/", { state: { tab: "composition" } }) : null, play: press, volume: setVolume }} />
       )}
       <div className="ae-tape-frame" onClick={bodyClick}
