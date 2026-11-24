@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { tracks } from "./tracks.js";
 import { setNow } from "./nowplaying.js";
-import { startScrollSounds, sfxOn, setSfx } from "./sounds.js";
+import { startScrollSounds } from "./sounds.js";
 import { createPlayer, providerOf } from "./players.js";
 import Shell from "./shell.js";
 import Reel from "./reel.js";
@@ -22,7 +22,8 @@ const read = () => { try { return JSON.parse(localStorage.getItem(SAVED)) || {};
 const Tape = () => {
   const list = tracks.filter((t) => providerOf(t.url));
   const saved = useRef(read()).current;
-  const [index, setIndex] = useState(Math.min(saved.index || 0, Math.max(list.length - 1, 0)));
+  // The list is shuffled on every visit (tracks.js), so a saved position would point at a different song
+  const [index, setIndex] = useState(0);
   const [volume, setVolume] = useState(saved.volume ?? 70);
   // idle (never pressed), loading, playing, paused or error
   const [status, setStatus] = useState("idle");
@@ -135,11 +136,11 @@ const Tape = () => {
     return () => clearTimeout(t);
   }, [status]);
 
-  // Volume, last track and art switch are remembered between visits
+  // Volume is remembered between visits
   useEffect(() => {
     if (player.current) player.current.setVolume(volume);
-    localStorage.setItem(SAVED, JSON.stringify({ volume, index }));
-  }, [volume, index]);
+    localStorage.setItem(SAVED, JSON.stringify({ volume }));
+  }, [volume]);
 
   // A new title keeps the tape solid for 3 seconds so you can read it
   useEffect(() => {
@@ -252,8 +253,7 @@ const Tape = () => {
     return () => document.removeEventListener("keydown", onKey);
   }, []);
 
-  // Scroll sounds, with a switch in the controls panel
-  const [fx, setFx] = useState(sfxOn());
+  // Scroll and click sounds, switched by the Sound button in the navbar
   useEffect(() => startScrollSounds(), []);
 
   // Tell the Home timeline which song is on, and clear it when the tape goes away
@@ -290,9 +290,9 @@ const Tape = () => {
       <p className="ae-tape-live" role="status" aria-live="polite">{info.title ? `Now playing: ${info.title}` : ""}</p>
       {over && playing && hover && <span className="ae-tape-hint"><span>move your mouse</span></span>}
       {shown && (
-        <Panel list={list} index={index} info={info} fx={fx} listOpen={listOpen} error={status === "error"} playing={playing} volume={volume}
+        <Panel list={list} index={index} info={info} listOpen={listOpen} error={status === "error"} playing={playing} volume={volume}
           on={{ prev: () => go(-1), next: () => go(1), pick: (i) => { start(i); setListOpen(false); },
-            list: () => setListOpen(!listOpen), shuffle, fx: () => { setSfx(!fx); setFx(!fx); },
+            list: () => setListOpen(!listOpen), shuffle,
             editor: isVideo && !slot ? () => navigate("/", { state: { tab: "composition" } }) : null, play: press, volume: setVolume }} />
       )}
       <div className="ae-tape-frame" onClick={bodyClick}

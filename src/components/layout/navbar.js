@@ -1,12 +1,15 @@
 // Top navigation bar shown on every page: link buttons on desktop, a hamburger menu on small screens.
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { sfxOn, setSfx } from "./sounds.js";
 
 // The site colors are picked in the Character panel on Home (see theme.js).
 
 const Navbar = () => {
   // Tracks whether the mobile dropdown menu is open
   const [menuOpen, setMenuOpen] = useState(false);
+  // Scroll and click sounds on or off (saved by sounds.js)
+  const [fx, setFx] = useState(sfxOn());
 
   // Builds the 4 page links. Called twice (toolbar + mobile menu) so the list only lives in one place.
   const renderLinks = (isMobile = false) => {
@@ -43,6 +46,15 @@ const Navbar = () => {
         <div className="ae-nav-toolbar">{renderLinks()}</div>
 
         <div className="ae-nav-actions">
+          <button
+            type="button"
+            className="ae-button ae-button--small ae-nav-link"
+            aria-pressed={fx}
+            aria-label="Scroll and click sounds"
+            onClick={() => { setSfx(!fx); setFx(!fx); }}
+          >
+            Sound {fx ? "on" : "off"}
+          </button>
           <button
             type="button"
             className="ae-button ae-button--small ae-menu-toggle"
