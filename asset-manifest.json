@@ -1,7 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.5c16ee90.css",
-    "main.js": "/static/js/main.94528cbb.js",
+    "main.css": "/static/css/main.b0ed1226.css",
+    "main.js": "/static/js/main.82a59c9f.js",
+    "static/js/461.6d3f5071.chunk.js": "/static/js/461.6d3f5071.chunk.js",
     "static/media/orange-glob-marble.gif": "/static/media/orange-glob-marble.a6abdb0fdedd9b46976a.gif",
     "static/media/site.gif": "/static/media/site.c78ea60fb3d2036cf57f.gif",
     "static/media/participants-view.gif": "/static/media/participants-view.3c958b5c17638e6a4b69.gif",
@@ -16,22 +17,15 @@
     "static/media/img-0002.jpg": "/static/media/img-0002.11d1000fbdb394e8025e.jpg",
     "static/media/video-tools.gif": "/static/media/video-tools.7e5de5ffce5fbb00b5b8.gif",
     "static/media/years-view.png": "/static/media/years-view.6da8a399201fda2487af.png",
-    "static/media/img-1844.jpg": "/static/media/img-1844.d6acf3b64116d970c207.jpg",
     "static/media/diva-icon.gif": "/static/media/diva-icon.82032fd03d76427ab01f.gif",
-    "static/media/img-0987.jpg": "/static/media/img-0987.7e2e941f4ef305b6e59d.jpg",
     "static/media/img-1882.jpg": "/static/media/img-1882.571fa648823dd52f4b16.jpg",
     "static/media/time-rabbit.png": "/static/media/time-rabbit.69d41f424d443038e3f8.png",
     "static/media/favicon.png": "/static/media/favicon.fe786262cff3816c9137.png",
-    "static/media/img-1309.jpg": "/static/media/img-1309.09bb628bb4e10ac1628a.jpg",
-    "static/media/img-1602.jpg": "/static/media/img-1602.7131ba62c6d0abaf5fc8.jpg",
     "static/media/screenshot-2026-06-21-092112.png": "/static/media/screenshot-2026-06-21-092112.b7be353e48800212073e.png",
     "static/media/img-1222.jpg": "/static/media/img-1222.3bae278f1dcf26a1b57b.jpg",
     "static/media/screenshot-2026-06-21-034200.png": "/static/media/screenshot-2026-06-21-034200.1d31aa924d0c56a14923.png",
     "static/media/chat-view.png": "/static/media/chat-view.0887dad6ef97961c2cc7.png",
-    "static/media/img-1336.jpg": "/static/media/img-1336.5b81acc78201cccdd8b9.jpg",
-    "static/media/img-0510.jpg": "/static/media/img-0510.bf14a1e468686b86ef3b.jpg",
     "static/media/edit-alarm-view.png": "/static/media/edit-alarm-view.46190d651fdbd58ee94b.png",
-    "static/media/img-0528.jpg": "/static/media/img-0528.471d0b8d025a3c847e1e.jpg",
     "static/media/add-alarm-view.png": "/static/media/add-alarm-view.f8809ddadfa14faf7650.png",
     "static/media/duplicate-date-selection.png": "/static/media/duplicate-date-selection.14e742e5ef68ac8fdfaa.png",
     "static/media/img-1213.jpg": "/static/media/img-1213.ee7a24cbc6105214ca9b.jpg",
@@ -40,12 +34,17 @@
     "static/media/icon.png": "/static/media/icon.fa92551046846438d18d.png",
     "static/media/event-view.png": "/static/media/event-view.3cb7ff4cbc2588f35179.png",
     "static/media/southcrew-vgw2e.ttf": "/static/media/southcrew-vgw2e.01dce8bdae38c3987920.ttf",
+    "static/media/iosevka-etoile-latin-400-normal.woff2": "/static/media/iosevka-etoile-latin-400-normal.0fda7dc96b511fe41a1a.woff2",
+    "static/media/iosevka-etoile-latin-700-normal.woff2": "/static/media/iosevka-etoile-latin-700-normal.b662bf19f7641c05bb90.woff2",
+    "static/media/iosevka-latin-700-normal.woff2": "/static/media/iosevka-latin-700-normal.a9b0169d70005e1730b3.woff2",
+    "static/media/iosevka-latin-400-normal.woff2": "/static/media/iosevka-latin-400-normal.164b89ec016c6ed50c43.woff2",
+    "static/media/pacifico-latin-400-normal.woff2": "/static/media/pacifico-latin-400-normal.897d51104404af1d6700.woff2",
     "index.html": "/index.html",
-    "main.5c16ee90.css.map": "/static/css/main.5c16ee90.css.map",
-    "main.94528cbb.js.map": "/static/js/main.94528cbb.js.map"
+    "main.b0ed1226.css.map": "/static/css/main.b0ed1226.css.map",
+    "main.82a59c9f.js.map": "/static/js/main.82a59c9f.js.map"
   },
   "entrypoints": [
-    "static/css/main.5c16ee90.css",
-    "static/js/main.94528cbb.js"
+    "static/css/main.b0ed1226.css",
+    "static/js/main.82a59c9f.js"
   ]
 }
