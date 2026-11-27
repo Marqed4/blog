@@ -19,6 +19,22 @@ const SEMESTER_END = "2026-12-21";
 // 5. Only log days that have actually happened - don't log ahead of today.
 const entries = [
   {
+    date: "2026-11-26",
+    duration: 2,
+    category: "Documentation",
+    description: "Retook the README screenshots and made three GIFs with ffmpeg, then cut the README down to six images with a link to the full screenshots folder and an index for it. Cleaned up the documents folder: removed decorative banner comments from the SQL files, moved the Mermaid sources out of the repo and ignored them, and replaced curly apostrophes with straight ones. Added limits on host notes (30,000 characters, PDFs up to 50 pages) with a counter in the notes box and tests. Backend tests: 109 passed. Frontend tests: 132 passed.",
+    challenges: "The screenshot script could not record video here, so it now captures frames from the browser and ffmpeg builds the GIFs. I have not looked at the slide deck since editing it, so text overflow on the changed slides is unchecked.",
+    reflection: "Cutting the README from 19 screenshots to 6 made it much easier to scan.",
+  },
+  {
+    date: "2026-11-25",
+    duration: 5,
+    category: "Coding",
+    description: "Renamed the three privacy tiers to Standard, Encrypted and Passcode and replaced the encrypted and hashed_identity columns with one privacy_mode column, with a two-step database migration. Moved the privacy handling into one backend module and one frontend module, turned on per-session device hashing for both encrypted modes, and stopped encrypted rooms from saving a participant's questions in the browser or copying them to Supabase at sign-in. Added a step bar (Collect, Group, Answer, Wrap up) that puts the next action in one button, and reworded the interface in plain terms. Updated the schema docs, diagrams and slide deck to match.",
+    challenges: "My migration added a second append_participant_answer function next to the one already in the database, so the API could not choose between them. I found it by checking the live database after running step 1, and removed the extra copy. Step 2 of the migration (dropping the old columns) waits until the new code is deployed.",
+    reflection: "Checking the real database after the migration caught a problem the tests could not.",
+  },
+  {
     date: "2026-11-20",
     duration: 1,
     category: "Documentation",

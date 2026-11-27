@@ -1,16 +1,18 @@
 // Interface sounds, switched on and off together by the Sound button in the navbar (the music has its own controls).
-// Scroll sound: a soft whirr that is made live while the mouse wheel scrolls the page, one continuous sound for as
-// long as the scrolling lasts. When the wheel stops it fades out while its pitch drops, like a wheel spinning down.
-// It is looped noise run through a filter (no sound file, no repeating clip), so nothing can be heard starting over.
-// Click sound: a short tick when a button or link is clicked.
+// Scroll sound: a mechanical ratchet. Each wheel step plays a tiny click cut from a real recording, a faster wheel clicks
+// faster, and when the wheel stops the clicks slow down and fade out like a ratchet coasting to a halt.
+// Click sound: a keyboard switch. A button or link plays the press when the pointer goes down and the release when it lets go.
+// The clips are cut from the recordings in the Desktop sounds folder (src/resources/sound).
 // Browsers keep audio silent until the visitor has clicked or pressed a key once, so before that nothing plays.
+import downUrl from "../../resources/sound/click-down.wav";
+import upUrl from "../../resources/sound/click-up.wav";
+import tick1Url from "../../resources/sound/tick-1.wav";
+import tick2Url from "../../resources/sound/tick-2.wav";
 
 const KEY = "ae-sfx";
 const CEILING = 0.2; // hard volume ceiling for every sound
 const QUIET_MS = 140; // no wheel turn for this long counts as stopped
-const SPIN_DOWN = 0.18; // seconds it takes the pitch and volume to fall by about two thirds after the wheel stops
-const PITCH_IDLE = 450; // whirr pitch (Hz) as it starts and as it dies away
-const PITCH_MAX = 1800; // whirr pitch (Hz) at the fastest wheel turn
+const CLICKABLE = "button, a, [role=button]";
 
 // On by default, and the visitor's choice is saved
 let on = true;
@@ -18,7 +20,19 @@ try { on = localStorage.getItem(KEY) !== "off"; } catch { /* storage blocked, ke
 
 export const sfxOn = () => on;
 
-// One shared audio context for the whole site
+// The clips are decoded once, up front. An offline context decodes without needing a click first.
+const clips = {};
+const load = () => {
+  const Offline = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+  if (!Offline || clips.loaded) return;
+  clips.loaded = true;
+  const decoder = new Offline(1, 1, 44100);
+  Object.entries({ down: downUrl, up: upUrl, tick1: tick1Url, tick2: tick2Url }).forEach(([name, url]) => {
+    fetch(url).then((r) => r.arrayBuffer()).then((b) => decoder.decodeAudioData(b)).then((buf) => { clips[name] = buf; }).catch(() => {});
+  });
+};
+
+// One shared audio context for playing, made on first use
 let ctx = null;
 const audio = () => {
   ctx = ctx || new (window.AudioContext || window.webkitAudioContext)();
@@ -26,48 +40,41 @@ const audio = () => {
   return ctx;
 };
 
-// A short soft tick for button clicks
-const tick = () => {
-  try {
-    const c = audio();
-    const t = c.currentTime;
-    const osc = c.createOscillator();
-    const gain = c.createGain();
-    osc.type = "triangle";
-    osc.frequency.setValueAtTime(900, t);
-    osc.frequency.exponentialRampToValueAtTime(400, t + 0.04);
-    gain.gain.setValueAtTime(CEILING / 2, t);
-    gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.05);
-    osc.connect(gain).connect(c.destination);
-    osc.start(t);
-    osc.stop(t + 0.06);
-  } catch { /* no audio support, stay silent */ }
+// Plays a clip at a time on the audio clock. rate shifts its pitch a little so repeats do not sound identical.
+const play = (name, gain, rate = 1, when = 0) => {
+  const buf = clips[name];
+  if (!buf || !ctx) return;
+  const src = ctx.createBufferSource();
+  const vol = ctx.createGain();
+  src.buffer = buf;
+  src.playbackRate.value = rate;
+  vol.gain.value = Math.min(gain, CEILING);
+  src.connect(vol).connect(ctx.destination);
+  src.start(Math.max(when, ctx.currentTime));
 };
 
-// Two seconds of white noise, made once. Looping it is not audible because noise has no pattern to notice.
-let noise = null;
-const noiseBuffer = (c) => {
-  if (noise) return noise;
-  noise = c.createBuffer(1, c.sampleRate * 2, c.sampleRate);
-  const d = noise.getChannelData(0);
-  for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
-  return noise;
-};
+const press = () => { try { audio(); play("down", CEILING); } catch { /* no audio support, stay silent */ } };
+const release = (delay = 0) => { try { audio(); play("up", CEILING * 0.6, 1, ctx.currentTime + delay); } catch { /* stay silent */ } };
 
-// The one whirr voice: noise -> band-pass filter (its pitch) -> gain (its volume). null when silent.
-let voice = null;
-let state = "idle"; // "idle", "running" (wheel scrolling) or "winding" (spinning down)
+// Ratchet state: "idle", "running" (wheel turning) or "winding" (clicks slowing down)
+let state = "idle";
+let speed = 0; // 0 for a slow notch, 1 for a hard spin
+let nextAt = 0; // audio clock time of the next click
+let wind = null; // volume, pitch and gap of the click being played while winding down
+let flip = 0;
+let timer = 0;
 let quietTimer = 0;
-let killTimer = 0;
 
-// Stops the voice right now
+// Seconds between clicks while the wheel turns: 85ms for a slow notch, 35ms for a hard spin
+const gap = () => 0.085 - 0.05 * speed;
+const level = () => CEILING * (0.45 + 0.55 * speed);
+
+// Stops everything right now
 const silence = () => {
+  clearTimeout(timer);
   clearTimeout(quietTimer);
-  clearTimeout(killTimer);
   state = "idle";
-  if (!voice) return;
-  try { voice.src.stop(); voice.src.disconnect(); voice.gain.disconnect(); } catch { /* already stopped */ }
-  voice = null;
+  wind = null;
 };
 
 export const setSfx = (value) => {
@@ -76,57 +83,46 @@ export const setSfx = (value) => {
   if (!value) silence();
 };
 
-// Spins up: fades in and rises in pitch. If the voice is still spinning down, it picks back up instead of restarting.
-const spinUp = (speed) => {
-  const c = audio();
-  const t = c.currentTime;
-  clearTimeout(killTimer);
-  if (!voice) {
-    const src = c.createBufferSource();
-    const filter = c.createBiquadFilter();
-    const gain = c.createGain();
-    src.buffer = noiseBuffer(c);
-    src.loop = true;
-    filter.type = "bandpass";
-    filter.Q.value = 1.4;
-    filter.frequency.value = PITCH_IDLE;
-    gain.gain.value = 0;
-    src.connect(filter).connect(gain).connect(c.destination);
-    src.start();
-    voice = { src, filter, gain };
+// Schedules clicks a little ahead of the audio clock, so a busy page cannot make them stutter
+const pump = () => {
+  while (nextAt < ctx.currentTime + 0.1) {
+    let gain = level();
+    let rate = 1;
+    let step = gap();
+    if (state === "winding") {
+      wind.gain *= 0.62;
+      wind.rate *= 0.985;
+      wind.gap *= 1.3;
+      if (wind.gain < 0.012) { silence(); return; }
+      ({ gain, rate, gap: step } = wind);
+    }
+    play(flip++ % 2 ? "tick1" : "tick2", gain, rate * (0.96 + Math.random() * 0.08), nextAt);
+    nextAt += step;
   }
-  voice.gain.gain.cancelScheduledValues(t);
-  voice.filter.frequency.cancelScheduledValues(t);
-  voice.gain.gain.setTargetAtTime(CEILING, t, 0.03);
-  voice.filter.frequency.setTargetAtTime(speed, t, 0.06);
+  timer = setTimeout(pump, 25);
+};
+
+// First click of a burst, or picking the ratchet back up while it is still winding down
+const spinUp = () => {
+  audio();
+  clearTimeout(timer);
+  nextAt = state === "idle" ? ctx.currentTime + 0.005 : Math.max(nextAt, ctx.currentTime + 0.005);
   state = "running";
+  pump();
 };
 
-// Follows the wheel speed while scrolling, so a faster turn sounds higher
-const follow = (speed) => {
-  if (!voice) return;
-  voice.filter.frequency.setTargetAtTime(speed, ctx.currentTime, 0.08);
-};
-
-// Wheel stopped: volume and pitch both fall away, then the voice is removed
+// Wheel stopped: the clicks keep going but slower and quieter, then end
 const coast = () => {
-  if (state !== "running" || !voice) return;
+  if (state !== "running") return;
   state = "winding";
-  const t = ctx.currentTime;
-  voice.gain.gain.cancelScheduledValues(t);
-  voice.filter.frequency.cancelScheduledValues(t);
-  voice.gain.gain.setTargetAtTime(0, t, SPIN_DOWN);
-  voice.filter.frequency.setTargetAtTime(PITCH_IDLE / 2, t, SPIN_DOWN * 1.5);
-  killTimer = setTimeout(silence, SPIN_DOWN * 1000 * 6);
+  wind = { gain: level(), rate: 1, gap: gap() };
 };
 
-// Wheel speed to pitch: a gentle notch is low, a hard flick is high
-const pitchOf = (e) => PITCH_IDLE + Math.min(Math.abs(e.deltaY), 300) / 300 * (PITCH_MAX - PITCH_IDLE);
-
-// Starts listening for scrolling. Returns the function that stops it.
+// Starts listening for scrolling and clicks. Returns the function that stops it.
 export const startScrollSounds = () => {
+  load();
   let lastWheel = 0;
-  let pitch = PITCH_IDLE;
+  let held = false;
 
   // Only wheel turns count, so jumps made by the site (like going to the top on a new page) stay silent.
   // The quiet timer follows the wheel, not the page: the browser's smooth scrolling and trackpad
@@ -137,26 +133,33 @@ export const startScrollSounds = () => {
   };
   const onWheel = (e) => {
     if (Math.abs(e.deltaY) < 4) return; // trackpad momentum tail, not a real turn
-    lastWheel = Date.now();
-    pitch = pitchOf(e);
-    if (state === "running") { follow(pitch); armQuiet(); }
+    const now = Date.now();
+    speed = Math.min(1, Math.abs(e.deltaY) / 250 + (now - lastWheel < 60 ? 0.35 : 0));
+    lastWheel = now;
+    if (state === "running") armQuiet();
   };
-  // The sound starts only when a wheel turn actually moved the page (not at the top or bottom).
-  // Leftover scroll events from smooth scrolling are ignored, because they come after the wheel stopped.
+  // The ratchet starts only when a wheel turn actually moved the page (not at the top or bottom)
   const onScroll = () => {
     if (!on || state === "running" || Date.now() - lastWheel > 100) return;
-    try { spinUp(pitch); armQuiet(); } catch { state = "idle"; /* no audio support, stay silent */ }
+    try { spinUp(); armQuiet(); } catch { silence(); /* no audio support, stay silent */ }
   };
   // A hidden tab should be quiet
   const onHide = () => { if (document.hidden) silence(); };
-  // Buttons and links tick when clicked, unless the tick is switched off
-  const onClick = (e) => { if (on && e.target.closest?.("button, a, [role=button]")) tick(); };
+  // Buttons and links press when the pointer goes down and release when it lets go.
+  // A click with no pointer (the keyboard) plays both.
+  const onDown = (e) => { if (on && e.target.closest?.(CLICKABLE)) { held = true; press(); } };
+  const onUp = () => { if (held) { held = false; if (on) release(); } };
+  const onClick = (e) => { if (on && e.detail === 0 && e.target.closest?.(CLICKABLE)) { press(); release(0.09); } };
 
+  document.addEventListener("pointerdown", onDown, true);
+  document.addEventListener("pointerup", onUp, true);
   document.addEventListener("click", onClick, true);
   window.addEventListener("wheel", onWheel, { passive: true });
   window.addEventListener("scroll", onScroll, { capture: true, passive: true });
   document.addEventListener("visibilitychange", onHide);
   return () => {
+    document.removeEventListener("pointerdown", onDown, true);
+    document.removeEventListener("pointerup", onUp, true);
     document.removeEventListener("click", onClick, true);
     window.removeEventListener("wheel", onWheel);
     window.removeEventListener("scroll", onScroll, true);
