@@ -1,6 +1,7 @@
-🌐 Personal Website
+# Personal Website
 
-<a href="https://marqed.it/">Live Website</a>
+[marqed.it](https://marqed.it/)
 
-• Programming  
-• Graphic Design
+Programming and graphic design portfolio. Built with React, React Router, and Framer Motion.
+
+Run locally with `npm install` then `npm run dev`, deployed with `npm run deploy`.
